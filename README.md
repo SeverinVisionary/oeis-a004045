@@ -16,7 +16,7 @@ upper: Östergård 1995).
 | [`PAPER.md`](PAPER.md) | **the paper** — statements, full proofs, references |
 | [`./reproduce.sh`](reproduce.sh) | one command, ten self-asserting checks, ~1 min |
 | [`TOOLS.md`](TOOLS.md) | pinned external tool versions and build notes |
-| [`SHA256SUMS`](SHA256SUMS) | integrity manifest for the in-repo certificates |
+| [`SHA256SUMS`](SHA256SUMS) | integrity manifest for the 119 in-repo certificate files |
 
 ## Results
 
@@ -139,7 +139,11 @@ Uncompressed `cert_n8_M59_complete.vipr`: md5
 `34c48df67d0bfa6d2296856beba63a5a`, sha256
 `2f2a335f883e4b88630cebbaa3d47ce2ea30986b722df54084dcc4926d2d6ddf`.
 Note `viprchk` does **not** read gzip; the uncompressed file is the checkable
-one. Everything **in** this repository is covered by `SHA256SUMS`.
+one. `SHA256SUMS` covers the 119 certificate files under `certs/`,
+`certs_exact/` and `certs_symmetry/` -- the artefacts whose bytes a checker
+consumes. It is **not** a manifest of the whole repository: for source and prose
+the authority is git, which hashes every tracked file anyway. `./reproduce.sh`
+verifies the manifest.
 
 `K(8,1,2) >= 60` does not depend on these: it also follows from the half-page
 theorem with no computation at all, and from exhaustive numerical verification.

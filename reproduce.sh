@@ -24,6 +24,17 @@ run () {  # run <label> <cmd...>
   rm -f /tmp/_repro.$$
 }
 
+# sha256sum(1) on Linux, shasum(1) on macOS; either is fine.
+sha256_check () {
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum -c --status SHA256SUMS
+  elif command -v shasum >/dev/null 2>&1; then
+    shasum -a 256 -c --status SHA256SUMS
+  else
+    echo "neither sha256sum nor shasum found" >&2; return 1
+  fi
+}
+
 echo "=== Core claims (standard library only) ==="
 run "excess theorem"            $PY excess_theorem.py
 run "weight-parity split"       $PY bipartite_split.py
@@ -39,8 +50,12 @@ echo "=== Dominance over Krotov-Potapov (needs scipy for controls) ==="
 run "dominance + ceiling lemma" $PY dominance.py
 
 echo
-echo "=== CANDIDATE, not an established claim ==="
+echo "=== M=60 refutation: K(8,1,2) >= 61 (formalised in lean/) ==="
 run "M=60 refutation (K>=61)"   $PY m61_refutation.py
+
+echo
+echo "=== Certificate integrity ==="
+run "SHA256SUMS (119 certs)"    sha256_check
 
 if [ "$FULL" = "1" ]; then
   echo
@@ -62,5 +77,10 @@ echo
 echo "  Established: K(8,1,2) >= 60, and the bound"
 echo "      |C| >= ceil(3*2^(n+1)/(3n+2))   for even n"
 echo "  improves the published lower bound at n = 8, 10, 12, 14, 16."
-echo "  K(8,1,2) >= 61 is a CANDIDATE: no human review. See README.md."
+echo
+echo "  K(8,1,2) >= 61 follows from the M=60 refutation above, which is"
+echo "  formalised in Lean 4 with zero sorries (see lean/). Checking that"
+echo "  is a separate ~4-minute build: cd lean && lake exe cache get &&"
+echo "  lake build Mcov.Final. No human has reviewed the proof or the"
+echo "  formal definitions -- see README.md."
 exit 0
