@@ -32,7 +32,7 @@ cost of rung `M = 63` alone.
 
 ## 2. Known-answer gates (passed before any `n = 8` run)
 
-`AGENTS.md` §1: check the cases whose answers you already know first. Both
+Standing rule: check the cases whose answers you already know first. Both
 search models reproduce every published term, and every witness they emit is
 re-checked by `verify.py`, which shares no code with either model.
 
@@ -217,8 +217,8 @@ correspondingly more floating-point arithmetic to be wrong. Certification cost
 scales with it.
 
 **We are not claiming it.** Two floating-point branch-and-bound codes agreeing
-is evidence, not a certificate — precisely the failure mode `AGENTS.md` §1 was
-written about.
+is evidence, not a certificate — precisely the failure mode the known-answer
+gate exists to prevent.
 
 The rest of this section used to be an *estimate* of what closing that gap
 would cost. **It has been built.** The estimated table is replaced by §5.1–§5.6
@@ -252,7 +252,7 @@ covering every instance the certificates use.
 
 ## 5.2 The known-answer gate — passed, and in a stronger form than required
 
-`AGENTS.md` §1 asks for the published cases first. The `--opt` form certifies
+The rule asks for the published cases first. The `--opt` form certifies
 the published **values**, not merely the lower bounds: the solver proves
 matching bounds on `min |C|` and VeriPB reports `VERIFIED BOUNDS a <= obj <= b`.
 

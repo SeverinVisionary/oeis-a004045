@@ -47,8 +47,9 @@ PB/SAT/MILP stack at `n = 8` and published the result.**
 **The honest counterweight:** the published lower bound `59` is *cheap*. Stock
 HiGHS reaches dual bound `59.0` on the raw 256-variable MILP in 120 s from a
 cold start (§3 of the estimate). A bound that a general-purpose solver
-reproduces in two minutes is exactly what `AGENTS.md` §0 warns about — it says
-nothing about whether the *next* increment is cheap, and we assume it is not.
+reproduces in two minutes is exactly the trap to avoid reading too much into:
+it says nothing about whether the *next* increment is cheap, and we assume it is
+not.
 
 ## The two finish paths
 
@@ -117,7 +118,7 @@ lazy construction rather than an optimum.
 | [`certs/`](certs/) | route 1 artifacts, and [`certs/MANIFEST.md`](certs/MANIFEST.md): what is certified, by what, checked by what, with sizes, hashes and regeneration commands for **both** routes |
 | [`certs_exact/`](certs_exact/) | route 2 artifacts — exact-rational MILP certificates over the *same* `.opb` files |
 
-**Search and verification are separate implementations** (`AGENTS.md`): the
+**Search and verification are separate implementations**, by standing rule: the
 verifier shares no code with the models, uses no third-party package, and takes
 a code as data.
 

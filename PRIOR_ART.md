@@ -1,7 +1,8 @@
 # PRIOR_ART — `K(8,1,2)`, minimum binary double covering code of length 8
 
 **Gate status: PASSED, and the target is genuinely open.** Established
-2026-08-28 *before* any search was run, per `AGENTS.md` §0. Cross-checked by an
+2026-08-28 *before* any search was run, following this project's standing rule
+that the prior-art gate is settled before any compute is spent. Cross-checked by an
 independent adversarial literature review (archived in
 [`reviews/`](reviews/)), which confirmed the interval and corrected two of our
 statements.
