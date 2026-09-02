@@ -1,26 +1,24 @@
 # Lean formalisation of `K(8,1,2) >= 61`
 
-**Status: the M=60 refutation is FULLY FORMALISED. Zero `sorry`s.**
+**Status: COMPLETE. `K(8,1,2) >= 61` is machine-verified. Zero `sorry`s.**
 
-    no_60_word_double_cover : forall (C : Finset V), IsDoubleCover C -> #C != 60
+    le_card_of_isDoubleCover : forall (C : Finset V), IsDoubleCover C -> 61 <= C.card
       depends on axioms: [propext, Classical.choice, Quot.sound]
 
-No `sorryAx`, no `native_decide`. Reproduce the audit yourself:
+No `sorryAx`, no `native_decide`. The trusted base is Lean's kernel plus the
+twelve definitions at the top of `Mcov/Basic.lean`, which a reader can check by
+eye in a minute. Reproduce:
 
     lake exe cache get && lake build      # ~4 min warm
-    lake build Mcov.Audit                 # axiom trace of every lemma
+    lake build Mcov.Audit                 # axiom trace of all 39 declarations
     lake build Mcov.Sanity                # independent non-vacuity checks
+    lake build Mcov.Final                 # the headline theorem and its axioms
 
-`Mcov/Sanity.lean` is deliberately written apart from the development and
-checks that the statement is not hollow: `Fintype.card V = 256` (the space is
-really F_2^8), `univ_isDoubleCover` (the predicate is SATISFIABLE, so the
-theorem is not vacuously true) and `empty_not_isDoubleCover` (it is not
-trivially true either). All three are axiom-clean.
-
-**Known gap.** The theorem proves `#C != 60`. Deriving `K(8,1,2) >= 61` also
-needs monotonicity -- a double cover of size `k < 60` extends to one of size 60
-by adding arbitrary further words -- which is stated in `PAPER.md` but is NOT
-yet formalised here.
+`Mcov/Sanity.lean` is written apart from the development and rules out a hollow
+statement: `Fintype.card V = 256` (the space really is F_2^8),
+`univ_isDoubleCover` (the predicate is SATISFIABLE, so the theorem is not
+vacuously true) and `empty_not_isDoubleCover` (nor trivially true). All
+axiom-clean.
 
 `lake build` succeeds. **Fourteen lemmas — including the entire Delsarte input —
 are machine-verified**, each depending on only the three standard Lean axioms

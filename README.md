@@ -52,16 +52,27 @@ for **every even `n >= 6`**, ceiling included — the real gap is below 1 at
 exact-rational SCIP → VIPR certificate refuting `M=59` accepted by `viprchk`;
 and exhaustive numerical verification.
 
-### 2. `K(8,1,2) >= 61` — CANDIDATE, not established
+### 2. `K(8,1,2) >= 61` — MACHINE-VERIFIED
 
-`m61_refutation.py` refutes `M=60`, which would give **`[61, 64]`**. It has
-**four independent machine reviews, all approving** — ChatGPT Pro,
-`gpt-5.6-sol` at max effort (99.8%), fable 5.1 (0.97), and `deepseek-v4-pro`.
+`m61_refutation.py` refutes `M=60`, and the argument is **fully formalised in
+Lean 4** with zero `sorry`s:
 
-**No human has checked it.** It is deliberately kept out of the claim ladder.
-Each earlier review round found a real defect (see `git log`), so the reviews
-were substantive, but four models with correlated training are not four
-mathematicians.
+```
+le_card_of_isDoubleCover : forall (C : Finset V), IsDoubleCover C -> 61 <= C.card
+  depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+So the interval is **`[61, 64]`**, two above the published lower bound. The
+trusted base is Lean's kernel plus twelve short definitions; non-vacuity is
+checked separately (`lean/Mcov/Sanity.lean`), and every declaration's axiom
+trace is printed by `lake build Mcov.Audit`.
+
+It also has four independent machine reviews, all approving — but those are
+provenance, not evidence: the formalisation is what establishes it. **No human
+has read the proof or the Lean definitions.** A reader wanting to check this
+should read the twelve definitions at the top of `lean/Mcov/Basic.lean` and
+satisfy themselves they encode `K(8,1,2)`; everything after that is the kernel's
+problem, not a matter of judgement.
 
 ### Upper bound — unchanged at 64
 

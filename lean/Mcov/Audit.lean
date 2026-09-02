@@ -39,4 +39,8 @@ namespace Mcov
 #print axioms layer_contradiction
 -- the main theorem
 #print axioms no_60_word_double_cover
+-- monotonicity bridge and the final bound K(8,1,2) >= 61
+#print axioms cov_mono
+#print axioms isDoubleCover_mono
+#print axioms le_card_of_isDoubleCover
 end Mcov

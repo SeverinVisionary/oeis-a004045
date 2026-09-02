@@ -18,7 +18,8 @@ at the five positions `n = 8, 10, 12, 14, 16` tabulated by Krotov and Potapov
 (2021), raising them from `59, 188, 640, 2195, 7783` to `60, 192, 647, 2235,
 7865`. It also yields the exact value `K(6,1,2) = 20` with no computer search,
 where the published value came from integer programming. The improvement at
-`n = 8` moves the first unknown term of OEIS A004045 to `60 ≤ K(8,1,2) ≤ 64`.
+`n = 8` moves the first unknown term of OEIS A004045 to `60 ≤ K(8,1,2) ≤ 64`;
+a further, Lean-verified argument (§8) sharpens this to `61 ≤ K(8,1,2) ≤ 64`.
 The ratio of the new bound to the previous one tends to 1, but the additive gap
 grows like `(2/3)·2^n/n²` and is unbounded.
 
@@ -255,14 +256,19 @@ Splitting `F_2^n` by weight parity gives two more valid rows,
 the `n = 8`, `M = 60` case to a weight-balanced `(30,30)` code whose odd half is
 not a translate of its even half.
 
-This package additionally contains a **candidate** refutation of `M = 60`,
-which would give `K(8,1,2) ≥ 61` (`m61_refutation.py`). It combines Theorem 1's
+This package additionally contains a refutation of `M = 60`, giving
+`K(8,1,2) ≥ 61` (`m61_refutation.py`), **formalised in Lean 4 with zero
+`sorry`s** as
+`le_card_of_isDoubleCover : ∀ C, IsDoubleCover C → 61 ≤ C.card`,
+depending on only `propext`, `Classical.choice` and `Quot.sound`. It combines Theorem 1's
 Step 1 with a Delsarte/sum-of-squares bound on the distance distribution, a
 second-moment identity forcing excess *concentration*, an integrality argument
-forcing a fully-covered word, and a weighted layer count. It has four
-independent machine reviews, all approving, and **no human review**; a Lean 4
-formalisation is begun but unfinished. It is deliberately excluded from the
-claims above.
+forcing a fully-covered word, and a weighted layer count. It has four independent machine reviews, all approving, but those are
+provenance; the Lean development is what establishes it. **No human has read
+either the proof or the Lean definitions.** The trusted base is Lean's kernel
+plus the twelve definitions encoding `K(8,1,2)`, which a reader should check by
+eye. Non-vacuity is verified separately: the space has 256 words, and
+`IsDoubleCover` is proved both satisfiable and non-trivial.
 
 ## 9. What is and is not established
 
@@ -271,9 +277,15 @@ claims above.
 (`./reproduce.sh`), and `K(8,1,2) ≥ 60` additionally by a machine-checkable
 certificate.
 
-**Not established** — `K(8,1,2) ≥ 61` (candidate, §8); novelty of the argument
-(§7); anything about the upper bound, which remains Östergård's 64 and is
-untouched here.
+**Established, machine-verified** — `K(8,1,2) ≥ 61` (§8), by a Lean 4
+development with zero `sorry`s and an audited axiom trace. Hence `61 ≤
+K(8,1,2) ≤ 64`.
+
+**Not established** — the *novelty* of the argument (§7): Krotov–Potapov already
+use Delsarte nonnegativity on a covering code's own distance distribution, and
+the Chen–Li preprint is unlocated. Nothing here touches the upper bound, which
+remains Östergård's 64. And no human has read the proof or the formal
+definitions.
 
 ## References
 

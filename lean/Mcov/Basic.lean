@@ -866,4 +866,27 @@ theorem no_60_word_double_cover (C : Finset V) (h : IsDoubleCover C) : C.card �
   obtain ⟨y, hy⟩ := exists_full_ball C h hc
   exact layer_contradiction C h hc y hy
 
+/-! ### Monotonicity and the final bound `K(8,1,2) >= 61` -/
+
+/-- Coverage is monotone in the code. -/
+theorem cov_mono {C D : Finset V} (h : C ⊆ D) (v : V) : cov C v ≤ cov D v := by
+  unfold cov
+  exact Finset.card_le_card (Finset.filter_subset_filter _ h)
+
+/-- A double cover stays one when codewords are added. -/
+theorem isDoubleCover_mono {C D : Finset V} (h : C ⊆ D)
+    (hC : IsDoubleCover C) : IsDoubleCover D :=
+  fun v => (hC v).trans (cov_mono h v)
+
+/-- No double cover of Q_8 has 60 or fewer words: K(8,1,2) ≥ 61. -/
+theorem le_card_of_isDoubleCover (C : Finset V) (h : IsDoubleCover C) :
+    61 ≤ C.card := by
+  by_contra hlt
+  have hle : C.card ≤ 60 := by omega
+  have h60 : 60 ≤ (univ : Finset V).card := by
+    rw [Finset.card_univ, card_V]; norm_num
+  obtain ⟨D, hCD, -, hD⟩ :=
+    Finset.exists_subsuperset_card_eq (Finset.subset_univ C) hle h60
+  exact no_60_word_double_cover D (isDoubleCover_mono hCD h) hD
+
 end Mcov
