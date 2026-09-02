@@ -1,7 +1,29 @@
 # Lean formalisation of `K(8,1,2) >= 61`
 
-**Status: skeleton BUILDS against mathlib. 16 `sorry`s. Nothing mathematical
-is proved yet.**
+**Status: 14 lemmas fully proved and axiom-audited. 3 `sorry`s remain.**
+
+`lake build` succeeds. **Fourteen lemmas — including the entire Delsarte input —
+are machine-verified**, each depending on only the three standard Lean axioms
+`propext`, `Classical.choice`, `Quot.sound`, with **no `sorryAx`**. Verify this
+yourself:
+
+    lake build Mcov.Audit      # prints the axiom trace of every proved lemma
+
+Proved: `sum_cov`, `chi_mul`, `a_even`, `excess_eq`, `sos_nonneg`,
+`sos_eq_radial`, **`sum_chi_eq_f`**, `ball_sum_odd`, `exists_excess_in_ball`,
+`card_le_excess`, `antipode_row`, `second_moment`, `layer_identity`,
+`layer_identity_zero`.
+
+Remaining (`no_60_word_double_cover` correctly still reports `sorryAx`):
+`a12_lower`, `exists_full_ball`, `layer_contradiction` — the three deep steps.
+Everything they need upstream is now proved, so they reduce to linear
+arithmetic and integrality over `sum_d a_d = |C|^2`.
+
+`sum_chi_eq_f` was proved by the **general Krawtchouk identity**, not by
+computation and not by a 9-representative fallback: each `w` of card `k` splits
+uniquely as `(w INTER u)` and `(w \ u)`, giving
+`sum_j (-1)^j C(|u|,j) C(8-|u|,k-j)` via `Finset.card_nbij'`. So the design goal
+holds — no MacWilliams duality or inversion is used anywhere.
 
 `lake build` succeeds (3008 jobs): every definition and every theorem STATEMENT
 elaborates, and the top-level derivation
@@ -73,7 +95,15 @@ viable. Restricting to 9 weight-class representatives via a symmetry argument
 would still be ~22 minutes and would need an `Equiv` for permutations of
 `Fin 8` acting on `Finset (Fin 8)`.
 
-**Revised plan: prove the Krawtchouk identity combinatorially instead.**
+**DONE — this is what was implemented, and it worked.** Note the measurement is
+even stronger than first recorded: `decide` also fails on the NINE tiny
+Krawtchouk cases (`interval_cases j <;> decide` exceeded a 10-minute cap),
+because kernel evaluation of `Finset.sum` goes through `Multiset` quotients.
+The rule is therefore: avoid kernel `decide` on ANY `Finset.sum`, not merely
+large ones. `simp [Finset.sum_range_succ, Nat.choose, f]` closes all nine in
+seconds.
+
+**Plan that was executed: prove the Krawtchouk identity combinatorially.**
 
     sum_{|w| = k} (-1)^{|w cap u|}  =  sum_j (-1)^j C(|u|, j) C(n - |u|, k - j)
                                     =  K_k(|u|)

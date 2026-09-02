@@ -136,8 +136,12 @@ theorem with no computation at all, and from exhaustive numerical verification.
 ## Formalisation
 
 `lean/` holds a Lean 4 + mathlib formalisation of the `M=60` refutation.
-It **builds** (every statement elaborates, top-level derivation typechecks) with
-**16 `sorry`s** — no mathematical content is verified yet. See `lean/README.md`,
+**14 lemmas are fully proved and axiom-audited** — each depends on only
+`propext`, `Classical.choice`, `Quot.sound`, with no `sorryAx` — including the
+whole Delsarte input (`sum_chi_eq_f`, by the general Krawtchouk identity, and
+`sos_eq_radial`). **3 `sorry`s remain**, the three deep steps; the main theorem
+therefore still reports `sorryAx`, correctly. Run `lake build Mcov.Audit` to
+print the axiom trace yourself. See `lean/README.md`,
 including the measurement showing `decide` is not viable for the character-sum
 step (~136 s per evaluation).
 
