@@ -1,3 +1,32 @@
+# Twofold coverings of the Hamming cube
+
+### A Lean-verified `K(8,1,2) ≥ 61`, and an even-`n` theorem improving five published bounds
+
+## At a glance
+
+| | before this work | after | how it is checked |
+|---|---|---|---|
+| **`K(8,1,2)`** — first unknown term of A004045 | `59 ≤ K ≤ 64` | **`61 ≤ K ≤ 64`** | **Lean 4, zero `sorry`s** |
+| lower bound for **all even `n`** | Krotov–Potapov (2021) | `⌈3·2^(n+1)/(3n+2)⌉`, strictly better for every even `n ≥ 6` | half-page proof + script |
+| `K(6,1,2)` | `= 20`, by integer programming | `= 20`, **by hand** | script, no search |
+| symmetry of any `≤ 63` code | not addressed | must be **completely asymmetric** | 28 classes; 4 certified, 24 not |
+| **upper bound** | `64` (1993) | **`64` — untouched** | — |
+
+### The five published entries this improves
+
+| `n` | published lower bound | this work | improvement |
+|---:|---:|---:|---:|
+| 8 | 59 | **60** | +1 |
+| 10 | 188 | **192** | +4 |
+| 12 | 640 | **647** | +7 |
+| 14 | 2195 | **2235** | +40 |
+| 16 | 7783 | **7865** | +82 |
+
+The ratio to the old bound tends to 1, but the additive gap grows like
+`(2/3)·2^n/n²` and is unbounded, so the improvement does not run out.
+
+---
+
 # What this deposit proves
 
 Take the 256 binary strings of length 8. Choose a set `C` of them — call these

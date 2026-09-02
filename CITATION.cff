@@ -1,8 +1,8 @@
 cff-version: 1.2.0
-title: "Machine-checked bounds on K(8,1,2), the first unknown term of OEIS A004045"
+title: "Twofold coverings of the Hamming cube: a Lean-verified K(8,1,2) >= 61, and an even-n theorem improving five published bounds"
 message: "If you use this software or its results, please cite it as below."
 type: software
-version: "2.2"
+version: "2.4"
 date-released: "2026-09-02"
 doi: "10.5281/zenodo.22217672"
 authors:
