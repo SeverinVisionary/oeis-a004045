@@ -8,7 +8,7 @@ version, and is the DOI to cite. Version history, all 2026-09-02:
 | 1.0 | `10.5281/zenodo.22217673` | certificates only; `K >= 60` |
 | 2.0 | `10.5281/zenodo.22261609` | added the package and Lean; `61 <= K <= 64` |
 | 2.1 | `10.5281/zenodo.22261737` | paper restructured with abstract and contributions |
-| 2.2 | current | correctness/consistency pass after an adversarial audit |
+| 2.2 | `10.5281/zenodo.22262409` | current; correctness/consistency pass after an adversarial audit |
 
 The v1.0 metadata described `K >= 61` as a candidate and the Lean formalisation
 as unfinished; both were corrected in v2.0.
@@ -52,8 +52,8 @@ split; if the two ever disagree, the repository governs.
 
 The tarball's top-level directory is named for the commit it was built from.
 Releases up to v2.1 were built before a history rewrite, so those directory
-names refer to commits that no longer exist on GitHub. From v2.2 onward the
-names match public commits.
+names refer to commits that no longer exist on GitHub. v2.2's tarball is
+`oeis-a004045-d3993d0/`, which is a public commit.
 
 ## Why the large upload once had to be split -- the diagnosis, settled
 
