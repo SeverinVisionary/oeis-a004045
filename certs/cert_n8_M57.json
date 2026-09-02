@@ -1,0 +1,123 @@
+{
+  "statement": "K(8,1,2) > 57  --  no set C subset F_2^8 with |C| <= 57 has every word of F_2^8 within Hamming distance 1 of at least 2 members of C",
+  "mode": "decision",
+  "n": 8,
+  "M": 57,
+  "mu": 2,
+  "utc": "2026-08-29T07:58:53Z",
+  "machine": {
+    "platform": "macOS-26.6.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "processor": "Apple M1 Pro",
+    "cpu_count": 10,
+    "loadavg_1min_at_start": 15.1064453125
+  },
+  "instance": {
+    "path": "inst_n8_M57.opb",
+    "variables": 256,
+    "constraints": 257,
+    "bytes": 21472,
+    "sha256": "3968d96fe07d3810ea8d6f6bf0d986f28eee8efed08a5ec3006572daa25290bf"
+  },
+  "tools": {
+    "encoder": "pb_encode.py sha256=a54f4481eafdef0bfcb694cdabb249c28553c25416376a8db9599b322fbf5e9a",
+    "solver": "<build-dir>/cert/roundingsat/build/roundingsat",
+    "checker": "<build-dir>/cert/veripb/target/release/veripb",
+    "checker_version": [
+      "Running VeriPB version 3.0.2",
+      "veripb 3.0.2"
+    ],
+    "python": "3.12.8"
+  },
+  "solve": {
+    "command": "<build-dir>/cert/roundingsat/build/roundingsat --proof-log=certs/proof_n8_M57.pbp.fifo --verbosity=1 --lp=-1 certs/inst_n8_M57.opb",
+    "exit_code": 0,
+    "seconds": 2.6,
+    "verdict": "UNSATISFIABLE",
+    "solver_banner": [
+      "RoundingSat 2",
+      "branch master",
+      "commit d4edbf7"
+    ],
+    "search": {
+      "propagations": "214374",
+      "decisions": "79902",
+      "conflicts": "2011",
+      "LP total time 1": "s",
+      "LP solve time 1.41": "s",
+      "LP constraints added": "258",
+      "LP constraints removed": "0",
+      "LP pivots internal": "28341",
+      "LP pivots root": "2462",
+      "LP calls": "1943",
+      "LP optimalities": "1",
+      "LP no pivot count": "0",
+      "LP infeasibilities": "1942",
+      "LP valid Farkas constraints": "1941",
+      "LP learned Farkas constraints": "148",
+      "LP basis resets": "0",
+      "LP cycling count": "0",
+      "LP singular count": "0",
+      "LP no primal count": "0",
+      "LP no farkas count": "0",
+      "LP other issue count": "0",
+      "LP Gomory cuts": "1",
+      "LP learned cuts": "0",
+      "LP deleted cuts": "0",
+      "LP encountered Gomory constraints": "1",
+      "LP encountered Farkas constraints": "2535",
+      "LP encountered learned Farkas constraints": "170"
+    },
+    "stdout_tail": [
+      "c LP cycling count 0",
+      "c LP singular count 0",
+      "c LP no primal count 0",
+      "c LP no farkas count 0",
+      "c LP other issue count 0",
+      "c LP Gomory cuts 1",
+      "c LP learned cuts 0",
+      "c LP deleted cuts 0",
+      "c LP encountered Gomory constraints 1",
+      "c LP encountered Farkas constraints 2535",
+      "c LP encountered learned Farkas constraints 170",
+      "c CG auxiliary variables introduced 0",
+      "c CG solutions found 0",
+      "c CG cores constructed 0",
+      "c CG core cardinality constraints returned 0",
+      "c CG unit cores 0",
+      "c CG single cores 0",
+      "c CG blocks removed during cardinality reduction 0",
+      "c CG first core best 0",
+      "c CG decision core best 0",
+      "c CG core reduction tie 0",
+      "c CG core degree average 0.00",
+      "c CG core slack average 0.00",
+      "c CG core upper bound improvements 0",
+      "s UNSATISFIABLE"
+    ]
+  },
+  "proof": {
+    "path": "proof_n8_M57.pbp.gz",
+    "bytes": 4369349,
+    "uncompressed_bytes": 27773796,
+    "lines": 11060,
+    "sha256": "fd43fef9ecd10f5ba5fa20f79c1d013a9e28e59bc7ef99868587b4e6f90bb3f6"
+  },
+  "check": {
+    "command": "<build-dir>/cert/veripb/target/release/veripb --stats certs/inst_n8_M57.opb certs/proof_n8_M57.pbp.gz",
+    "exit_code": 0,
+    "seconds": 0.36,
+    "output": [
+      "Running VeriPB version 3.0.2",
+      "s VERIFIED UNSATISFIABLE",
+      "",
+      "c statistic: time total: 0.355776708 s",
+      "Info: Switched to proof version 2.0 (it is recommended to migrate to proof version 3.0)."
+    ],
+    "checker_verdict": "UNSATISFIABLE",
+    "bounds": null,
+    "accepted": true
+  },
+  "certified": true,
+  "result": "VERIFIED"
+}

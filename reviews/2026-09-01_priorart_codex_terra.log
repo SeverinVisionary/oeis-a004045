@@ -1,0 +1,236 @@
+Reading prompt from stdin...
+2026-09-01T14:29:02.802153Z ERROR codex_models_manager::cache: failed to load models cache: missing field `base_instructions` at line 97 column 5
+OpenAI Codex v0.144.1
+--------
+workdir: <build-dir>/wt-paper
+model: gpt-5.6-terra
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: high
+reasoning summaries: none
+session id: 01a05d5f-a08a-7420-8332-223d11fa5a09
+--------
+user
+Prior-art question in covering-code theory. I need a literature verdict, not
+encouragement. If you are not confident a paper says what you claim, say so
+explicitly. Do NOT invent citations, theorem numbers, or page numbers.
+
+K(n,R,mu) = least size of a binary code C in F_2^n such that every word lies in
+at least mu balls of radius R about codewords. Take R=1, mu=2, so with B(x) the
+closed radius-1 ball (|B| = n+1) the condition is |B(x) cap C| >= 2 for all x.
+Known: K(2,1,2)=3, K(3,1,2)=4, K(4,1,2)=8, K(5,1,2)=12, K(6,1,2)=20,
+K(7,1,2)=32, and 59 <= K(8,1,2) <= 64.
+
+THE ARGUMENT I NEED PLACED. For n EVEN, put g(x) = |B(x) cap C| - 2 >= 0 and
+E = sum_x g(x) = (n+1)M - 2^(n+1), M = |C|. For u != v, |B(u) cap B(v)| = 2 if
+d(u,v) in {1,2} and 0 otherwise. Hence for x in C,
+  sum_{y in B(x)} c(y) = (n+1) + 2*#{c' in C : 1 <= d(c',x) <= 2},
+which is ODD since n+1 is odd; each of the n+1 terms is >= 2, so the sum is
+>= 2(n+1)+1, giving sum_{y in B(x)} g(y) >= 1. Then with S = {g >= 1}, s = |S|:
+M <= #{(x,y): x in C, y in B(x) cap S} = sum_{y in S} c(y) = E + 2s <= 3E,
+so M >= 3*2^(n+1)/(3n+2). This gives 20 at n=6 (the exact value) and 60 at n=8.
+It is FALSE for odd n, as it must be, since the parity round-up needs |B| odd.
+
+QUESTIONS, answer each separately.
+
+1. Is this bound, or an equivalent, already in the literature? It is evidently a
+   mu=2 instance of van Wee's excess/parity method (van Wee, "Improved sphere
+   bounds on the covering radius of codes", IEEE IT 34 (1988) 237-245). Name the
+   paper and result if it is known.
+
+2. Do either of these contain a general van Wee-type lower bound for K(n,1,mu)
+   that specialises to this?
+   - Hamalainen, Honkala, Kaikkonen, Litsyn, "Bounds for binary multiple
+     covering codes", Des. Codes Cryptogr. 3 (1993).
+   - Seuranen, "New lower bounds for multiple coverings", Des. Codes Cryptogr.
+     45 (2007) 91-94.
+   If yes, what do they give at n=6 and n=8 for mu=2?
+
+3. Cohen-Honkala-Litsyn-Lobstein, "Covering Codes" (1997), Chapter 14 on
+   multiple coverings: does its lower-bound section contain this?
+
+4. Krotov-Potapov, "On multifold packings of radius-1 balls in Hamming graphs",
+   IEEE IT 67 (2021) 3585-3598, Theorem 6(a) gives, for n = 0 mod 4,
+   K(n,1,mu) >= 2^n(mu*n + 3mu + tau)/(n(n+4)) with mu = tau mod 2. At n=8,
+   mu=2 that is 256*22/96 = 58.67, hence 59 -- the current published value. Is
+   there any LATER improvement to the n=8, mu=2 lower bound that I have missed?
+
+5. Blunt judgement: if a half-page argument beats the published lower bound at
+   n=8 and hits the exact value at n=6, the overwhelmingly likely explanations
+   are (a) it is known and I have not found the reference, or (b) it is wrong.
+   Which, and why? If (a), give me the reference.
+
+codex
+I’ll treat this as a prior-art gate: first verify the cited sources and any later record, then audit the argument independently.
+2026-09-01T14:29:13.866345Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+exec
+/bin/zsh -lc "grep -niE 'covering|van Wee|multiple coverings|K\\(n,1' <local-path-redacted> | head -40" in <build-dir>/wt-paper
+ succeeded in 0ms:
+3475:- when recovering a completed ingest, prefer bounded recovery and reuse of the completed data rather than rerunning the entire instrument pull unnecessarily [Task 29]
+
+2026-09-01T14:29:15.118142Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: "Bounds for binary multiple covering codes" Hämäläinen Honkala Kaikkonen Litsyn 1993 PDF ...
+2026-09-01T14:29:21.466372Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: 
+2026-09-01T14:29:25.079698Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+2026-09-01T14:29:27.994548Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: 
+2026-09-01T14:29:29.959943Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: "Bounds for Binary Multiple Covering Codes" PDF Hämäläinen ...
+2026-09-01T14:29:35.282982Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+2026-09-01T14:29:37.140622Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: "K(n, 1, 2)" covering codes ...
+2026-09-01T14:29:40.867000Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: https://doi.org/10.1007/BF01388486
+2026-09-01T14:29:52.806959Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: Esa Seuranen publications "New lower bounds for multiple coverings" pdf ...
+2026-09-01T14:29:58.724548Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+2026-09-01T14:30:01.385856Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: "On multifold packings of radius-1 balls in Hamming graphs" cited by ...
+2026-09-01T14:30:04.987616Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: 
+2026-09-01T14:30:09.518409Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: 
+2026-09-01T14:30:13.483605Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: "multiple coverings" "excess" "n+1" binary codes Hämäläinen ...
+2026-09-01T14:30:24.432125Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: "Covering Codes" 1997 "Multiple Coverings" "lower bounds" ...
+2026-09-01T14:30:30.217288Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: site:sciencedirect.com/science/article "Multiple coverings" "Covering Codes" Cohen Honkala ...
+2026-09-01T14:30:36.002338Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: https://www.sciencedirect.com/science/article/pii/S0924650997800166
+2026-09-01T14:30:41.273556Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: "S0924650997800166" ...
+2026-09-01T14:30:46.152312Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: https://books.google.com/books?jscmd=SearchWithinVolume2%26q=lower%20bounds%26vid=7KBYOt44sugC
+2026-09-01T14:30:53.838125Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: 
+2026-09-01T14:30:58.194192Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: 
+2026-09-01T14:31:03.619608Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: "A note on perfect multiple coverings of the Hamming space" PDF ...
+2026-09-01T14:31:12.397521Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: Seuranen "New lower bounds for multiple coverings" DOI ...
+2026-09-01T14:31:17.477085Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: 
+2026-09-01T14:31:24.046566Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: "K(8, 1, 2)" 60 ...
+2026-09-01T14:31:42.414303Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: Hamalainen Honkala Kaikkonen Litsyn "n even" multiple covering ...
+2026-09-01T14:31:49.891139Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: https://ar5iv.labs.arxiv.org/html/1902.00023
+2026-09-01T14:31:56.528183Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: 'Theorem 6.'
+2026-09-01T14:32:02.174188Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
+web search: 
+web search: https://link.springer.com/article/10.1007/s10623-007-9089-y
+web search: 
+web search: https://link.springer.com/article/10.1007/BF01388486
+codex
+The algebra checks out. The key complication is bibliographic: the 2021 paper itself still tabulates 59–64 at \((8,1,2)\), so I cannot honestly attribute your 60 bound to the sources I could verify.
+codex
+1. No verified prior-art match.
+
+Your inequality is valid, but I did not find it in the sources inspected. Do not cite van Wee (1988) as the \(\mu=2\) result: that paper treats ordinary coverings \(K(n,R)\), and its advertised even-\(n\), \(R=1\) consequence is \(K(n,1)\ge 2^n/n\), not multiple coverings. It is fair to call your proof “in the style of the excess/parity method,” but not to claim van Wee proved this specialization. [van Wee, *Improved Sphere Bounds on the Covering Radius of Codes*](https://pure.tue.nl/ws/files/1995874/353803.pdf)
+
+The bound is
+\[
+K(n,1,2)\ge
+\left\lceil\frac{3\cdot 2^{n+1}}{3n+2}\right\rceil
+\qquad(n\text{ even}),
+\]
+hence 20 for \(n=6\) and 60 for \(n=8\).
+
+2. The two cited papers:
+
+- Hämäläinen–Honkala–Kaikkonen–Litsyn (1993) definitely studies \(K(n,r,\mu)\) and provides a small-parameter table, but I could not access its body. I therefore cannot responsibly state that it contains this general formula, nor assign a theorem number or its exact \(n=6,8\) specializations. Its public abstract alone is insufficient. [Publisher record](https://link.springer.com/article/10.1007/BF01388486)
+- Seuranen (2007) is not a general van-Wee-type theorem paper: its abstract says it improves 57 individual lower bounds by integer programming and exhaustive search. It is not a source for your displayed all-even-\(n\) bound. I cannot confirm its table entries from the inaccessible full text. [Publisher record](https://link.springer.com/article/10.1007/s10623-007-9089-y)
+
+3. *Covering Codes* (1997), Chapter 14:
+
+It certainly covers multiple coverings, and later work cites it for the definition and for perfect multiple coverings. I could not inspect the chapter’s lower-bound subsection itself, so I cannot say that it contains your bound. It should not be cited for this claim without checking the actual pages. [Book record](https://books.google.com/books?id=7KBYOt44sugC)
+
+4. Later improvement to 59:
+
+I found no later published improvement to the \(n=8,\mu=2\) lower bound. More importantly, Krotov–Potapov’s own 2021 paper explicitly states their general theorem and tabulates \(59\!-\!64\) for \(K(8,1,2)\); that table cites Seuranen as prior small-parameter work. So 60 is not recorded there. [Krotov–Potapov, Theorem 6 and table](https://ar5iv.labs.arxiv.org/html/1902.00023)
+
+5. Blunt verdict:
+
+(b) is not the explanation. Your argument is correct.
+
+The precise audit is:
+
+- the ball-intersection count is correct;
+- for even \(n\), the local sum is odd;
+- its minimum subject to all \(n+1\) terms being at least 2 is \(2(n+1)+1\);
+- \(s\le E\) is valid because \(g\) is nonnegative integral;
+- the final rearrangement gives 60 at \(n=8\).
+
+But I also cannot support (a): the verified 2021 record still publishes 59, not 60. The evidence therefore points to an omission in the tabulated lower-bound record, not a flaw in your proof and not a reference I can currently name. The right claim, pending direct inspection of the paywalled 1993 book/article material, is: “I have a valid elementary bound \(K(8,1,2)\ge60\); I have not found a published source for it.”
+tokens used
+237,468
+1. No verified prior-art match.
+
+Your inequality is valid, but I did not find it in the sources inspected. Do not cite van Wee (1988) as the \(\mu=2\) result: that paper treats ordinary coverings \(K(n,R)\), and its advertised even-\(n\), \(R=1\) consequence is \(K(n,1)\ge 2^n/n\), not multiple coverings. It is fair to call your proof “in the style of the excess/parity method,” but not to claim van Wee proved this specialization. [van Wee, *Improved Sphere Bounds on the Covering Radius of Codes*](https://pure.tue.nl/ws/files/1995874/353803.pdf)
+
+The bound is
+\[
+K(n,1,2)\ge
+\left\lceil\frac{3\cdot 2^{n+1}}{3n+2}\right\rceil
+\qquad(n\text{ even}),
+\]
+hence 20 for \(n=6\) and 60 for \(n=8\).
+
+2. The two cited papers:
+
+- Hämäläinen–Honkala–Kaikkonen–Litsyn (1993) definitely studies \(K(n,r,\mu)\) and provides a small-parameter table, but I could not access its body. I therefore cannot responsibly state that it contains this general formula, nor assign a theorem number or its exact \(n=6,8\) specializations. Its public abstract alone is insufficient. [Publisher record](https://link.springer.com/article/10.1007/BF01388486)
+- Seuranen (2007) is not a general van-Wee-type theorem paper: its abstract says it improves 57 individual lower bounds by integer programming and exhaustive search. It is not a source for your displayed all-even-\(n\) bound. I cannot confirm its table entries from the inaccessible full text. [Publisher record](https://link.springer.com/article/10.1007/s10623-007-9089-y)
+
+3. *Covering Codes* (1997), Chapter 14:
+
+It certainly covers multiple coverings, and later work cites it for the definition and for perfect multiple coverings. I could not inspect the chapter’s lower-bound subsection itself, so I cannot say that it contains your bound. It should not be cited for this claim without checking the actual pages. [Book record](https://books.google.com/books?id=7KBYOt44sugC)
+
+4. Later improvement to 59:
+
+I found no later published improvement to the \(n=8,\mu=2\) lower bound. More importantly, Krotov–Potapov’s own 2021 paper explicitly states their general theorem and tabulates \(59\!-\!64\) for \(K(8,1,2)\); that table cites Seuranen as prior small-parameter work. So 60 is not recorded there. [Krotov–Potapov, Theorem 6 and table](https://ar5iv.labs.arxiv.org/html/1902.00023)
+
+5. Blunt verdict:
+
+(b) is not the explanation. Your argument is correct.
+
+The precise audit is:
+
+- the ball-intersection count is correct;
+- for even \(n\), the local sum is odd;
+- its minimum subject to all \(n+1\) terms being at least 2 is \(2(n+1)+1\);
+- \(s\le E\) is valid because \(g\) is nonnegative integral;
+- the final rearrangement gives 60 at \(n=8\).
+
+But I also cannot support (a): the verified 2021 record still publishes 59, not 60. The evidence therefore points to an omission in the tabulated lower-bound record, not a flaw in your proof and not a reference I can currently name. The right claim, pending direct inspection of the paywalled 1993 book/article material, is: “I have a valid elementary bound \(K(8,1,2)\ge60\); I have not found a published source for it.”
+EXIT=0

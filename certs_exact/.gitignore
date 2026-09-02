@@ -1,0 +1,13 @@
+# SCIP's working files for certificate output, and the uncompressed forms.
+# The committed artifact is always <name>_complete.vipr.gz; recheck.py expands
+# it before calling viprchk and checks the expansion against the recorded
+# uncompressed sha256. Sizes and hashes of every form live in each cert_*.json.
+*.vipr
+*.vipr_ori
+*.vipr_der
+.raw_*.txt
+
+# 34 MB: too large to commit against a 66 MB repository. Its size, both
+# hashes and the exact regeneration command are in ../certs/MANIFEST.md;
+# regenerate it, drop it here, and recheck.py will verify it.
+cert_n8_M58_complete.vipr.gz

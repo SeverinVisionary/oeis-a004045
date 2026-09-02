@@ -1,0 +1,7 @@
+# verify.py is standard library only, and a witness only ever needs verify.py.
+# The three search models need solvers; none is required to check a result.
+# Versions are the ones the 2026-08-28 pilot ran on (see WORKLOAD_ESTIMATE §3).
+python-sat==1.9.dev15   # CaDiCaL 1.9.5 + totalizer cardinality encodings
+highspy==1.15.1         # HiGHS MILP/LP
+pyscipopt==6.2.1        # SCIP 10.0, the independent second branch-and-bound
+numpy==2.0.2            # matrix assembly for milp_model.py / prescribed.py

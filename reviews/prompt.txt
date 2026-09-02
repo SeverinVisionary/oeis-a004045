@@ -1,0 +1,53 @@
+You are acting as an expert reviewer in coding theory (covering codes / combinatorial
+design). This is a PRIOR-ART VERIFICATION task on a FIXED STATEMENT. Please search the
+literature (use web search) and adjudicate.
+
+BACKGROUND
+OEIS A004045: "Minimal size of binary code of length n such that every vector is within
+distance 1 of at least 2 codewords." Data: 2, 3, 4, 8, 12, 20, 32 for n = 1..7.
+Keywords: nonn, hard, more. a(6) and a(7) were contributed by Paul Tabatabai, Mar 2020.
+In the standard notation of Cohen-Honkala-Litsyn-Lobstein, "Covering Codes" (1997),
+Chapter 14, this is K(n, 1, mu) with mu = 2: the minimum cardinality of a binary
+(n, ., 1, 2) multiple covering.
+
+THE CLAIM I WANT ADJUDICATED
+1. A004045 is NOT solved: exact values are known only for n <= 7; a(8) is open.
+2. The current published record for a(8) = K(8,1,2) is the interval 59 <= a(8) <= 64.
+   - Lower bound 59 from D. S. Krotov and V. N. Potapov (arXiv:1902.00023, "On multifold
+     packings of radius-1 balls in Hamming graphs"), Theorem 6(a):
+     K(n,1,mu) >= 2^n (mu*n + 3*mu + tau) / (n(n+4)) for n = 0 mod 4, which for
+     n=8, mu=2, tau=0 gives 256*22/96 = 58.67 -> 59. That paper's table explicitly lists
+     the n=8, mu=2 entry as "59 - 64" as an update to Seuranen's Table 1.
+   - Upper bound 64 = 2 * K(8,1) = 2 * 32, two disjoint copies of an optimal radius-1
+     covering code of length 8.
+3. The relevant prior-art chain is: Hamalainen-Honkala-Kaikkonen-Litsyn, "Bounds for binary
+   multiple covering codes", Des. Codes Cryptogr. 3 (1993); Ostergard, "New multiple
+   covering codes by tabu search", Australas. J. Comb. 12 (1995), 145-155;
+   Seuranen, "New lower bounds for multiple coverings", Des. Codes Cryptogr. 45 (2007),
+   91-94 (its Table 1 is the maintained small-value table for K(n,1,mu));
+   and the 2019/2020 multifold-packings paper above.
+4. No work published after 2020 has closed n=8 or improved the 59-64 interval, and
+   n = 10, 12, 14, 16 remain open by wider margins.
+
+WHAT I NEED FROM YOU
+A. Confirm or refute each of points 1-4 against the actual published record, with
+   citations. In particular: is there ANY published exact determination of K(8,1,2)?
+   Is there a better lower or upper bound than 59 / 64 anywhere in the literature
+   (including work I did not list, non-English sources, theses, or 2021-2026 papers)?
+B. Correct my attribution of arXiv:1902.00023 if the author list is wrong.
+C. Flag any error in my reading of the notation - in particular, confirm that A004045
+   really is K(n,1,2) (multiplicity-2 covering) and NOT one of the neighbouring notions
+   that is easy to confuse with it: multiple coverings of the farthest-off points (MCF /
+   the (n, M, R) mu-MCF codes of Hamalainen-Honkala-Litsyn-Ostergard, SIAM J. Discrete
+   Math. 1995), 2-fold PACKINGS (the dual/complementary notion), the multicovering RADIUS
+   of Klapper, or "nearly perfect covering codes". If A004045's definition matches a
+   DIFFERENT published table than the one I cited, say so - that would change the bounds.
+D. Verify the arithmetic of the small known terms against the sphere bound
+   |C|(n+1) >= 2*2^n, and confirm a(7) = 32 is tight because the [7,4] Hamming code
+   doubled meets it exactly, and that K(8,1) = 32 (so 64 is a valid upper bound).
+E. State what a serious attempt to close n=8 would require computationally (search space
+   size, symmetry reduction, ILP/SAT feasibility), and whether it looks tractable today.
+
+Be adversarial. If any claim above is wrong, unsupported, or overstated, say so plainly
+and give the correct statement with a citation. If you cannot verify something from the
+published record, say "unverified" rather than guessing.

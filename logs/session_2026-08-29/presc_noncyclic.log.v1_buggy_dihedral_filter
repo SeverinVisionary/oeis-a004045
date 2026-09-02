@@ -1,0 +1,33 @@
+[0s] start: ub<=63, per-instance timelimit=30.0s
+[0s] family1 r=2 part=(7, 1) blocks=[(0, 1, 2, 3, 4, 5, 6), (7,)] combos=7
+[1s] family1 r=2 part=(6, 2) blocks=[(0, 1, 2, 3, 4, 5), (6, 7)] combos=40
+[48s] family1 r=2 part=(5, 3) blocks=[(0, 1, 2, 3, 4), (5, 6, 7)] combos=15
+[51s] family1 r=2 part=(4, 4) blocks=[(0, 1, 2, 3), (4, 5, 6, 7)] combos=49
+[97s] family1 r=3 part=(6, 1, 1) blocks=[(0, 1, 2, 3, 4, 5), (6,), (7,)] combos=10
+[97s] family1 r=3 part=(5, 2, 1) blocks=[(0, 1, 2, 3, 4), (5, 6), (7,)] combos=20
+[98s] family1 r=3 part=(4, 3, 1) blocks=[(0, 1, 2, 3), (4, 5, 6), (7,)] combos=21
+[99s] family1 r=3 part=(4, 2, 2) blocks=[(0, 1, 2, 3), (4, 5), (6, 7)] combos=112
+[129s] family1 r=3 part=(3, 3, 2) blocks=[(0, 1, 2), (3, 4, 5), (6, 7)] combos=36
+[132s] family1 r=4 part=(5, 1, 1, 1) blocks=[(0, 1, 2, 3, 4), (5,), (6,), (7,)] combos=5
+[132s] family1 r=4 part=(4, 2, 1, 1) blocks=[(0, 1, 2, 3), (4, 5), (6,), (7,)] combos=28
+[132s] family1 r=4 part=(3, 3, 1, 1) blocks=[(0, 1, 2), (3, 4, 5), (6,), (7,)] combos=9
+[132s] family1 r=4 part=(3, 2, 2, 1) blocks=[(0, 1, 2), (3, 4), (5, 6), (7,)] combos=48
+[132s] family1 r=4 part=(2, 2, 2, 2) blocks=[(0, 1), (2, 3), (4, 5), (6, 7)] combos=256
+[145s] family1 r=5 part=(4, 1, 1, 1, 1) blocks=[(0, 1, 2, 3), (4,), (5,), (6,), (7,)] combos=7
+[145s] family1 r=5 part=(3, 2, 1, 1, 1) blocks=[(0, 1, 2), (3, 4), (5,), (6,), (7,)] combos=12
+[145s] family1 r=5 part=(2, 2, 2, 1, 1) blocks=[(0, 1), (2, 3), (4, 5), (6,), (7,)] combos=64
+[145s] family2 dihedral m=3 order=6 sigma_orbits=[(0,), (1, 2)] combos=4
+[151s] family2 dihedral m=4 order=8 sigma_orbits=[(0,), (1, 3), (2,)] combos=8
+[153s] family2 dihedral m=5 order=10 sigma_orbits=[(0,), (1, 4), (2, 3)] combos=8
+[154s] family2 dihedral m=6 order=12 sigma_orbits=[(0,), (1, 5), (2, 4), (3,)] combos=16
+[154s] family2 dihedral m=7 order=14 sigma_orbits=[(0,), (1, 6), (2, 5), (3, 4)] combos=16
+[154s] family2 dihedral m=8 order=16 sigma_orbits=[(0,), (1, 7), (2, 6), (3, 5), (4,)] combos=32
+[154s] family1 (elementary abelian): 739 genuine non-cyclic instances, 0 solved, 739 not Optimal
+[154s] family2 (dihedral): 12 genuine non-cyclic instances, 0 solved, 12 not Optimal
+[154s] total instances: 751
+[154s] status counts (non-optimal): {'Infeasible': 751}
+[154s] TRULY UNRESOLVED (timeouts / other, not counted as negative): 0
+[154s] sweep is exhaustive over families 1+2 only if the count above is 0
+[154s] BEST 1000000000 via None  total 154s
+[154s] size distribution over solved instances: []
+[154s] wrote logs/session_2026-08-29/presc_noncyclic_best.json

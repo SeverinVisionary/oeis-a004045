@@ -1,0 +1,3 @@
+p3_a1            ub=63  CERTIFIED   740.88s  VERIFIED
+p2_a0_b7_c1      ub=63  NOT-CERT   1837.66s  NOT REFUTED (SCIP status 'solving was interrupted [time limit reached]')
+p2_a0_b6_c2      ub=63  NOT-CERT   1809.39s  NOT REFUTED (SCIP status 'solving was interrupted [time limit reached]')

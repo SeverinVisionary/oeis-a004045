@@ -1,0 +1,4 @@
+# Transient SCIP stdout capture written by run_scip() in symcert_certify_exact.py.
+# Deleted automatically once the solve finishes; only visible while a run is
+# in flight, so it should never be committed.
+certs_symmetry/*.scip_stdout.log

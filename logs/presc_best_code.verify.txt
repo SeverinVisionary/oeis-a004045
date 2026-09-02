@@ -1,0 +1,13 @@
+{
+  "n": 8,
+  "mu": 2,
+  "size": 64,
+  "sphere_bound": 57,
+  "excess": 64,
+  "coverage_profile": {
+    "2": 192,
+    "3": 64
+  },
+  "deficient_words": 0
+}
+VALID

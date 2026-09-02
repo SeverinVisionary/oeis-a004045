@@ -1,0 +1,31 @@
+p2_a0_b7_c1    ord=2 orbits=128  Infeasible       6.52s
+p2_a0_b6_c2    ord=2 orbits=128  Infeasible       6.76s
+p2_a0_b5_c3    ord=2 orbits=128  Infeasible      95.24s
+p2_a0_b4_c4    ord=2 orbits=128  Infeasible     240.16s
+p2_a0_b3_c5    ord=2 orbits=128  Infeasible     747.39s
+p2_a0_b2_c6    ord=2 orbits=128  Infeasible     158.95s
+p2_a0_b1_c7    ord=2 orbits=128  Infeasible     212.27s
+p2_a0_b0_c8    ord=2 orbits=128  Infeasible     330.49s
+p2_a1_b6_c0    ord=2 orbits=192  Infeasible   12088.32s
+p2_a1_b5_c1    ord=2 orbits=128  Infeasible      81.63s
+p2_a1_b4_c2    ord=2 orbits=128  Infeasible     145.77s
+p2_a1_b3_c3    ord=2 orbits=128  Infeasible     291.71s
+p2_a1_b2_c4    ord=2 orbits=128  Infeasible     548.44s
+p2_a1_b1_c5    ord=2 orbits=128  Infeasible     492.75s
+p2_a1_b0_c6    ord=2 orbits=128  Infeasible    1058.00s
+p2_a2_b4_c0    ord=2 orbits=160  Infeasible   13230.19s
+p2_a2_b3_c1    ord=2 orbits=128  Infeasible     601.79s
+p2_a2_b2_c2    ord=2 orbits=128  Infeasible     374.85s
+p2_a2_b1_c3    ord=2 orbits=128  Infeasible     416.47s
+p2_a2_b0_c4    ord=2 orbits=128  Infeasible     509.28s
+p2_a3_b2_c0    ord=2 orbits=144  Infeasible    2115.29s
+p2_a3_b1_c1    ord=2 orbits=128  Infeasible     510.08s
+p2_a3_b0_c2    ord=2 orbits=128  Infeasible     396.01s
+p2_a4_b0_c0    ord=2 orbits=136  Infeasible     887.59s
+p3_a1          ord=3 orbits=128  Infeasible      13.44s
+p3_a2          ord=3 orbits= 96  Infeasible      45.28s
+p5_a1          ord=5 orbits= 64  Infeasible       1.06s
+p7_a1          ord=7 orbits= 40  Infeasible       0.49s
+---
+total 35606.3s  statuses: {'Infeasible': 28}
+ALL 28 INFEASIBLE AT M<=63: True

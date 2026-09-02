@@ -1,0 +1,10 @@
+=== control: n=6, M=20 with cuts must stay FEASIBLE ===
+   Optimal        0.0s nodes=1
+   control passes.
+
+  n=8 M=58 cuts=False  Infeasible       1.9s  nodes=28
+  n=8 M=58 cuts=True   Infeasible       2.5s  nodes=3
+  n=8 M=59 cuts=False  Infeasible      20.5s  nodes=1219
+  n=8 M=59 cuts=True   Infeasible     100.4s  nodes=992
+  n=8 M=60 cuts=False  Infeasible    1051.3s  nodes=15246
+  n=8 M=60 cuts=True   Infeasible    1308.8s  nodes=11604

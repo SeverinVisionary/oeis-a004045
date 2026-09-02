@@ -1,0 +1,2 @@
+p3_a2            ub=63  NOT-CERT    240.22s  NOT ESTABLISHED (solver said None, wanted 'UNSATISFIABLE')
+p3_a1            ub=63  NOT-CERT     18.79s  NOT ESTABLISHED (solver said None, wanted 'UNSATISFIABLE')

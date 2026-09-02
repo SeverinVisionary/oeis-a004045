@@ -1,0 +1,80 @@
+METHODOLOGY REQUEST. I do not want you to search this time. I want you to design
+the search protocol, so that a second person can execute it and we can both say
+afterwards how much of the space was actually covered.
+
+CONTEXT
+The quantity is K(8,1,2): minimum size of a set C of binary words of length 8
+such that every word of F_2^8 has at least two members of C within Hamming
+distance 1. OEIS A004045(8), first unknown term. Published record
+59 <= K(8,1,2) <= 64 (lower bound Krotov-Potapov arXiv:1902.00023 Thm 6(a) 2020;
+upper bound Ostergard tabu search 1995).
+
+A stock 0/1 integer program over 256 binary word-variables, run in HiGHS and in
+SCIP, refutes M = 57, 58, 59 and 60 in seconds to minutes, and does not settle
+61 or 62 in six hours. If correct that gives K >= 61, two rungs past the
+published bound, for about five minutes of laptop time. I distrust a result that
+cheap.
+
+WHAT I HAVE ALREADY ESTABLISHED, so do not repeat it
+1. Citation graph: Seuranen 2007 (Des. Codes Cryptogr. 45, 91-94) has exactly one
+   citation, Krotov-Potapov; Krotov-Potapov has six, none revisiting n=8.
+2. I obtained the source distribution accompanying Seuranen's 2011 Aalto
+   dissertation "Computational methods in codes and games" and read the scripts
+   that regenerate his published results. By (n, r, mu):
+     - lower bounds by IP: (8,1,4), (10,1,2), (13,1,3), (14,1,2), (16,1,2),
+       (16,1,4) and r>=2 cases. (8,1,2) is absent.
+     - non-existence proofs: includes (6,1,2) at M=19 and (12,1,2) at M=631.
+       (8,1,2) is absent.
+     - exhaustive isomorph-rejection search: every entry has r >= 2 and M <= 18.
+       Radius 1 never appears.
+     - his IP has variables c_0..c_n, one per WEIGHT CLASS: 9 variables at n=8,
+       a weight-distribution relaxation, not the 256-variable word IP.
+   His (6,1,2) M=19 non-existence agrees with my model, which is a useful
+   cross-check on my formulation.
+3. Domination synonym, partially: gamma(Q_8) = 32 and gamma_t(Q_8) = 32 are
+   published via ILP, and some Q_8 invariants are still published as ranges. I
+   found nothing on double / 2-tuple domination of hypercubes.
+
+WHAT I WANT FROM YOU
+
+A. A SYSTEMATIC PROTOCOL for establishing whether a computational result in
+   extremal combinatorics is already known. Not advice -- an ordered, executable
+   checklist, where each step names the specific resource to query and the
+   specific query string or identifier to use, and states what a hit and a miss
+   each mean. Design it around the failure modes that actually hide results:
+     - the same object under a different name in a different subfield;
+     - values that live only in a thesis table, a technical report, a conference
+       abstract, or a table on a personal homepage;
+     - values computed but never written up, visible only in source
+       distributions, README files, solver logs, mailing lists, or OEIS
+       correspondence;
+     - a maintained table that has been silently updated since the last paper;
+     - non-English literature, and pre-1995 work that predates indexing;
+     - the result being a corollary of something published in a different
+       parameterisation, so that no one ever stated the number.
+
+B. For THIS problem specifically, instantiate the protocol: the concrete
+   resources, in the order I should hit them, with the exact search strings,
+   identifiers, table URLs, author pages, and databases. Rank them by the
+   probability that the result is hiding there, and say why for each.
+
+C. THE SYNONYM MAP. Enumerate every name and notation under which
+   K(n,1,2) has been or could be discussed, across coding theory, graph
+   domination, hypergraph covering, design theory, combinatorial optimisation,
+   and the OEIS. For each, name the community, the standard notation, and
+   whether their convention makes their quantity equal to mine or different, and
+   how (open vs closed neighbourhood, multiset vs set, farthest-off points only,
+   at-most vs at-least). This is where I expect the miss to be.
+
+D. STOPPING CRITERIA. What set of negative results would justify saying "this
+   was not previously computed" rather than "I did not find it"? Be concrete
+   about what can and cannot be concluded from absence, and what the residual
+   risk is after a complete sweep.
+
+E. EVIDENCE STANDARD. Distinguish prior art in print from prior art in
+   substance: an unpublished solver run, a value in a source distribution, a
+   number quoted in a survey without proof, a value on a personal webpage. Which
+   of these would make my result not new, which would make it not publishable,
+   and which merely oblige a citation?
+
+Be concrete and terse. Numbered steps. No encouragement.

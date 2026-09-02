@@ -1,0 +1,75 @@
+{
+  "statement": "no union of <g>-orbits (g in conjugacy class p3_a1, order 3, 128 orbits on F_2^8) of total size <= 63 is a mu=2 covering of Q_8",
+  "label": "p3_a1",
+  "order": 3,
+  "n_orbits": 128,
+  "ub": 63,
+  "mu": 2,
+  "utc": "2026-08-30T15:45:13Z",
+  "machine": {
+    "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "cpu_count": 4,
+    "loadavg_1min_at_start": 3.62255859375
+  },
+  "instance": {
+    "path": "inst_p3_a1_ub63.opb",
+    "variables": 128,
+    "constraints": 257,
+    "bytes": 17243,
+    "sha256": "5033aeebf249cb72d7acc5552c2ea2a5e921b698da1593e2f31b93565f81b36a"
+  },
+  "tools": {
+    "encoder": "symcert_encode.py+symcert_reps.py sha256=9b5ee1d5946382db171ec7fcb184437aab705322459f4f121ffc3cd874d01b64+0bbf62f5f073c4796ceb90c8b0d62d725bf11503a8e70feaa64ba69aa6714f67",
+    "solver": "/home/user/cert/roundingsat/build/roundingsat",
+    "solver_version": [
+      "Usage: /home/user/cert/roundingsat/build/roundingsat [OPTIONS] instance.(opb|cnf|wcnf)"
+    ],
+    "solver_commit": "d4edbf7908a9bb951fd181940919e0f3ac7ab1ee",
+    "checker": "/home/user/cert/veripb/target/release/veripb",
+    "checker_version": [
+      "Running VeriPB version 3.0.2",
+      "veripb 3.0.2"
+    ],
+    "checker_commit": "e4ffda3b7b68bf0ffb42bc14f4170836ba4656e2",
+    "python": "3.11.15"
+  },
+  "solve": {
+    "command": "/home/user/cert/roundingsat/build/roundingsat --proof-log=certs_symmetry/proof_p3_a1_ub63.pbp --verbosity=1 --lp=-1 certs_symmetry/inst_p3_a1_ub63.opb",
+    "exit_code": -9,
+    "budget_expired": false,
+    "seconds": 18.72,
+    "verdict": null,
+    "solver_banner": [
+      "RoundingSat 2",
+      "branch HEAD",
+      "commit d4edbf7"
+    ],
+    "search": {},
+    "stdout_tail": [
+      "c RoundingSat 2",
+      "c branch HEAD",
+      "c commit d4edbf7",
+      "c #variables 128 #constraints 257",
+      "c rational objective 30.6087",
+      "c #Conflicts:       1000 | #Constraints:       1869",
+      "c #Conflicts:       2000 | #Constraints:       3448",
+      "c INPROCESSING",
+      "c GARBAGE COLLECT",
+      "c rational objective 30.75",
+      "c #Conflicts:       3000 | #Constraints:       3457",
+      "c #Conflicts:       4000 | #Constraints:       5037",
+      "c INPROCESSING",
+      "c GARBAGE COLLECT",
+      "c rational objective 30.7611",
+      "c #Conflicts:       5000 | #Constraints:       4088",
+      "c #Conflicts:       6000 | #Constraints:       5667",
+      "c INPROCESSING",
+      "c GARBAGE COLLECT",
+      "c rational objective 30.7611"
+    ]
+  },
+  "result": "NOT ESTABLISHED (solver said None, wanted 'UNSATISFIABLE')",
+  "certified": false,
+  "partial_proof_bytes": 39100416
+}

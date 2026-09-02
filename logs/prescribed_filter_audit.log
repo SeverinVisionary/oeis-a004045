@@ -1,0 +1,7 @@
+total (pi,t) pairs: 746
+passed filter 8 <= K <= 140: 742
+excluded: 4
+  cycle type (2, 2, 2, 1, 1) t=0 orbits=144
+  cycle type (2, 2, 1, 1, 1, 1) t=0 orbits=160
+  cycle type (2, 1, 1, 1, 1, 1, 1) t=0 orbits=192
+  cycle type (1, 1, 1, 1, 1, 1, 1, 1) t=0 orbits=256  <-- identity, t=0: the unrestricted 256-variable problem

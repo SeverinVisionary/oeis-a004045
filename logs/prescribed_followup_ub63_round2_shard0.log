@@ -1,0 +1,22 @@
+18 unresolved instances to re-solve, 1200s each, ub=63
+  Infeasible  (2, 2, 1, 1, 1, 1) t=176 orbits=128  [91s]
+  Infeasible  (2, 1, 1, 1, 1, 1, 1) t=196 orbits=128  [155s]
+  Infeasible  (1, 1, 1, 1, 1, 1, 1, 1) t=82 orbits=128  [221s]
+  Infeasible  (1, 1, 1, 1, 1, 1, 1, 1) t=157 orbits=128  [312s]
+  Infeasible  (1, 1, 1, 1, 1, 1, 1, 1) t=245 orbits=128  [397s]
+  Infeasible  (2, 1, 1, 1, 1, 1, 1) t=92 orbits=128  [456s]
+  Infeasible  (1, 1, 1, 1, 1, 1, 1, 1) t=61 orbits=128  [548s]
+  Infeasible  (1, 1, 1, 1, 1, 1, 1, 1) t=229 orbits=128  [638s]
+  Infeasible  (2, 2, 1, 1, 1, 1) t=208 orbits=128  [732s]
+  Infeasible  (2, 1, 1, 1, 1, 1, 1) t=148 orbits=128  [797s]
+  Infeasible  (1, 1, 1, 1, 1, 1, 1, 1) t=23 orbits=128  [865s]
+  Infeasible  (1, 1, 1, 1, 1, 1, 1, 1) t=126 orbits=128  [945s]
+  Infeasible  (1, 1, 1, 1, 1, 1, 1, 1) t=205 orbits=128  [1044s]
+  Infeasible  (1, 1, 1, 1, 1, 1, 1, 1) t=234 orbits=128  [1183s]
+  Infeasible  (2, 2, 2, 1, 1) t=192 orbits=128  [1245s]
+  Infeasible  (2, 1, 1, 1, 1, 1, 1) t=188 orbits=128  [1323s]
+  Infeasible  (1, 1, 1, 1, 1, 1, 1, 1) t=191 orbits=128  [1545s]
+  Infeasible  (1, 1, 1, 1, 1, 1, 1, 1) t=235 orbits=128  [1631s]
+resolved: 18  still open: 0
+EXHAUSTIVE
+BEST 1000000000 None total 1631s

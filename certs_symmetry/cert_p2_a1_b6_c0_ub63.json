@@ -1,0 +1,80 @@
+{
+  "statement": "no union of <g>-orbits (g in conjugacy class p2_a1_b6_c0, order 2, 192 orbits on F_2^8) of total size <= 63 is a mu=2 covering of Q_8",
+  "label": "p2_a1_b6_c0",
+  "order": 2,
+  "n_orbits": 192,
+  "ub": 63,
+  "mu": 2,
+  "utc": "2026-08-30T15:22:50Z",
+  "machine": {
+    "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "cpu_count": 4,
+    "loadavg_1min_at_start": 1.0
+  },
+  "instance": {
+    "path": "inst_p2_a1_b6_c0_ub63.opb",
+    "variables": 192,
+    "constraints": 257,
+    "bytes": 19747,
+    "sha256": "27ad74705c35249ccd1299454423e0e15ce0c4f52bff48eabc5f20c62a396526"
+  },
+  "tools": {
+    "encoder": "symcert_encode.py+symcert_reps.py sha256=9b5ee1d5946382db171ec7fcb184437aab705322459f4f121ffc3cd874d01b64+0bbf62f5f073c4796ceb90c8b0d62d725bf11503a8e70feaa64ba69aa6714f67",
+    "solver": "/home/user/cert/roundingsat/build/roundingsat",
+    "solver_version": [
+      "Usage: /home/user/cert/roundingsat/build/roundingsat [OPTIONS] instance.(opb|cnf|wcnf)"
+    ],
+    "solver_commit": "d4edbf7908a9bb951fd181940919e0f3ac7ab1ee",
+    "checker": "/home/user/cert/veripb/target/release/veripb",
+    "checker_version": [
+      "Running VeriPB version 3.0.2",
+      "veripb 3.0.2"
+    ],
+    "checker_commit": "e4ffda3b7b68bf0ffb42bc14f4170836ba4656e2",
+    "python": "3.11.15"
+  },
+  "solve": {
+    "command": "/home/user/cert/roundingsat/build/roundingsat --proof-log=certs_symmetry/proof_p2_a1_b6_c0_ub63.pbp --verbosity=1 --lp=-1 certs_symmetry/inst_p2_a1_b6_c0_ub63.opb",
+    "exit_code": null,
+    "budget_expired": true,
+    "seconds": 60.01,
+    "verdict": "BUDGET EXPIRED after 60 s",
+    "solver_banner": [
+      "RoundingSat 2",
+      "branch HEAD",
+      "commit d4edbf7"
+    ],
+    "search": {},
+    "stdout_tail": [
+      "c #Conflicts:      25000 | #Constraints:      12505",
+      "c INPROCESSING",
+      "c GARBAGE COLLECT",
+      "c rational objective 42.8931",
+      "c #Conflicts:      26000 | #Constraints:       8060",
+      "c #Conflicts:      27000 | #Constraints:      10039",
+      "c #Conflicts:      28000 | #Constraints:      11889",
+      "c #Conflicts:      29000 | #Constraints:      13804",
+      "c INPROCESSING",
+      "c GARBAGE COLLECT",
+      "c rational objective 42.9238",
+      "c #Conflicts:      30000 | #Constraints:       8894",
+      "c #Conflicts:      31000 | #Constraints:      10729",
+      "c #Conflicts:      32000 | #Constraints:      12632",
+      "c #Conflicts:      33000 | #Constraints:      14514",
+      "c INPROCESSING",
+      "c GARBAGE COLLECT",
+      "c rational objective 42.9084",
+      "c #Conflicts:      34000 | #Constraints:       9225",
+      "c #Conflicts:      35000 | #Constraints:      11110",
+      "c #Conflicts:      36000 | #Constraints:      13005",
+      "c #Conflicts:      37000 | #Constraints:      14917",
+      "c INPROCESSING",
+      "c GARBAGE COLLECT",
+      "c rational objective 42.9185"
+    ]
+  },
+  "result": "NOT ESTABLISHED (solver said 'BUDGET EXPIRED after 60 s', wanted 'UNSATISFIABLE')",
+  "certified": false,
+  "partial_proof_bytes": 266641408
+}

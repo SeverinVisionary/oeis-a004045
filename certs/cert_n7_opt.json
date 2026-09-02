@@ -1,0 +1,127 @@
+{
+  "statement": "K(7,1,2) = 32",
+  "mode": "optimisation",
+  "n": 7,
+  "M": null,
+  "mu": 2,
+  "utc": "2026-08-29T07:58:53Z",
+  "machine": {
+    "platform": "macOS-26.6.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "processor": "Apple M1 Pro",
+    "cpu_count": 10,
+    "loadavg_1min_at_start": 15.1064453125
+  },
+  "instance": {
+    "path": "inst_n7_opt.opb",
+    "variables": 128,
+    "constraints": 128,
+    "bytes": 9426,
+    "sha256": "28ad59228ed442fa1eaebaf362dd0c005de51d545b36f6e7c5db9c13a6ddb2a1"
+  },
+  "tools": {
+    "encoder": "pb_encode.py sha256=a54f4481eafdef0bfcb694cdabb249c28553c25416376a8db9599b322fbf5e9a",
+    "solver": "<build-dir>/cert/roundingsat/build/roundingsat",
+    "checker": "<build-dir>/cert/veripb/target/release/veripb",
+    "checker_version": [
+      "Running VeriPB version 3.0.2",
+      "veripb 3.0.2"
+    ],
+    "python": "3.12.8"
+  },
+  "solve": {
+    "command": "<build-dir>/cert/roundingsat/build/roundingsat --proof-log=certs/proof_n7_opt.pbp.fifo --verbosity=1 --lp=-1 certs/inst_n7_opt.opb",
+    "exit_code": 0,
+    "seconds": 0.02,
+    "verdict": "OPTIMUM FOUND",
+    "solver_banner": [
+      "RoundingSat 2",
+      "branch master",
+      "commit d4edbf7"
+    ],
+    "search": {
+      "propagations": "19",
+      "decisions": "109",
+      "conflicts": "1",
+      "LP total time 0": "s",
+      "LP solve time 0": "s",
+      "LP constraints added": "128",
+      "LP constraints removed": "0",
+      "LP pivots internal": "96",
+      "LP pivots root": "223",
+      "LP calls": "3",
+      "LP optimalities": "2",
+      "LP no pivot count": "1",
+      "LP infeasibilities": "1",
+      "LP valid Farkas constraints": "0",
+      "LP learned Farkas constraints": "0",
+      "LP basis resets": "0",
+      "LP cycling count": "0",
+      "LP singular count": "0",
+      "LP no primal count": "0",
+      "LP no farkas count": "0",
+      "LP other issue count": "0",
+      "LP Gomory cuts": "0",
+      "LP learned cuts": "0",
+      "LP deleted cuts": "0",
+      "LP encountered Gomory constraints": "0",
+      "LP encountered Farkas constraints": "0",
+      "LP encountered learned Farkas constraints": "0"
+    },
+    "stdout_tail": [
+      "c LP singular count 0",
+      "c LP no primal count 0",
+      "c LP no farkas count 0",
+      "c LP other issue count 0",
+      "c LP Gomory cuts 0",
+      "c LP learned cuts 0",
+      "c LP deleted cuts 0",
+      "c LP encountered Gomory constraints 0",
+      "c LP encountered Farkas constraints 0",
+      "c LP encountered learned Farkas constraints 0",
+      "c CG auxiliary variables introduced 0",
+      "c CG solutions found 1",
+      "c CG cores constructed 0",
+      "c CG core cardinality constraints returned 0",
+      "c CG unit cores 0",
+      "c CG single cores 0",
+      "c CG blocks removed during cardinality reduction 0",
+      "c CG first core best 0",
+      "c CG decision core best 0",
+      "c CG core reduction tie 0",
+      "c CG core degree average 0.00",
+      "c CG core slack average 0.00",
+      "c CG core upper bound improvements 0",
+      "o 32",
+      "s OPTIMUM FOUND"
+    ]
+  },
+  "proof": {
+    "path": "proof_n7_opt.pbp.gz",
+    "bytes": 473,
+    "uncompressed_bytes": 1793,
+    "lines": 8,
+    "sha256": "c5f957bd695c8e0547e439e1c775038647b2054e27290a79b13563155101bb62"
+  },
+  "check": {
+    "command": "<build-dir>/cert/veripb/target/release/veripb --stats certs/inst_n7_opt.opb certs/proof_n7_opt.pbp.gz",
+    "exit_code": 0,
+    "seconds": 0.0,
+    "output": [
+      "Running VeriPB version 3.0.2",
+      "s VERIFIED BOUNDS 32 <= obj <= 32",
+      "",
+      "c statistic: time total: 0.000282292 s",
+      "Info: Switched to proof version 2.0 (it is recommended to migrate to proof version 3.0)."
+    ],
+    "checker_verdict": "BOUNDS",
+    "bounds": [
+      "32",
+      "32"
+    ],
+    "accepted": true
+  },
+  "certified": true,
+  "result": "VERIFIED",
+  "certified_value": 32
+}

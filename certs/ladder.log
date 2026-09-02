@@ -1,0 +1,19 @@
+=== 2026-08-29T07:58:50Z starting n=6 M=opt budget=3600s lp=-1 ===
+VERIFIED
+exit=0 n=6 M=opt
+=== 2026-08-29T07:58:53Z starting n=7 M=opt budget=3600s lp=-1 ===
+VERIFIED
+exit=0 n=7 M=opt
+=== 2026-08-29T07:58:53Z starting n=6 M=19 budget=3600s lp=-1 ===
+VERIFIED
+exit=0 n=6 M=19
+=== 2026-08-29T07:58:53Z starting n=7 M=31 budget=3600s lp=-1 ===
+VERIFIED
+exit=0 n=7 M=31
+=== 2026-08-29T07:58:53Z starting n=8 M=57 budget=43200s lp=-1 ===
+VERIFIED
+exit=0 n=8 M=57
+=== 2026-08-29T07:58:56Z starting n=8 M=58 budget=43200s lp=-1 ===
+VERIFIED
+exit=0 n=8 M=58
+=== 2026-08-29T08:08:16Z starting n=8 M=59 budget=86400s lp=-1 ===

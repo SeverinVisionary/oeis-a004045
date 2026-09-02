@@ -1,0 +1,5 @@
+(2, 2, 2, 1, 1) t=0 orbits=144: Infeasible  [182s]
+(2, 2, 1, 1, 1, 1) t=0 orbits=160: Infeasible  [298s]
+(2, 1, 1, 1, 1, 1, 1) t=0 orbits=192: Infeasible  [538s]
+still open: 0
+BEST 1000000000 None total 538s

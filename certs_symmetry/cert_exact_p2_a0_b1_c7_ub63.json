@@ -1,0 +1,71 @@
+{
+  "statement": "no union of <g>-orbits (g in conjugacy class p2_a0_b1_c7, order 2, 128 orbits on F_2^8) of total size <= 63 is a mu=2 covering of Q_8",
+  "route": "exact-rational MILP (SCIP) -> VIPR certificate -> viprcomp -> viprchk",
+  "label": "p2_a0_b1_c7",
+  "order": 2,
+  "n_orbits": 128,
+  "ub": 63,
+  "mu": 2,
+  "utc": "2026-08-30T22:01:38Z",
+  "machine": {
+    "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "cpu_count": 4,
+    "loadavg_1min_at_start": 0.0
+  },
+  "instance": {
+    "path": "inst_p2_a0_b1_c7_ub63.opb",
+    "variables": 128,
+    "constraints": 257,
+    "bytes": 19539,
+    "sha256": "c8e53c520120db4e6923155cc40596d3faa0b7178ba3b639f9eaf6d289bfcead"
+  },
+  "tools": {
+    "scip": "/home/user/cert/scip-src/build/bin/scip",
+    "viprcomp": "/home/user/cert/vipr2/code/build/viprcomp",
+    "viprchk": "/home/user/cert/vipr2/code/build/viprchk",
+    "python": "3.11.15"
+  },
+  "solve": {
+    "command": "/home/user/cert/scip-src/build/bin/scip -c \"set exact enable TRUE\" -c \"set certificate filename certs_symmetry/cert_exact_p2_a0_b1_c7_ub63.vipr\" -c \"set limits time 600\" -c \"set parallel maxnthreads 1\" -c \"read certs_symmetry/inst_p2_a0_b1_c7_ub63.opb\" -c optimize -c quit",
+    "exit_code": -9,
+    "budget_expired": true,
+    "seconds": 620.05,
+    "scip_status": "BUDGET EXPIRED after 620 s (no SCIP status line seen)",
+    "stdout_tail": [
+      "  164s| 36600 |   685 |  1520k|  41.5 |    47M |  45 | 128 | 257 | 259 | 213 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  165s| 36700 |   681 |  1525k|  41.5 |    47M |  45 | 128 | 257 | 259 | 213 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  165s| 36800 |   681 |  1529k|  41.5 |    47M |  45 | 128 | 257 | 258 | 213 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  166s| 36900 |   683 |  1533k|  41.5 |    47M |  45 | 128 | 257 | 258 | 213 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  166s| 37000 |   683 |  1537k|  41.5 |    47M |  45 | 128 | 257 | 259 | 213 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  166s| 37100 |   685 |  1541k|  41.5 |    47M |  45 | 128 | 257 | 259 | 213 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  167s| 37200 |   687 |  1545k|  41.5 |    47M |  45 | 128 | 257 | 258 | 213 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  167s| 37300 |   687 |  1550k|  41.5 |    47M |  45 | 128 | 257 | 258 | 213 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  168s| 37400 |   689 |  1554k|  41.5 |    47M |  45 | 128 | 257 | 258 | 213 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  168s| 37500 |   689 |  1557k|  41.5 |    47M |  45 | 128 | 257 | 258 | 213 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  168s| 37600 |   681 |  1561k|  41.5 |    47M |  45 | 128 | 257 | 258 | 213 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  169s| 37700 |   675 |  1565k|  41.5 |    47M |  45 | 128 | 257 | 259 | 213 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      " time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. ",
+      "  169s| 37800 |   683 |  1569k|  41.5 |    47M |  45 | 128 | 257 | 258 | 215 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  170s| 37900 |   685 |  1574k|  41.5 |    47M |  45 | 128 | 257 | 258 | 215 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  170s| 38000 |   689 |  1577k|  41.5 |    47M |  45 | 128 | 257 | 258 | 215 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  171s| 38100 |   685 |  1581k|  41.5 |    47M |  45 | 128 | 257 | 258 | 215 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  171s| 38200 |   685 |  1585k|  41.5 |    47M |  45 | 128 | 257 | 258 | 215 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  171s| 38300 |   687 |  1589k|  41.5 |    47M |  45 | 128 | 257 | 258 | 215 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  172s| 38400 |   687 |  1593k|  41.5 |    47M |  45 | 128 | 257 | 258 | 215 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  172s| 38500 |   687 |  1597k|  41.5 |    47M |  45 | 128 | 257 | 259 | 215 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  173s| 38600 |   693 |  1601k|  41.4 |    47M |  45 | 128 | 257 | 259 | 215 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  173s| 38700 |   691 |  1606k|  41.5 |    47M |  45 | 128 | 257 | 259 | 215 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  173s| 38800 |   689 |  1611k|  41.5 |    47M |  45 | 128 | 257 | 259 | 215 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  174s| 38900 |   689 |  1615k|  41.5 |    47M |  45 | 128 | 257 | 259 | 215 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  174s| 39000 |   693 |  1618k|  41.5 |    47M |  45 | 128 | 257 | 259 | 215 |  0 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  175s| 39100 |   693 |  1622k|  41.5 |    47M |  45 | 128 | 257 | 259 | 215 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  175s| 39200 |   695 |  1626k|  41.4 |    47M |  45 | 128 | 257 | 259 | 215 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown",
+      " time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. ",
+      "  175s| 39300 |   693 |  1630k|  41.4 |    47M |  45 | 128 | 257 | 259 | 215 |  1 |   0 |  51 | 0.000000e+00 |      --      |    Inf | unknown"
+    ],
+    "leftover_certificate_bytes_deleted": 778215424
+  },
+  "result": "NOT REFUTED (SCIP status 'BUDGET EXPIRED after 620 s (no SCIP status line seen)')",
+  "certified": false
+}

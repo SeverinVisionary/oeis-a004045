@@ -1,0 +1,127 @@
+Reading prompt from stdin...
+2026-09-01T12:39:41.575415Z ERROR codex_models_manager::cache: failed to load models cache: missing field `base_instructions` at line 97 column 5
+OpenAI Codex v0.144.1
+--------
+workdir: <build-dir>/wt-paper
+model: gpt-5.6-terra
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: high
+reasoning summaries: none
+session id: 01a05cfb-8352-7aa1-a034-e2b28ba849b5
+--------
+user
+Adversarial correctness review of a short combinatorics proof. Your job is to
+BREAK it. Do not be encouraging. If you cannot break it, say which step you
+attacked and why it held.
+
+CLAIM. Let n be EVEN. Let C be a subset of F_2^n such that every one of the 2^n
+words has at least 2 members of C within Hamming distance 1 (a "double
+covering"). Write B(x) for the closed radius-1 ball, so |B(x)| = n+1. Then
+
+    |C| >= 3 * 2^(n+1) / (3n+2).
+
+For n=8 this gives 60; the published lower bound for K(8,1,2) is 59.
+For n=6 it gives 20, which is the known exact value of K(6,1,2).
+
+PROOF. Put M = |C|, c(x) = |B(x) cap C|, g(x) = c(x) - 2 >= 0, and
+E = sum_x g(x) = (n+1)M - 2^(n+1).
+
+Step 1. For u != v: |B(u) cap B(v)| = 2 if d(u,v) is 1 or 2, and 0 if
+d(u,v) >= 3.
+
+Step 2. Fix x in C. Then
+    sum_{y in B(x)} c(y) = sum_{c' in C} |B(c') cap B(x)|
+                         = (n+1) + 2 * #{c' in C : 1 <= d(c',x) <= 2}
+which is ODD because n+1 is odd. Each of the n+1 terms c(y) is at least 2, so
+the sum is at least 2(n+1); being odd it is at least 2(n+1)+1. Hence
+sum_{y in B(x)} g(y) >= 1.
+
+Step 3. Let S = {y : g(y) >= 1} and s = |S|. Since every element of S has
+g >= 1 and g vanishes off S, we get s <= E and sum_{y in S} g(y) = E. Count
+I = #{(x,y) : x in C, y in B(x) cap S}. Step 2 gives I >= M. Ball symmetry
+(y in B(x) iff x in B(y)) gives
+    I = sum_{y in S} |C cap B(y)| = sum_{y in S} c(y) = E + 2s <= 3E.
+
+Step 4. M <= 3E = 3((n+1)M - 2^(n+1)), so (3n+2)M >= 3*2^(n+1).
+
+ATTACK IT ON THESE POINTS, and any others you see.
+
+1. Step 1's three intersection numbers. Are they right in the hypercube Q_n for
+   every even n >= 2, including small n? Check d=1 and d=2 carefully.
+2. Step 2's claim that the ball sum equals (n+1) + 2*#{...}. Is the c'=x term
+   handled correctly? Is anything double counted? Does it need C to be a SET
+   rather than a multiset, and is that assumption stated?
+3. Step 2's parity argument. Does "sum of n+1 terms each >= 2, and the sum is
+   odd" really force >= 2(n+1)+1? What if n+1 is odd but the sum is odd for a
+   different reason?
+4. Step 3's double count. Is I = sum_{y in S} c(y) correct, or does it
+   overcount pairs where x is itself in S? Is "I >= M" right given Step 2 gives
+   at least one y per x -- could the same y serve many x, and does that matter
+   for the DIRECTION of the inequality?
+5. Step 3's s <= E and the final E + 2s <= 3E. Where exactly is slack lost?
+6. Step 4's algebra and the direction of the inequality.
+7. Is the result consistent with known values? K(2,1,2)=3, K(4,1,2)=8,
+   K(6,1,2)=20, K(8,1,2) in [59,64]. The formula gives 3, 7, 20, 60. Note it
+   gives 7 at n=4 where the truth is 8 -- is that merely non-tight, or a
+   symptom of an error?
+8. The n EVEN hypothesis. For odd n the formula would give 5 at n=3 (true value
+   4) and 34 at n=7 (true value 32), i.e. FALSE statements. Confirm that the
+   proof genuinely fails for odd n at Step 2 and not somewhere that would also
+   undermine the even case.
+
+Report: VALID or BROKEN. If BROKEN, give the precise step and a counterexample
+or a specific logical gap. If VALID, name the step you consider most fragile
+and why it nonetheless holds. Be terse and technical.
+
+codex
+I’m attacking the proof independently, including the \(n=2,4\) edge cases and the odd-\(n\) failure mode. The repo’s review policy calls for a parallel correctness panel, so I’m using that for independent falsification attempts.
+codex
+The key vulnerability is Step 2: it must turn a positive *weighted* surplus into an actual incident edge. Because \(g\) is integer-valued and nonnegative, that conversion is legitimate; I’m checking the small-dimensional cases for any exceptional ball geometry.
+collab: Wait
+collab: Wait
+codex
+VALID.
+
+- Step 1 is correct, including \(n=2\): distance 1 gives common points \(u,v\); distance 2 gives the two intermediate words; distance \(\ge3\) gives none by triangle inequality.
+- Step 2 is exact. \(c'=x\) occurs once because \(C\) is explicitly a set and contributes \(n+1\); each distinct codeword at distance 1 or 2 contributes 2. The ball sum is odd for even \(n\), while \(2(n+1)\) is even, so the \(+1\) conclusion follows.
+- Step 3 has no pair overcount. A shared surplus vertex only increases \(I\): \(I\) counts distinct \((x,y)\) pairs. Also
+  \[
+  3E-(E+2s)=2(E-s)=2\sum_{y\in S}(g(y)-1)\ge0.
+  \]
+  Additional slack is lost in replacing each \(|B(x)\cap S|\ge1\) by 1.
+- Step 4 rearranges correctly to \((3n+2)M\ge3\cdot2^{n+1}\).
+
+The most fragile step is Step 2’s parity forcing an actual surplus neighbor, but it holds because \(g\) is integer-valued and nonnegative.
+
+The \(n=4\) value \(7\) is merely non-tight; it does not signal an error. The stated \(n=2,6,8\) values are consistent.
+
+Odd \(n\) genuinely fails at Step 2. For \(n=3\),
+\[
+C=\{000,001,110,111\}
+\]
+has \(c\equiv2\), hence \(g\equiv0\); the Step-2 conclusion is false.
+tokens used
+23,228
+VALID.
+
+- Step 1 is correct, including \(n=2\): distance 1 gives common points \(u,v\); distance 2 gives the two intermediate words; distance \(\ge3\) gives none by triangle inequality.
+- Step 2 is exact. \(c'=x\) occurs once because \(C\) is explicitly a set and contributes \(n+1\); each distinct codeword at distance 1 or 2 contributes 2. The ball sum is odd for even \(n\), while \(2(n+1)\) is even, so the \(+1\) conclusion follows.
+- Step 3 has no pair overcount. A shared surplus vertex only increases \(I\): \(I\) counts distinct \((x,y)\) pairs. Also
+  \[
+  3E-(E+2s)=2(E-s)=2\sum_{y\in S}(g(y)-1)\ge0.
+  \]
+  Additional slack is lost in replacing each \(|B(x)\cap S|\ge1\) by 1.
+- Step 4 rearranges correctly to \((3n+2)M\ge3\cdot2^{n+1}\).
+
+The most fragile step is Step 2’s parity forcing an actual surplus neighbor, but it holds because \(g\) is integer-valued and nonnegative.
+
+The \(n=4\) value \(7\) is merely non-tight; it does not signal an error. The stated \(n=2,6,8\) values are consistent.
+
+Odd \(n\) genuinely fails at Step 2. For \(n=3\),
+\[
+C=\{000,001,110,111\}
+\]
+has \(c\equiv2\), hence \(g\equiv0\); the Step-2 conclusion is false.
+EXIT=0

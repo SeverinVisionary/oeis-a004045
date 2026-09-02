@@ -1,0 +1,116 @@
+{
+  "statement": "K(8,1,2) > 57  --  no set C subset F_2^8 with |C| <= 57 has every word of F_2^8 within Hamming distance 1 of at least 2 members of C",
+  "route": "exact-rational MILP (SCIP) -> VIPR certificate -> viprcomp -> viprchk",
+  "n": 8,
+  "M": 57,
+  "mu": 2,
+  "utc": "2026-08-29T09:31:48Z",
+  "machine": {
+    "platform": "macOS-26.6.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "processor": "Apple M1 Pro",
+    "cpu_count": 10,
+    "loadavg_1min_at_start": 6.82080078125
+  },
+  "instance": {
+    "path": "inst_n8_M57.opb",
+    "variables": 256,
+    "constraints": 257,
+    "bytes": 21472,
+    "sha256": "3968d96fe07d3810ea8d6f6bf0d986f28eee8efed08a5ec3006572daa25290bf",
+    "note": "byte-identical to the instance certify.py refutes"
+  },
+  "tools": {
+    "scip": "<build-dir>/cert/scipoptsuite-10.0.0/build/bin/scip",
+    "viprcomp": "<build-dir>/cert/vipr2/code/build/viprcomp",
+    "viprchk": "<build-dir>/cert/vipr2/code/build/viprchk",
+    "python": "3.12.8"
+  },
+  "solve": {
+    "command": "<build-dir>/cert/scipoptsuite-10.0.0/build/bin/scip -c \"set exact enable TRUE\" -c \"set certificate filename certs_exact/cert_n8_M57.vipr\" -c \"set limits time 7200\" -c \"set parallel maxnthreads 1\" -c \"read certs_exact/inst_n8_M57.opb\" -c optimize -c quit",
+    "exit_code": 0,
+    "seconds": 0.37,
+    "scip_status": "problem is solved [infeasible]",
+    "stdout_tail": [
+      "presolving (in exact solving mode):",
+      "   (0.0s) symmetry computation started: requiring (bin +, int +, cont +), (fixed: bin -, int -, cont -)",
+      "   Symmetry detection interrupted: constraints of type exactlinear do not provide symmetry information.",
+      "   If symmetries shall be detected, implement the CONSGETPERMSYMGRAPH callback.",
+      "   (0.0s) could not compute symmetry",
+      "presolving (1 rounds: 1 fast, 1 medium, 1 exhaustive):",
+      " 0 deleted vars, 0 deleted constraints, 0 added constraints, 0 tightened bounds, 0 added holes, 0 changed sides, 0 changed coefficients",
+      " 0 implications, 0 cliques, 0 implied integral variables (0 bin, 0 int, 0 cont)",
+      "presolved problem has 256 variables (256 bin, 0 int, 0 cont) and 257 constraints",
+      "    257 constraints of type <exactlinear>",
+      "transformed objective value is always integral (scale: 1)",
+      "Presolving Time: 0.00",
+      "storing certificate information in file <certs_exact/cert_n8_M57.vipr>",
+      "",
+      "solving problem in exact solving mode",
+      "",
+      " time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. ",
+      "  0.1s|     1 |     0 |  2664 |     - |  8594k |   0 | 256 | 257 | 257 |   0 |  0 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.3s|     1 |     0 |  2704 |     - |  9492k |   0 | 256 | 257 | 293 |  36 |  1 |   0 |   0 |    cutoff    |      --      |   0.00%| unknown",
+      "  0.4s|     1 |     0 |  2704 |     - |  9495k |   0 | 256 | 257 | 293 |  36 |  1 |   0 |   0 |    cutoff    |      --      |   0.00%| unknown",
+      "",
+      "SCIP Status        : problem is solved [infeasible]",
+      "Solving Time (sec) : 0.35",
+      "Solving Nodes      : 1",
+      "Primal Bound       : +1.00000000000000e+20 (0 solutions)",
+      "Dual Bound         : +1.00000000000000e+20",
+      "Gap                : 0.00 %",
+      "",
+      "",
+      "closing certificate file (wrote approx. 1.2 MB)"
+    ]
+  },
+  "certificate": {
+    "path": "cert_n8_M57.vipr",
+    "bytes": 1281625,
+    "lines": 1510,
+    "sha256": "1263444e9a9fffddf9992b382f7527c001055a23c0f05129e693fa472d468e60",
+    "note": "the incomplete certificate SCIP wrote is not retained; regenerate with the solve command above"
+  },
+  "complete": {
+    "command": "<build-dir>/cert/vipr2/code/build/viprcomp certs_exact/cert_n8_M57.vipr",
+    "exit_code": 0,
+    "seconds": 0.07,
+    "output": [
+      "processing file into memory took 0.009892 seconds (Wall Clock)",
+      "",
+      "processing completion pipeline took 0.03504 seconds (Wall Clock)",
+      "",
+      "writing to file took 0.002784 seconds (Wall Clock)",
+      "",
+      "Completed 73 out of 220",
+      "Completion of File successful!",
+      "",
+      "completing and printing took 0.048456 seconds (Wall Clock)"
+    ],
+    "completed_path": "cert_n8_M57_complete.vipr.gz",
+    "sha256": "af61c79ca6485964f595dbf5a67082e2029ff323c4bfe1dde6d61d5027b7180f",
+    "uncompressed_bytes": 2550229,
+    "uncompressed_sha256": "fb3fa866f1ffaa9095166844a7ecd590bf61ac6ede8e4a1a9bf5d2637d0d7327",
+    "bytes": 467583
+  },
+  "check": {
+    "command": "<build-dir>/cert/vipr2/code/build/viprchk certs_exact/cert_n8_M57_complete.vipr",
+    "exit_code": 0,
+    "seconds": 0.06,
+    "output": [
+      "asm2: ",
+      "asm1: ",
+      "asm2: ",
+      "asm1: ",
+      "asm2: ",
+      "asm1: ",
+      "asm2: ",
+      "Successfully verified infeasibility.",
+      "",
+      "Completed in 0.058023 seconds (CPU)"
+    ],
+    "accepted": true
+  },
+  "certified": true,
+  "result": "VERIFIED"
+}

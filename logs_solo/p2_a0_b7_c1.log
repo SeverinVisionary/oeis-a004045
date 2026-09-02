@@ -1,0 +1,3 @@
+=== p2_a0_b7_c1 (ub=63, budget=21600s) ===
+p2_a0_b7_c1      ub=63  NOT-CERT    715.41s  NOT REFUTED (SCIP status 'ABORTED: certificate exceeded 4000 MB after 715 s (disk-safety kill, not a time limit)')
+=== batch done: 0/1 certified ===

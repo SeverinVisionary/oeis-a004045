@@ -1,0 +1,35 @@
+# viprchk on certs_exact/cert_n8_M59_complete.vipr, 2026-08-29
+# Apple M1 Pro, arm64, macOS 26.6.1, shared host.
+# viprchk from github.com/scipopt/vipr @ 30f2951d.
+# Verbatim head and tail; the elided middle is the per-node assumption
+# stack, two lines per branch-and-bound node.
+
+Certificate format version 1.0 mode: [optimized]
+
+Processing VAR section...
+
+Processing INT section...
+
+Processing OBJ section...
+
+Processing CON section...
+
+Processing RTP section...
+
+Need to verify infeasibility. 
+
+Processing SOL section...
+
+Processing DER section...
+numberOfDerivations = 688858
+...
+[158484 lines of 'asm1:/asm2:' assumption-stack traces elided]
+...
+asm1: 
+asm2: 
+Successfully verified infeasibility.
+
+Completed in 1269.6 seconds (CPU)
+real 1665.33
+user 1223.80
+sys 63.91

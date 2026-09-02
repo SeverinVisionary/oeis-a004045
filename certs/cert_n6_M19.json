@@ -1,0 +1,123 @@
+{
+  "statement": "K(6,1,2) > 19  --  no set C subset F_2^6 with |C| <= 19 has every word of F_2^6 within Hamming distance 1 of at least 2 members of C",
+  "mode": "decision",
+  "n": 6,
+  "M": 19,
+  "mu": 2,
+  "utc": "2026-08-29T07:58:53Z",
+  "machine": {
+    "platform": "macOS-26.6.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "processor": "Apple M1 Pro",
+    "cpu_count": 10,
+    "loadavg_1min_at_start": 15.1064453125
+  },
+  "instance": {
+    "path": "inst_n6_M19.opb",
+    "variables": 64,
+    "constraints": 65,
+    "bytes": 4237,
+    "sha256": "76a7880838279ff32427e3facfb2b6ef733346c459cc20405cd26208d1ba0604"
+  },
+  "tools": {
+    "encoder": "pb_encode.py sha256=a54f4481eafdef0bfcb694cdabb249c28553c25416376a8db9599b322fbf5e9a",
+    "solver": "<build-dir>/cert/roundingsat/build/roundingsat",
+    "checker": "<build-dir>/cert/veripb/target/release/veripb",
+    "checker_version": [
+      "Running VeriPB version 3.0.2",
+      "veripb 3.0.2"
+    ],
+    "python": "3.12.8"
+  },
+  "solve": {
+    "command": "<build-dir>/cert/roundingsat/build/roundingsat --proof-log=certs/proof_n6_M19.pbp.fifo --verbosity=1 --lp=-1 certs/inst_n6_M19.opb",
+    "exit_code": 0,
+    "seconds": 0.04,
+    "verdict": "UNSATISFIABLE",
+    "solver_banner": [
+      "RoundingSat 2",
+      "branch master",
+      "commit d4edbf7"
+    ],
+    "search": {
+      "propagations": "585",
+      "decisions": "212",
+      "conflicts": "53",
+      "LP total time 0": "s",
+      "LP solve time 0": "s",
+      "LP constraints added": "66",
+      "LP constraints removed": "0",
+      "LP pivots internal": "681",
+      "LP pivots root": "168",
+      "LP calls": "37",
+      "LP optimalities": "10",
+      "LP no pivot count": "0",
+      "LP infeasibilities": "27",
+      "LP valid Farkas constraints": "26",
+      "LP learned Farkas constraints": "26",
+      "LP basis resets": "0",
+      "LP cycling count": "0",
+      "LP singular count": "0",
+      "LP no primal count": "0",
+      "LP no farkas count": "0",
+      "LP other issue count": "0",
+      "LP Gomory cuts": "1",
+      "LP learned cuts": "0",
+      "LP deleted cuts": "0",
+      "LP encountered Gomory constraints": "0",
+      "LP encountered Farkas constraints": "3",
+      "LP encountered learned Farkas constraints": "14"
+    },
+    "stdout_tail": [
+      "c LP cycling count 0",
+      "c LP singular count 0",
+      "c LP no primal count 0",
+      "c LP no farkas count 0",
+      "c LP other issue count 0",
+      "c LP Gomory cuts 1",
+      "c LP learned cuts 0",
+      "c LP deleted cuts 0",
+      "c LP encountered Gomory constraints 0",
+      "c LP encountered Farkas constraints 3",
+      "c LP encountered learned Farkas constraints 14",
+      "c CG auxiliary variables introduced 0",
+      "c CG solutions found 0",
+      "c CG cores constructed 0",
+      "c CG core cardinality constraints returned 0",
+      "c CG unit cores 0",
+      "c CG single cores 0",
+      "c CG blocks removed during cardinality reduction 0",
+      "c CG first core best 0",
+      "c CG decision core best 0",
+      "c CG core reduction tie 0",
+      "c CG core degree average 0.00",
+      "c CG core slack average 0.00",
+      "c CG core upper bound improvements 0",
+      "s UNSATISFIABLE"
+    ]
+  },
+  "proof": {
+    "path": "proof_n6_M19.pbp.gz",
+    "bytes": 46968,
+    "uncompressed_bytes": 503242,
+    "lines": 794,
+    "sha256": "81c92b6decdc3399d7e8e0179f2e061aeae35344c8d8c2dee3ae693b528d9df3"
+  },
+  "check": {
+    "command": "<build-dir>/cert/veripb/target/release/veripb --stats certs/inst_n6_M19.opb certs/proof_n6_M19.pbp.gz",
+    "exit_code": 0,
+    "seconds": 0.01,
+    "output": [
+      "Running VeriPB version 3.0.2",
+      "s VERIFIED UNSATISFIABLE",
+      "",
+      "c statistic: time total: 0.005320541 s",
+      "Info: Switched to proof version 2.0 (it is recommended to migrate to proof version 3.0)."
+    ],
+    "checker_verdict": "UNSATISFIABLE",
+    "bounds": null,
+    "accepted": true
+  },
+  "certified": true,
+  "result": "VERIFIED"
+}

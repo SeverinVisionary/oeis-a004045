@@ -1,0 +1,58 @@
+===LAUNCH_AT=2026-09-01T12:48:41Z===
+===MODEL_REQUESTED=deepseek/deepseek-v4-flash===
+===TIMEOUT_SEC=1800===
+===PROMPT_BYTES=    3502===
+===PROMPT_LINES=      59===
+===DAEMON_PID=14177===
+
+===ATTACH=<local-path-redacted> (    3502 bytes)===
+===ATTACH=<build-dir>/ds_review.out (     316 bytes)===
+[0m
+> build · deepseek-v4-flash
+[0m
+[0m$ [0mpython3 - <<'EOF'
+def check(n, Me, Mo):
+    Ee = Me + n*Mo - 2**(n-1)*2
+    Eo = Mo + n*Me - 2**(n-1)*2
+    E = Ee+Eo
+    # claim: 2Me-Mo <= 2Eo+ro <= 3Eo  (ro in [0,Eo])
+    ro_hi = Eo
+    print(f"n={n} Me={Me} Mo={Mo} Ee={Ee} Eo={Eo}")
+    lhs = 2*Me-Mo
+    print("  lhs=2Me-Mo =", lhs, "  2Eo+ro in [",2*Eo,",",2*Eo+Eo,"] -> needs", lhs,"<=",2*Eo)
+    print("  2Eo+ro <= 3Eo ok:", 2*Eo+Eo <= 3*Eo, "; mirror-sum M<=2E+r<=3E:", Me+Mo, "<=", 2*E, "and", 2*E, "<=", 3*E)
+check(6,10,10)
+check(8,32,32)
+EOF
+n=6 Me=10 Mo=10 Ee=6 Eo=6
+  lhs=2Me-Mo = 10   2Eo+ro in [ 12 , 18 ] -> needs 10 <= 12
+  2Eo+ro <= 3Eo ok: True ; mirror-sum M<=2E+r<=3E: 20 <= 24 and 24 <= 36
+n=8 Me=32 Mo=32 Ee=32 Eo=32
+  lhs=2Me-Mo = 32   2Eo+ro in [ 64 , 96 ] -> needs 32 <= 64
+  2Eo+ro <= 3Eo ok: True ; mirror-sum M<=2E+r<=3E: 64 <= 128 and 128 <= 192
+[0m
+**VERDICT: VALID** — the proof is sound conditional on the established parity fact `S(x)` odd. No step breaks.
+
+Step-by-step:
+
+a) Correct. `c(x) = 1 + deg_C(x)` for `x ∈ C` — the `+1` is the self-term in the closed ball. No dead-codeword case: `c(x) ≥ 2` with `x ∈ C` forces `deg_C(x) ≥ 1`, so `g(x) + 1 ≥ 1` always.
+
+b) Correct. `Σ_{x∈C_e} deg_C(x) = Σ (g+1) = γ_e + M_e`; same edge set counted from the odd side. Identity.
+
+c) Correct. Odd `w_i` has all neighbours even (bipartite), so `deg_{C_e}(w_i) = c(w_i) − [w_i∈C]`; self-term handled. `k_i = m_i + 2 − [w_i∈C] ≥ 2`, sum matches.
+
+d) Crux holds. `S(x) = g(x) + L(x)`: odd-nonheavy mass is `m = 0` so it never appears; the only even term in `S(x)` is `x` itself. Identity `Σ S = γ_e + Σ m_i k_i` is exact (double-counts `C_e`–heavy-odd incidences). The bound is a clean parity case: `L` even ⟹ `g` odd ⟹ `g ≥ 1`; `L` odd ⟹ `S ≥ L`. Direction `γ_e ≥ #{L even}` is right.
+
+e) Correct. `L(x) ≥ 1` odd implies a heavy-odd neighbour; incidence count `Σ k_i` dominates the count of such `x`.
+
+f) Correct. `γ_o − s_o = Σ_{heavy odd codewords}(m_i − 1) ≤ Σ_{all heavy}(m_i − 1) = E_o − r_o` since each `m_i − 1 ≥ 0`.
+
+g) Mirror-sum gives `M ≤ 2E + r ≤ 3E` (`r = r_e + r_o ≤ E`), consistent with the known global bound.
+
+h) Holds, but note the prompt's arithmetic is off: by its own formula `E_e = M_e + n·M_o − 2^(n−1)·2`, the n=6 (10,10) case gives **E_e = E_o = 6, not 14** (10 + 60 − 64). Verdict unaffected: `2M_e − M_o = 10 ≤ 2E_o + r_o = 12 + r_o`. n=8 (32,32) gives `E_e = E_o = 32`, `32 ≤ 64 + r_o`. Both inequalities hold comfortably.
+
+**Most fragile step: (3).** Everything else is exact identity-level counting. Step (3) is the only place a sign/direction error or a failure of the parity premise silently collapses the chain: the whole lemma rests on `S(x)` odd for codewords plus the `#{L even} ≤ γ_e` comparison. If `S(x)` odd is ever false, step (3) — and only step (3) — fails.
+
+===EXIT_CODE=0===
+===DONE_AT=2026-09-01T12:50:21Z===
+===BANNER_OK=yes===

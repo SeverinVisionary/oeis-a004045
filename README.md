@@ -1,0 +1,127 @@
+# OEIS A004045: bounds on `K(8,1,2)`
+
+Artifacts for a lower-bound result on binary multiple covering codes.
+
+`K(n,R,mu)` is the minimum size of a binary code `C` in `F_2^n` such that every
+word of `F_2^n` has at least `mu` codewords within Hamming distance `R`.
+`K(8,1,2)` is the first unknown term of [OEIS A004045](https://oeis.org/A004045).
+
+**Published record: `59 <= K(8,1,2) <= 64`** (lower: Krotov–Potapov 2021;
+upper: Östergård 1995).
+
+## Results
+
+### 1. An elementary lower bound for all even `n` — ESTABLISHED
+
+For **even** `n`, every binary code whose closed radius-1 balls cover each point
+at least twice satisfies
+
+```
+|C| >= ceil( 3 * 2^(n+1) / (3n+2) )
+```
+
+Half a page, by a parity/excess argument. It **strictly improves the best
+published lower bound at five table positions**, and reproves one exact value
+without any search:
+
+| `n` | best published | this bound | |
+|---:|---:|---:|---|
+| 6 | 20 (Seuranen 2007, exhaustive) | **20** | matched, but search-free |
+| 8 | 59 (Krotov–Potapov 2021) | **60** | +1 |
+| 10 | 188 | **192** | +4 |
+| 12 | 640 | **647** | +7 |
+| 14 | 2195 | **2235** | +40 |
+| 16 | 7783 | **7865** | +82 |
+
+Proved in `dominance.py` to strictly beat Krotov–Potapov Theorem 6 at `mu=2`
+for **every even `n >= 6`**, ceiling included — the real gap is below 1 at
+`n=6` (8/15) and `n=8` (16/39), so those need separate treatment, and a uniform
+`2^n/(16 n^2)` bound closes the rest. The additive gap grows like
+`(2/3) 2^n / n^2` even though the ratio of the two bounds tends to 1.
+
+`K(8,1,2) >= 60` holds by **three independent routes**: this theorem; an
+exact-rational SCIP → VIPR certificate refuting `M=59` accepted by `viprchk`;
+and exhaustive numerical verification.
+
+### 2. `K(8,1,2) >= 61` — CANDIDATE, not established
+
+`m61_refutation.py` refutes `M=60`, which would give **`[61, 64]`**. It has
+**four independent machine reviews, all approving** — ChatGPT Pro,
+`gpt-5.6-sol` at max effort (99.8%), fable 5.1 (0.97), and `deepseek-v4-pro`.
+
+**No human has checked it.** It is deliberately kept out of the claim ladder.
+Each earlier review round found a real defect (see `git log`), so the reviews
+were substantive, but four models with correlated training are not four
+mathematicians.
+
+### Upper bound — unchanged at 64
+
+Local search stalls at cost 2 at `M=63` across six independent designs. That is
+**not** evidence of infeasibility. The cyclic prescribed-automorphism sweep is
+exhaustive and negative, so any `<= 63` code has trivial cyclic automorphism
+group.
+
+## Reproduce
+
+Every script is self-asserting: it fails loudly rather than printing a wrong
+number. Standard library plus `scipy` for the LP fallbacks.
+
+```
+python3 excess_theorem.py       # the theorem, exhaustively at n=4,6,8
+python3 dominance.py            # dominance over Krotov-Potapov + ceiling lemma + table audit
+python3 hhkl_theorem6.py        # why HHKL 1993 cannot produce this bound
+python3 mu_generalization.py    # the even-mu generalisation, brute-forced
+python3 m61_refutation.py       # the M=60 refutation and its discriminating test
+python3 local_search.py --gate  # known-answer gate, n=4..8
+python3 verify.py --incumbent   # independent verifier, rebuilds the 64-word code
+```
+
+## Prior art
+
+Closed on **primary sources**, not inference — see `PRIOR_ART_EXCESS.md`.
+
+The novelty argument is positive rather than an absence: Hämäläinen–Honkala–
+Kaikkonen–Litsyn's excess term `eps` provably **vanishes at even `mu`**, so
+their method cannot produce this bound, which is why their Corollary 2 is
+stated only for odd `mu` — and no `mu=2` entry in their own table is marked as
+coming from it. `hhkl_theorem6.py` checks this as exact rational equality.
+
+**One acknowledged gap.** A preprint *Chen, W. and Li, D., "Lower bounds for
+multiple covering codes"* is cited as forthcoming in HHKL 1993 (ref [2]) and was
+never located. Disclosed as a priority risk, never cited. Separately,
+Krotov–Potapov already use Delsarte nonnegativity on a covering code's own
+distance distribution to obtain the published 59, so that ingredient is standard
+for this table and is not claimed as new.
+
+## Formalisation
+
+`lean/` holds a Lean 4 + mathlib formalisation of the `M=60` refutation.
+It **builds** (every statement elaborates, top-level derivation typechecks) with
+**16 `sorry`s** — no mathematical content is verified yet. See `lean/README.md`,
+including the measurement showing `decide` is not viable for the character-sum
+step (~136 s per evaluation).
+
+## Layout
+
+| path | role |
+|---|---|
+| `EXCESS_THEOREM.md` | the theorem, the weight split, the half-excess inequality |
+| `PRIOR_ART_EXCESS.md` | the prior-art gate, closed on primary sources |
+| `PRIOR_ART.md` | the original admission gate for the target |
+| `PAPER_DRAFT.md` | claim ladder in confidence order |
+| `RESEARCH_LOG.md` | the working notes this began as |
+| `dominance.py`, `hhkl_theorem6.py`, `mu_generalization.py` | the bound and its context |
+| `m61_refutation.py` | the `M=60` refutation (candidate) |
+| `verify.py` | standalone verifier, shares no code with any search |
+| `certs/`, `certs_exact/`, `certs_symmetry/` | machine-checkable proof objects |
+| `lean/` | Lean 4 formalisation (skeleton) |
+| `reviews/` | archived independent review transcripts (provenance only) |
+| `DEPOSIT.md` | Zenodo deposit manifest and checksums |
+
+## Claim discipline
+
+Statements here are graded. "Established" means independently reproduced and
+machine-checked; "candidate" means reviewed but unconfirmed by a human;
+negative results are recorded with the measurements that produced them, and
+retractions are kept in place rather than deleted. Machine reviews are recorded
+as provenance and are **not** offered as evidence of correctness.

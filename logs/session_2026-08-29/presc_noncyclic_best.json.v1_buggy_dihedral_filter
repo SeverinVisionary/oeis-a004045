@@ -1,0 +1,14 @@
+{
+  "size": 1000000000,
+  "code": null,
+  "label": null,
+  "ub": 63,
+  "timelimit": 30.0,
+  "total_instances": 751,
+  "solved_optimal": 0,
+  "infeasible": 751,
+  "unresolved": 0,
+  "unresolved_detail": [],
+  "size_distribution": [],
+  "wall_seconds": 154.4
+}

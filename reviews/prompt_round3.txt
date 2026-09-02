@@ -1,0 +1,80 @@
+PRIOR-ART SWEEP, ROUND 3. Two tasks. Read the constraints first -- I care more
+about knowing what you could not check than about a clean-looking answer.
+
+THE QUANTITY
+K(8,1,2): minimum size of a SET C of binary words of length 8 with
+|C intersect B_1(v)| >= 2 for every v in F_2^8, where B_1 has 9 words.
+OEIS A004045(8). Published record 59 <= K(8,1,2) <= 64 (Krotov-Potapov
+arXiv:1902.00023 Thm 6(a) 2020; Ostergard tabu search 1995).
+Equivalently the 2-tuple/double domination number gamma_{x2}(Q_8) with CLOSED
+neighbourhoods, and equivalently 256 - L_7(Q_8) where L_7 is the maximum
+7-limited packing number. A stock 0/1 IP over 256 word-variables, in HiGHS and
+in SCIP, refutes M = 57, 58, 59, 60 in seconds to minutes. That would give
+K >= 61. I am trying to find that somebody already knew this.
+
+ALREADY CLOSED -- do not redo, do not re-report
+- citation graph around Seuranen 2007 and Krotov-Potapov 2020;
+- Seuranen's 2011 Aalto dissertation SOURCE DISTRIBUTION: (8,1,2) absent from
+  all three result scripts, his exhaustive search only ever runs radius >= 2,
+  and his IP has one variable per weight class, not per word;
+- Ostergard's publication page: no K(n,1,mu) tables or data;
+- the 2024 hypercube invariant table of Bresar-Klavzar et al. (arXiv:2309.04963
+  Table 1): gamma, gamma_t, rho_2, rho_o for n <= 9, no double-domination row,
+  no limited-packing row, and rho_2(Q_8) still published as the range 17-30;
+- zbMATH Open: ti:"limited packing" 12 records, ti:"tuple domination" 32,
+  ti:"double domination" 58, and the any: cross-queries with hypercube returned
+  0, 0, and 1 (Harant-Henning, upper bounds only) plus 1 for multiple covering
+  (Vorob'ev, PERFECT multiple coverings, a different notion);
+- GitHub code search on the exact notation: 0 hits;
+- OEIS A004045 record and revision history: no comment, no xref, no b-file, no
+  data change since 2020.
+
+TASK 1 -- MATHSCINET, HONESTLY
+MathSciNet is subscription-only and I do not have access. I assume you do not
+either. Do NOT invent MR numbers, review text, or search counts. If you cannot
+query it, say so in one line and move to what you CAN do:
+  a) free MR Lookup at https://mathscinet.ams.org/mrlookup -- bibliographic
+     matching only, no subject search; use it only to confirm items I name;
+  b) MR numbers and review fragments that surface in public citations, in
+     reference lists, on author pages, in arXiv bibliographies and in Google
+     Books;
+  c) any AMS free-access windows or open MathSciNet content you know to exist.
+For each of the five subject queries below, tell me whether it is answerable
+without a subscription, and if not, say what a subscriber would have to run:
+  "double domination" AND hypercube
+  "tuple domination" AND hypercube
+  "limited packing" AND hypercube
+  "multiple covering" AND (hypercube OR "Hamming space")
+  "K(n,1,2)" OR "K(8,1,2)"
+Where zbMATH and MathSciNet are known to diverge in coverage -- which journals,
+which languages, which decades -- say so, because that gap is the residual risk
+I am trying to size.
+
+TASK 2 -- LEVEL 3: COMPUTED BUT NEVER PUBLISHED
+You cannot contact anyone, so do not pretend to. Hunt the traces an unpublished
+computation leaves:
+  - Wayback Machine snapshots of the covering-code table pages and of the author
+    pages of Ostergard, Honkala (note: IIRO Honkala, not Juha), Lobstein, Krotov,
+    Potapov, Litsyn, Kaikkonen. Sample around 1996, 2000, 2007, 2011, 2020, now,
+    and tell me if any snapshot shows an n=8 mu=2 row differing from 59-64;
+  - old FTP and software directories linked from those pages, including dead
+    links only reachable through the archive;
+  - conference talk slides, workshop programmes and one-page abstracts, where a
+    number is often stated and never written up: ACCT, WCC, ISIT, Combinatorics
+    conferences, Finnish and Russian combinatorics workshops;
+  - the Russian lane: MathNet.ru and Diskretnyi Analiz i Issledovanie Operatsii,
+    for "кратное покрытие", "двукратное покрытие", "булев куб", "двойное
+    доминирование", and the Krotov/Potapov/Vorob'ev group's own preprint pages;
+  - any survey that quotes a value for n=8, mu=2 without proof.
+Then draft, as a separate clearly-marked block I can send myself, a short
+courteous email to the authors asking whether any published or unpublished
+computation of gamma_{x2}(Q_8) = K(8,1,2) = 256 - L_7(Q_8) exists, and
+specifically whether infeasibility at M = 60 was ever obtained in an old solver
+run, table or source distribution. Keep it under 200 words and do not have it
+claim a result.
+
+OUTPUT
+Report per lane: what you searched, what you found, and what you could not
+reach. Mark every unreachable lane "NOT CHECKED" rather than leaving it silent.
+End with your single best estimate of where, if anywhere, this number is most
+likely already sitting, and how confident you are. Do not reassure me.

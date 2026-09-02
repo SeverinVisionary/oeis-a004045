@@ -1,0 +1,129 @@
+{
+  "statement": "no union of <g>-orbits (g in conjugacy class p7_a1, order 7, 40 orbits on F_2^8) of total size <= 63 is a mu=2 covering of Q_8",
+  "label": "p7_a1",
+  "order": 7,
+  "n_orbits": 40,
+  "ub": 63,
+  "mu": 2,
+  "utc": "2026-08-30T15:00:31Z",
+  "machine": {
+    "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "cpu_count": 4,
+    "loadavg_1min_at_start": 0.24169921875
+  },
+  "instance": {
+    "path": "inst_p7_a1_ub63.opb",
+    "variables": 40,
+    "constraints": 257,
+    "bytes": 15002,
+    "sha256": "393aa27eb916e19520ee1fa868a478caaf0e7b7d7dd7a7f3f381ef3b52776ae9"
+  },
+  "tools": {
+    "encoder": "symcert_encode.py+symcert_reps.py sha256=9b5ee1d5946382db171ec7fcb184437aab705322459f4f121ffc3cd874d01b64+0bbf62f5f073c4796ceb90c8b0d62d725bf11503a8e70feaa64ba69aa6714f67",
+    "solver": "/home/user/cert/roundingsat/build/roundingsat",
+    "solver_version": [
+      "Usage: /home/user/cert/roundingsat/build/roundingsat [OPTIONS] instance.(opb|cnf|wcnf)"
+    ],
+    "solver_commit": "d4edbf7908a9bb951fd181940919e0f3ac7ab1ee",
+    "checker": "/home/user/cert/veripb/target/release/veripb",
+    "checker_version": [
+      "Running VeriPB version 3.0.2",
+      "veripb 3.0.2"
+    ],
+    "checker_commit": "e4ffda3b7b68bf0ffb42bc14f4170836ba4656e2",
+    "python": "3.11.15"
+  },
+  "solve": {
+    "command": "/home/user/cert/roundingsat/build/roundingsat --proof-log=certs_symmetry/proof_p7_a1_ub63.pbp --verbosity=1 --lp=-1 certs_symmetry/inst_p7_a1_ub63.opb",
+    "exit_code": 0,
+    "budget_expired": false,
+    "seconds": 0.1,
+    "verdict": "UNSATISFIABLE",
+    "solver_banner": [
+      "RoundingSat 2",
+      "branch HEAD",
+      "commit d4edbf7"
+    ],
+    "search": {
+      "propagations": "8089",
+      "decisions": "715",
+      "conflicts": "468",
+      "LP total time 0.066966": "s",
+      "LP solve time 0.03": "s",
+      "LP constraints added": "259",
+      "LP constraints removed": "0",
+      "LP pivots internal": "498",
+      "LP pivots root": "44",
+      "LP calls": "246",
+      "LP optimalities": "5",
+      "LP no pivot count": "0",
+      "LP infeasibilities": "241",
+      "LP valid Farkas constraints": "241",
+      "LP learned Farkas constraints": "0",
+      "LP basis resets": "0",
+      "LP cycling count": "0",
+      "LP singular count": "0",
+      "LP no primal count": "0",
+      "LP no farkas count": "0",
+      "LP other issue count": "0",
+      "LP Gomory cuts": "2",
+      "LP learned cuts": "0",
+      "LP deleted cuts": "0",
+      "LP encountered Gomory constraints": "5",
+      "LP encountered Farkas constraints": "57",
+      "LP encountered learned Farkas constraints": "0"
+    },
+    "stdout_tail": [
+      "c LP cycling count 0",
+      "c LP singular count 0",
+      "c LP no primal count 0",
+      "c LP no farkas count 0",
+      "c LP other issue count 0",
+      "c LP Gomory cuts 2",
+      "c LP learned cuts 0",
+      "c LP deleted cuts 0",
+      "c LP encountered Gomory constraints 5",
+      "c LP encountered Farkas constraints 57",
+      "c LP encountered learned Farkas constraints 0",
+      "c CG auxiliary variables introduced 0",
+      "c CG solutions found 0",
+      "c CG cores constructed 0",
+      "c CG core cardinality constraints returned 0",
+      "c CG unit cores 0",
+      "c CG single cores 0",
+      "c CG blocks removed during cardinality reduction 0",
+      "c CG first core best 0",
+      "c CG decision core best 0",
+      "c CG core reduction tie 0",
+      "c CG core degree average 0.00",
+      "c CG core slack average 0.00",
+      "c CG core upper bound improvements 0",
+      "s UNSATISFIABLE"
+    ]
+  },
+  "proof": {
+    "path": "proof_p7_a1_ub63.pbp",
+    "bytes": 743643,
+    "uncompressed_bytes": 743643,
+    "lines": 2345,
+    "sha256": "5fc546675a5757057ebb786f392c4abdf78ff9c53aa8d5bf6fa3d483461310fa"
+  },
+  "check": {
+    "command": "/home/user/cert/veripb/target/release/veripb -c --stats certs_symmetry/inst_p7_a1_ub63.opb certs_symmetry/proof_p7_a1_ub63.pbp",
+    "exit_code": 0,
+    "budget_expired": false,
+    "seconds": 0.02,
+    "output_tail": [
+      "Running VeriPB version 3.0.2",
+      "s VERIFIED UNSATISFIABLE",
+      "",
+      "c statistic: time total: 0.015209451 s",
+      "Info: Switched to proof version 2.0 (it is recommended to migrate to proof version 3.0)."
+    ],
+    "checker_verdict": "UNSATISFIABLE",
+    "accepted": true
+  },
+  "certified": true,
+  "result": "VERIFIED"
+}

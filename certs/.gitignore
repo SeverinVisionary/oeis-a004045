@@ -1,0 +1,7 @@
+# Uncompressed proofs are working files: certify.py --stream-gzip never writes
+# one, and the committed artifact is always the .pbp.gz. Sizes and hashes of
+# both forms live in each cert_*.json.
+*.pbp
+*.fifo
+.raw_*.txt
+.control_*.opb

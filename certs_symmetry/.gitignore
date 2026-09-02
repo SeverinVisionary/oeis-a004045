@@ -1,0 +1,12 @@
+# SCIP's working files for certificate output (route 2), and the raw/
+# completed VIPR forms once checked. symcert_certify_exact.py deletes
+# anything over 50MB itself after viprchk runs, but a killed/still-running
+# attempt can leave these behind meanwhile. Sizes and hashes of every form
+# live in each cert_exact_*.json; the raw .pbp for route 1 is committed
+# directly (these instances are small enough that it stays under the limit).
+*.vipr
+*.vipr_ori
+*.vipr_der
+*.vipr_complete
+*_complete.vipr
+*.fifo

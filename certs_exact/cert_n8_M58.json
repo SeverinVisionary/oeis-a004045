@@ -1,0 +1,116 @@
+{
+  "statement": "K(8,1,2) > 58  --  no set C subset F_2^8 with |C| <= 58 has every word of F_2^8 within Hamming distance 1 of at least 2 members of C",
+  "route": "exact-rational MILP (SCIP) -> VIPR certificate -> viprcomp -> viprchk",
+  "n": 8,
+  "M": 58,
+  "mu": 2,
+  "utc": "2026-08-29T09:33:04Z",
+  "machine": {
+    "platform": "macOS-26.6.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "processor": "Apple M1 Pro",
+    "cpu_count": 10,
+    "loadavg_1min_at_start": 7.22607421875
+  },
+  "instance": {
+    "path": "inst_n8_M58.opb",
+    "variables": 256,
+    "constraints": 257,
+    "bytes": 21472,
+    "sha256": "53c5c8113a102f5a51feda0f0dfa228afe4edb80ab75fc94bd8e7fcfc653c92f",
+    "note": "byte-identical to the instance certify.py refutes"
+  },
+  "tools": {
+    "scip": "<build-dir>/cert/scipoptsuite-10.0.0/build/bin/scip",
+    "viprcomp": "<build-dir>/cert/vipr2/code/build/viprcomp",
+    "viprchk": "<build-dir>/cert/vipr2/code/build/viprchk",
+    "python": "3.12.8"
+  },
+  "solve": {
+    "command": "<build-dir>/cert/scipoptsuite-10.0.0/build/bin/scip -c \"set exact enable TRUE\" -c \"set certificate filename certs_exact/cert_n8_M58.vipr\" -c \"set limits time 7200\" -c \"set parallel maxnthreads 1\" -c \"read certs_exact/inst_n8_M58.opb\" -c optimize -c quit",
+    "exit_code": 0,
+    "seconds": 6.3,
+    "scip_status": "problem is solved [infeasible]",
+    "stdout_tail": [
+      "Presolving Time: 0.00",
+      "storing certificate information in file <certs_exact/cert_n8_M58.vipr>",
+      "",
+      "solving problem in exact solving mode",
+      "",
+      " time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. ",
+      "  0.1s|     1 |     0 |  2976 |     - |  8594k |   0 | 256 | 257 | 257 |   0 |  0 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.4s|     1 |     0 |  3133 |     - |  9902k |   0 | 256 | 257 | 258 |   1 |  1 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.7s|     1 |     0 |  3158 |     - |    11M |   0 | 256 | 257 | 259 |   2 |  2 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.9s|     1 |     0 |  3187 |     - |    14M |   0 | 256 | 257 | 260 |   3 |  3 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  1.3s|     1 |     0 |  3224 |     - |    19M |   0 | 256 | 257 | 261 |   4 |  4 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  1.5s|     1 |     0 |  3272 |     - |    19M |   0 | 256 | 257 | 262 |   5 |  5 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  1.7s|     1 |     0 |  3314 |     - |    20M |   0 | 256 | 257 | 263 |   6 |  6 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  1.9s|     1 |     0 |  3383 |     - |    20M |   0 | 256 | 257 | 264 |   7 |  7 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  2.2s|     1 |     0 |  3410 |     - |    22M |   0 | 256 | 257 | 265 |   8 |  8 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  2.5s|     1 |     0 |  3440 |     - |    26M |   0 | 256 | 257 | 266 |   9 |  9 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  2.9s|     1 |     0 |  3454 |     - |    29M |   0 | 256 | 257 | 267 |  10 | 10 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  2.9s|     1 |     0 |  3478 |     - |    29M |   0 | 256 | 257 | 268 |  11 | 11 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  3.5s|     1 |     2 |  3482 |     - |    29M |   0 | 256 | 257 | 268 |  11 | 11 |   0 |  23 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  4.9s|   100 |    13 |  7278 |  38.3 |    34M |  10 | 256 | 303 | 258 |  14 |  0 |  46 |  23 | 0.000000e+00 |      --      |    Inf | unknown",
+      "",
+      "SCIP Status        : problem is solved [infeasible]",
+      "Solving Time (sec) : 6.22",
+      "Solving Nodes      : 175",
+      "Primal Bound       : +1.00000000000000e+20 (0 solutions)",
+      "Dual Bound         : +1.00000000000000e+20",
+      "Gap                : 0.00 %",
+      "",
+      "",
+      "closing certificate file (wrote approx. 43.5 MB)"
+    ]
+  },
+  "certificate": {
+    "path": "cert_n8_M58.vipr",
+    "bytes": 45562414,
+    "lines": 8235,
+    "sha256": "82e1fac3e1989f96758aa190da3731224c3de0af1aae90d40cfc728e50891cbb",
+    "note": "the incomplete certificate SCIP wrote is not retained; regenerate with the solve command above"
+  },
+  "complete": {
+    "command": "<build-dir>/cert/vipr2/code/build/viprcomp certs_exact/cert_n8_M58.vipr",
+    "exit_code": 0,
+    "seconds": 1.24,
+    "output": [
+      "processing file into memory took 0.326379 seconds (Wall Clock)",
+      "",
+      "processing completion pipeline took 0.742187 seconds (Wall Clock)",
+      "",
+      "writing to file took 0.083684 seconds (Wall Clock)",
+      "",
+      "Completed 1999 out of 6945",
+      "Completion of File successful!",
+      "",
+      "completing and printing took 1.15381 seconds (Wall Clock)"
+    ],
+    "completed_path": "cert_n8_M58_complete.vipr.gz",
+    "sha256": "4f08ed14e6d7a98961fbfcc0b43d400f48636491d5c1323bddb8e9f4315591e4",
+    "uncompressed_bytes": 88680439,
+    "uncompressed_sha256": "166c25685dacc4fc1ad5af88fc5aaa8bf0ef8d88d71fdb41d824512837faaecb",
+    "bytes": 34004647
+  },
+  "check": {
+    "command": "<build-dir>/cert/vipr2/code/build/viprchk certs_exact/cert_n8_M58_complete.vipr",
+    "exit_code": 0,
+    "seconds": 3.6,
+    "output": [
+      "asm1: 4166 4519 ",
+      "asm2: 4166 4519 ",
+      "asm1: 4166 ",
+      "asm2: 4166 ",
+      "asm1: ",
+      "asm2: ",
+      "Successfully verified infeasibility.",
+      "",
+      "Completed in 3.55587 seconds (CPU)",
+      "Warning: non-ascending indices for UnsplitNode9_4240. This may be intentional, but could also indicate an error."
+    ],
+    "accepted": true
+  },
+  "certified": true,
+  "result": "VERIFIED"
+}

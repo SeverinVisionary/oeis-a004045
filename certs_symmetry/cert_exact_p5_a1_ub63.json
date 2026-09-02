@@ -1,0 +1,120 @@
+{
+  "statement": "no union of <g>-orbits (g in conjugacy class p5_a1, order 5, 64 orbits on F_2^8) of total size <= 63 is a mu=2 covering of Q_8",
+  "route": "exact-rational MILP (SCIP) -> VIPR certificate -> viprcomp -> viprchk",
+  "label": "p5_a1",
+  "order": 5,
+  "n_orbits": 64,
+  "ub": 63,
+  "mu": 2,
+  "utc": "2026-08-30T17:35:07Z",
+  "machine": {
+    "platform": "macOS-26.6.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "cpu_count": 10,
+    "loadavg_1min_at_start": 6.1376953125
+  },
+  "instance": {
+    "path": "inst_p5_a1_ub63.opb",
+    "variables": 64,
+    "constraints": 257,
+    "bytes": 14657,
+    "sha256": "05232c389c274b54969456f840361e886fa7bce162ed9389d74a5850fe20bbd2"
+  },
+  "tools": {
+    "scip": "<build-dir>/cert/scipoptsuite-10.0.0/build/bin/scip",
+    "viprcomp": "<build-dir>/cert/vipr2/code/build/viprcomp",
+    "viprchk": "<build-dir>/cert/vipr2/code/build/viprchk",
+    "python": "3.9.6"
+  },
+  "solve": {
+    "command": "<build-dir>/cert/scipoptsuite-10.0.0/build/bin/scip -c \"set exact enable TRUE\" -c \"set certificate filename certs_symmetry/cert_exact_p5_a1_ub63.vipr\" -c \"set limits time 3600\" -c \"set parallel maxnthreads 1\" -c \"read certs_symmetry/inst_p5_a1_ub63.opb\" -c optimize -c quit",
+    "exit_code": 0,
+    "budget_expired": false,
+    "seconds": 2.74,
+    "scip_status": "problem is solved [infeasible]",
+    "stdout_tail": [
+      " time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. ",
+      "  0.0s|     1 |     0 |    92 |     - |  5693k |   0 |  64 | 257 | 257 |   0 |  0 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.0s|     1 |     0 |   682 |     - |  5943k |   0 |  64 | 257 | 258 |   1 |  1 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.1s|     1 |     0 |   697 |     - |  6610k |   0 |  64 | 257 | 260 |   3 |  2 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.1s|     1 |     0 |   715 |     - |  7115k |   0 |  64 | 257 | 262 |   5 |  3 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.1s|     1 |     0 |   723 |     - |  7785k |   0 |  64 | 257 | 263 |   6 |  4 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.2s|     1 |     0 |   742 |     - |  8630k |   0 |  64 | 257 | 264 |   7 |  5 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.2s|     1 |     0 |   754 |     - |  9179k |   0 |  64 | 257 | 265 |   8 |  6 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.2s|     1 |     0 |   764 |     - |  9639k |   0 |  64 | 257 | 266 |   9 |  7 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.2s|     1 |     0 |   778 |     - |  9642k |   0 |  64 | 257 | 267 |  10 |  8 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.3s|     1 |     0 |   796 |     - |  9981k |   0 |  64 | 257 | 269 |  12 |  9 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.3s|     1 |     0 |   813 |     - |    10M |   0 |  64 | 257 | 270 |  13 | 10 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.3s|     1 |     0 |   824 |     - |    10M |   0 |  64 | 257 | 270 |  14 | 11 |   0 |   0 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.3s|     1 |     2 |   825 |     - |    10M |   0 |  64 | 257 | 270 |  14 | 11 |   0 |  25 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.5s|   100 |    11 |  2613 |  18.1 |    12M |  13 |  64 | 257 | 261 |  17 |  0 |   0 |  25 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  0.8s|   200 |    13 |  4441 |  18.2 |    14M |  13 |  64 | 257 | 259 |  30 |  0 |   0 |  25 | 0.000000e+00 |      --      |    Inf | unknown",
+      " time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. ",
+      "  1.4s|   300 |    13 |  6568 |  19.2 |    25M |  13 |  64 | 257 | 262 |  68 |  2 |   0 |  25 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  1.9s|   400 |    15 |  8512 |  19.3 |    27M |  16 |  64 | 257 | 259 |  88 |  1 |   0 |  25 | 0.000000e+00 |      --      |    Inf | unknown",
+      "  2.5s|   500 |     9 | 10586 |  19.6 |    36M |  17 |  64 | 257 | 263 | 126 |  0 |   0 |  25 | 0.000000e+00 |      --      |    Inf | unknown",
+      "",
+      "SCIP Status        : problem is solved [infeasible]",
+      "Solving Time (sec) : 2.68",
+      "Solving Nodes      : 543",
+      "Primal Bound       : +1.00000000000000e+20 (0 solutions)",
+      "Dual Bound         : +1.00000000000000e+20",
+      "Gap                : 0.00 %",
+      "",
+      "",
+      "closing certificate file (wrote approx. 30.6 MB)"
+    ]
+  },
+  "certificate": {
+    "path": "cert_exact_p5_a1_ub63.vipr",
+    "bytes": 32061055,
+    "sha256": "491018c249cd00159adb4dd5012fc91e3fd48ed3e6a60fae3f6c47c3a17fc8e0"
+  },
+  "binding": {
+    "checked": true,
+    "bound": true,
+    "problems": [],
+    "seconds": 0.16
+  },
+  "complete": {
+    "command": "<build-dir>/cert/vipr2/code/build/viprcomp certs_symmetry/cert_exact_p5_a1_ub63.vipr",
+    "exit_code": 0,
+    "seconds": 1.02,
+    "output": [
+      "processing file into memory took 0.336152 seconds (Wall Clock)",
+      "",
+      "processing completion pipeline took 0.492605 seconds (Wall Clock)",
+      "",
+      "writing to file took 0.140453 seconds (Wall Clock)",
+      "",
+      "Completed 7489 out of 24102",
+      "Completion of File successful!",
+      "",
+      "completing and printing took 0.970079 seconds (Wall Clock)"
+    ],
+    "completed_path": "certs_symmetry/cert_exact_p5_a1_ub63_complete.vipr",
+    "bytes": 67858356,
+    "sha256": "4c4c181eb8f954975e3063b86e6dc5b298da500ae9572d9db9bcefae6ba0c968",
+    "path": "<deleted, over 50 MB; sha256/bytes above, regenerate with the command in this record>"
+  },
+  "check": {
+    "command": "<build-dir>/cert/vipr2/code/build/viprchk certs_symmetry/cert_exact_p5_a1_ub63_complete.vipr",
+    "exit_code": 0,
+    "seconds": 2.56,
+    "output": [
+      "asm1: 3009 3664 ",
+      "asm2: 3009 3664 ",
+      "asm1: 3009 ",
+      "asm2: 3009 ",
+      "asm1: ",
+      "asm2: ",
+      "Successfully verified infeasibility.",
+      "",
+      "Completed in 2.50269 seconds (CPU)",
+      "Warning: non-ascending indices for UnsplitNode12_3119. This may be intentional, but could also indicate an error."
+    ],
+    "accepted": true
+  },
+  "certified": true,
+  "result": "VERIFIED"
+}
