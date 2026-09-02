@@ -7,6 +7,9 @@
 *Draft, 2026-09-02. Not submitted, and not peer-reviewed by a human. §10 states
 precisely what is and is not established; please read it before citing.*
 
+*Generative AI was used extensively in producing this work. See
+**[Declarations](#declarations)** for the full statement.*
+
 ---
 
 ## Abstract
@@ -419,23 +422,6 @@ completely asymmetric. Every classical construction in this area is symmetric,
 which explains why the upper bound has not moved since 1995, and tells a future
 search to break symmetry aggressively rather than prescribe it.
 
-## 9.1 Use of AI tools
-
-This work was produced with heavy use of large language models: for literature
-search, for proposing the `M = 60` argument, for writing most of the code and
-the Lean development, and for adversarial review of the results. The author
-directed the work and is responsible for it.
-
-That is stated plainly because it bears on how the claims should be read, and
-the package is built around the consequence. Machine reasoning is not treated as
-evidence anywhere: the review transcripts in `reviews/` are archived as
-provenance only, and every load-bearing claim is either an argument short enough
-to check by hand, a self-asserting script, a machine-checkable certificate, or —
-for `K(8,1,2) >= 61` — a Lean development whose axiom trace is audited. The
-reason for formalising rather than seeking review is in `lean/README.md`: two
-machine reviews called the argument sound while between them making four errors
-on it and catching disjoint defects.
-
 ## 10. What is and is not established
 
 **Established, by hand** — Theorems 1 and 2, Corollary 3, Proposition 4, and
@@ -457,6 +443,58 @@ use Delsarte nonnegativity on a covering code's own distance distribution, and
 the Chen–Li preprint is unlocated. Nothing here touches the upper bound, which
 remains 64. And **no human has reviewed the proof or the Lean
 definitions.**
+
+## Declarations
+
+### Use of generative AI
+
+**Generative AI was used extensively in producing this work.** Large language
+models were used for literature search, for proposing the `M = 60` argument of
+§8, for writing most of the code and the Lean development, and for adversarial
+review of the results.
+
+**No AI system is an author of this work.** The sole author is Hanyu Yang, who
+directed the work, verified the results, and takes full responsibility for the
+content, including any part drafted or proposed with AI assistance.
+
+This is disclosed prominently rather than in a footnote because it bears on how
+the claims should be read — and because the package is built around the
+consequence. Machine reasoning is not treated as evidence anywhere in it. The
+review transcripts in `reviews/` are archived as provenance only. Every
+load-bearing claim is one of: an argument short enough to check by hand; a
+self-asserting script; a machine-checkable certificate; or, for
+`K(8,1,2) ≥ 61`, a Lean 4 development whose axiom trace is audited. The reason
+for formalising rather than seeking machine review is recorded in
+`lean/README.md`: two machine reviews called the argument sound while between
+them making four errors on it, and catching *disjoint* defects.
+
+### Human review
+
+**No human has reviewed the proofs or the Lean definitions**, including for the
+results this paper presents as established. Correctness of `K(8,1,2) ≥ 61` rests
+on Lean's kernel together with twelve definitions that a reader must check
+encode the intended object; that check has not been performed by a person.
+
+### Competing interests
+
+The author declares no competing interests.
+
+### Funding
+
+No funding was received for this work.
+
+### Data and code availability
+
+All code, certificates, logs and the Lean development are openly available.
+
+- Repository: <https://github.com/SeverinVisionary/oeis-a004045>
+- Archive: DOI [10.5281/zenodo.22217672](https://doi.org/10.5281/zenodo.22217672)
+  (concept DOI; resolves to the current version)
+
+Code is MIT-licensed; prose, tables and certificates are CC BY 4.0. Results are
+reproduced by `./reproduce.sh` (twelve self-asserting checks, about a minute,
+non-zero exit on any failure); the Lean development is a separate build of about
+four minutes.
 
 ## References
 
