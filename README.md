@@ -139,11 +139,12 @@ for this table and is not claimed as new.
 The two large certificates do not fit sensibly in git. They are archived openly
 and citably:
 
-> **DOI [10.5281/zenodo.22261609](https://doi.org/10.5281/zenodo.22261609)** (v2.0) — *Machine-checked bounds on
-> K(8,1,2), the first unknown term of OEIS A004045*. Cite the concept DOI
-> [10.5281/zenodo.22217672](https://doi.org/10.5281/zenodo.22217672) to always
-> resolve to the newest version. v1.0 was *Machine-checkable certificates for
-> K(8,1,2) >= 60 (binary twofold covering codes, OEIS A004045)*, CC BY 4.0.
+> **Cite: DOI [10.5281/zenodo.22217672](https://doi.org/10.5281/zenodo.22217672)**
+> — *Machine-checked bounds on K(8,1,2), the first unknown term of OEIS A004045*.
+> This is the **concept DOI** and always resolves to the current version; use it
+> in preference to a version DOI, which pins readers to a snapshot. Current
+> version 2.1. v1.0 was *Machine-checkable certificates for K(8,1,2) >= 60*.
+> Code MIT, prose CC BY 4.0.
 
 | file | bytes | md5 |
 |---|---:|---|

@@ -258,7 +258,7 @@ search, where [HHKL, Theorem 1] used a weight-distribution case analysis.
 
 1. an exact-rational SCIP → VIPR certificate refuting `|C| = 59`, accepted by
    the standalone checker `viprchk` (3.59 GB), archived at
-   doi:10.5281/zenodo.22261609;
+   doi:10.5281/zenodo.22217672;
 2. exhaustive numerical verification with two independent solvers.
 
 Hence `60 ≤ K(8,1,2) ≤ 64`.
@@ -450,4 +450,5 @@ definitions.**
   *IEEE Trans. Inform. Theory* **34** (1988) 237–245.
 - OEIS Foundation. Sequence A004045. https://oeis.org/A004045
 - H. Yang. Machine-checked bounds on K(8,1,2), the first unknown term of
-  OEIS A004045. Zenodo, 2026. doi:10.5281/zenodo.22261609
+  OEIS A004045. Zenodo, 2026. doi:10.5281/zenodo.22217672 (concept DOI; always
+  resolves to the current version)
