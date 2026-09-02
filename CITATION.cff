@@ -30,7 +30,7 @@ repository-code: "https://github.com/SeverinVisionary/oeis-a004045"
 references:
   - type: data
     title: "Machine-checkable certificates for K(8,1,2) >= 60"
-    doi: "10.5281/zenodo.22217673"
+    doi: "10.5281/zenodo.22217672"
     authors:
       - given-names: Hanyu
         family-names: Yang

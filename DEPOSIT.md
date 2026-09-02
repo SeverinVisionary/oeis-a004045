@@ -1,6 +1,10 @@
 # Off-site archive of the K(8,1,2) >= 60 evidence
 
-Zenodo record **10.5281/zenodo.22217673** (<https://doi.org/10.5281/zenodo.22217673>), published 2026-09-02. Formerly a draft; the
+Zenodo concept **10.5281/zenodo.22217672**; current version **10.5281/zenodo.22261609**
+(v2.0, <https://doi.org/10.5281/zenodo.22261609>), published 2026-09-02. v1.0 was
+10.5281/zenodo.22217673, same day; it described K >= 61 as a candidate and the Lean
+formalisation as unfinished, both of which the v2.0 metadata corrects. The two multi-GB
+certificates were inherited by the new version, not re-uploaded. Formerly a draft; the
 DOI is now minted and the five files below are open access under CC BY 4.0. The
 decision.
 
