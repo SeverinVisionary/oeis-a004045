@@ -1,7 +1,7 @@
 # Off-site archive of the K(8,1,2) >= 60 evidence
 
-Zenodo **draft** deposition `22217673`. Draft only -- nothing is published, and
-publishing mints a DOI irreversibly, so it must not happen without an explicit
+Zenodo record **10.5281/zenodo.22217673** (<https://doi.org/10.5281/zenodo.22217673>), published 2026-09-02. Formerly a draft; the
+DOI is now minted and the five files below are open access under CC BY 4.0. The
 decision.
 
 ## Contents and checksums

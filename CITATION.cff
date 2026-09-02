@@ -27,3 +27,11 @@ keywords:
   - Lean 4
 license: MIT
 repository-code: "https://github.com/SeverinVisionary/oeis-a004045"
+references:
+  - type: data
+    title: "Machine-checkable certificates for K(8,1,2) >= 60"
+    doi: "10.5281/zenodo.22217673"
+    authors:
+      - given-names: Hanyu
+        family-names: Yang
+        orcid: "https://orcid.org/0009-0005-0419-4070"

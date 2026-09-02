@@ -23,6 +23,11 @@
   ],
   "related_identifiers": [
     {
+      "identifier": "10.5281/zenodo.22217673",
+      "relation": "isSupplementedBy",
+      "scheme": "doi"
+    },
+    {
       "identifier": "https://oeis.org/A004045",
       "relation": "isSupplementTo",
       "scheme": "url"

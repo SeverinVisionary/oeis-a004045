@@ -108,6 +108,31 @@ Krotov–Potapov already use Delsarte nonnegativity on a covering code's own
 distance distribution to obtain the published 59, so that ingredient is standard
 for this table and is not claimed as new.
 
+## Artifacts outside this repository
+
+The two large certificates do not fit sensibly in git. They are archived openly
+and citably:
+
+> **DOI [10.5281/zenodo.22217673](https://doi.org/10.5281/zenodo.22217673)** — *Machine-checkable certificates for
+> K(8,1,2) >= 60 (binary twofold covering codes, OEIS A004045)*, CC BY 4.0.
+
+| file | bytes | md5 |
+|---|---:|---|
+| `cert_n8_M59.vipr` | 3,594,514,707 | `0612e943473044f252388e09695b05da` |
+| `cert_n8_M59_complete.vipr.gz` | 2,276,345,927 | `8d8c51b7f1732aa88eb5b81a778a37bc` |
+| `inst_n8_M59.opb` | 21,472 | `2db3705e97ced2616dc509051d6768c3` |
+| `viprchk_n8_M59.log` | 774 | `b35cf23ddf1adc2c02dc1f65b8ec336e` |
+| `cert_n8_M59_route1.json` | 4,214 | `2e2e5e94ebddefef71d5c74a9972ff76` |
+
+Uncompressed `cert_n8_M59_complete.vipr`: md5
+`34c48df67d0bfa6d2296856beba63a5a`, sha256
+`2f2a335f883e4b88630cebbaa3d47ce2ea30986b722df54084dcc4926d2d6ddf`.
+Note `viprchk` does **not** read gzip; the uncompressed file is the checkable
+one. Everything **in** this repository is covered by `SHA256SUMS`.
+
+`K(8,1,2) >= 60` does not depend on these: it also follows from the half-page
+theorem with no computation at all, and from exhaustive numerical verification.
+
 ## Formalisation
 
 `lean/` holds a Lean 4 + mathlib formalisation of the `M=60` refutation.
