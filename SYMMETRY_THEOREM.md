@@ -1,6 +1,10 @@
 # Every `<= 63` double covering of `Q_8` is asymmetric, and 64 is sharp
 
 **Status: 4 of 28 classes machine-checked, 24 remain floating-point only.**
+The 24 open classes have since been *narrowed* -- 20 of them collapse from an
+inequality over three sizes to a single equality `= 62` with the weight split
+pinned to one or two values (see "Narrowing what is left to certify"). None is
+thereby closed: the count is still 4 of 28.
 Every "Infeasible" in the sweep below is a floating-point HiGHS
 branch-and-bound status, not a proof object, by itself. Independent
 certification (`certs_symmetry/`, see "Certification status" below) has since
@@ -186,6 +190,63 @@ Two things were learned about *why* this is expensive, not just *that* it is:
   now polls the certificate's on-disk size during the solve and aborts past
   4 GB, and deletes any leftover partial certificate on every non-`VERIFIED`
   exit, recording its size before doing so.
+
+### Narrowing what is left to certify (2026-09-02)
+
+The 24 open classes do not all need the instance they were given. Two facts
+shrink the target, one free and one now machine-checked.
+
+**The parity fact.** An order-2 `g = (pi, t)` acts *freely* exactly when its
+signed cycle type has `c > 0`. If `c > 0` then `t` is supported on a coordinate
+`pi` fixes, so `t` is not in `im(1 + pi)`, so `x xor pi(x) = t` has no solution
+and `g` has no fixed point. Every orbit then has size 2, and a `g`-invariant
+code -- a disjoint union of orbits -- has **even cardinality**. That covers
+**20 of the 24**; the remaining four are exactly the `c = 0` classes, whose
+fixed sets are `ker(1 + pi)` of size `2^(8-a)`.
+
+**The bound.** `K(8,1,2) >= 61` is proved in `m61_refutation.py` and formalised
+in `lean/` with zero `sorry`s.
+
+Together, for a freely-acting `g`: `|C|` even and `61 <= |C| <= 63` force
+`|C| = 62` **exactly**. So for those 20 classes the certification target is not
+`sum |O| y_O <= 63` -- an inequality spanning three sizes -- but the single
+equality `sum |O| y_O = 62`.
+
+A third fact splits them further. `wt(pi(x) xor t) = wt(x) + wt(t) (mod 2)` and
+`wt(t) = c`, so `g` swaps the even- and odd-weight halves exactly when `c` is
+odd. At `|C| = 62` the excess rows and the half-excess inequality of
+`half_excess.py` leave five splits `(M_e, M_o)`, namely `(29,33)` through
+`(33,29)`. Symmetry cuts that to:
+
+| classes | `c` | orbits | surviving `(M_e, M_o)` |
+|---|---|---|---|
+| 10 | odd | one even + one odd word | `(31,31)` -- **one** |
+| 10 | even | both words same parity | `(30,32)`, `(32,30)` -- **two** |
+| 4 | `c = 0` | mixed (has fixed points) | sizes `{61, 62, 63}`, splits unrestricted |
+
+`symmetry_parity.py` checks all of this from the orbit structure rather than
+from the argument above -- it recomputes each class's orbits and asserts that
+free-ness matches `c > 0`, that the fixed sets have size `2^(8-a)`, that every
+orbit is parity-mixed iff `c` is odd, and that the surviving split lists are
+what the table says. Standard library only, and it shares no code with
+`symmetry_prime.py`.
+
+**This certifies nothing new, and it changes a dependency.** The count stands at
+4 of 28. What changed is the size of the remaining obligation: 20 instances go
+from a three-size inequality to a one-size equality with the weight split fixed
+to one or two values, which is a materially smaller search than the one that
+defeated both routes. Whether that is small *enough* is untested -- the
+certification toolchain is a Linux build and was not re-run here, so the honest
+claim is a smaller target, not a closed one.
+
+The dependency matters and is worth stating plainly. This file previously made
+**no** use of any bound on `K(8,1,2)`, which is why it could assert `K_sym = 64`
+independently of the main ladder. The narrowed `= 62` instances **do** depend on
+`K(8,1,2) >= 61`. So there are now two routes, and they are not interchangeable:
+the original `<= 63` instances remain unconditional and are what a reader
+should use if they want `K_sym = 64` to stand on its own; the `= 62` instances
+are cheaper but inherit whatever the `M = 60` refutation rests on. A certificate
+should record which of the two it closed.
 
 The **mandatory over-constraint control** was run on the three hardest
 classes precisely because a systematically-unrefuted family is the scenario

@@ -77,9 +77,24 @@ problem, not a matter of judgement.
 ### Upper bound — unchanged at 64
 
 Local search stalls at cost 2 at `M=63` across six independent designs. That is
-**not** evidence of infeasibility. The cyclic prescribed-automorphism sweep is
-exhaustive and negative, so any `<= 63` code has trivial cyclic automorphism
-group.
+**not** evidence of infeasibility.
+
+What is known is where a better code cannot live. Any non-identity automorphism
+has a power of prime order, so it is enough to rule out prime-order ones, and
+all 28 prime-order classes of `Aut(Q_8) = F_2^8 : S_8` come back infeasible at
+`<= 63`: **any `<= 63` code is asymmetric** (`SYMMETRY_THEOREM.md`). An
+independent 746-class cyclic sweep (`prescribed.py`) agrees on every verdict,
+and its accounting closes exactly -- 742 swept plus 3 the orbit filter dropped
+is all 745 non-identity classes, of which 439 have minimum exactly 64, 76 are
+infeasible outright, and the 227 that timed out were resolved in two follow-up
+rounds, every one infeasible, with no covering of size `<= 63` found anywhere.
+
+The caveat is that only **4 of the 28** are machine-checked; the other 24, all
+order 2, are floating-point solver verdicts. `symmetry_parity.py` narrows what
+is left: an order-2 element acts freely exactly when its signed type has
+`c > 0`, so an invariant code has even size, and with `K(8,1,2) >= 61` that
+pins 20 of the 24 to `|C| = 62` exactly, with the weight split forced to one
+value (`c` odd) or two (`c` even). Smaller target, still not closed.
 
 ## Reproduce
 

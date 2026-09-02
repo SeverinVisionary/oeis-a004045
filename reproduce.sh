@@ -44,6 +44,7 @@ run "odd-n counterexample"      $PY odd_n_witness.py
 run "incumbent verifies"        $PY verify.py --incumbent
 run "HHKL Thm 6 collapses"      $PY hhkl_theorem6.py
 run "even-mu generalisation"    $PY mu_generalization.py
+run "order-2 symmetry parity"   $PY symmetry_parity.py
 
 echo
 echo "=== Dominance over Krotov-Potapov (needs scipy for controls) ==="
