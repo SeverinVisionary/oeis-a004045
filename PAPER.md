@@ -453,6 +453,11 @@ models were used for literature search, for proposing the `M = 60` argument of
 §8, for writing most of the code and the Lean development, and for adversarial
 review of the results.
 
+**Tools.** Anthropic Claude (Opus 5) for most of the code, the Lean development
+and drafting; Anthropic Fable 5.1 for pre-publication audit; OpenAI GPT-5.6
+(ChatGPT, and Codex `gpt-5.6-terra`) and DeepSeek v4 for independent review and
+prior-art search. Review transcripts are archived in `reviews/`.
+
 **No AI system is an author of this work.** The sole author is Hanyu Yang, who
 directed the work, verified the results, and takes full responsibility for the
 content, including any part drafted or proposed with AI assistance.
