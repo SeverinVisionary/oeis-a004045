@@ -32,10 +32,9 @@ Proved: `sum_cov`, `chi_mul`, `a_even`, `excess_eq`, `sos_nonneg`,
 `card_le_excess`, `antipode_row`, `second_moment`, `layer_identity`,
 `layer_identity_zero`.
 
-Remaining (`no_60_word_double_cover` correctly still reports `sorryAx`):
-`a12_lower`, `exists_full_ball`, `layer_contradiction` — the three deep steps.
-Everything they need upstream is now proved, so they reduce to linear
-arithmetic and integrality over `sum_d a_d = |C|^2`.
+The three deep steps — `a12_lower`, `exists_full_ball`, `layer_contradiction`
+— were the last to close and are now proved, along with everything upstream of
+them. `no_60_word_double_cover` no longer reports `sorryAx`.
 
 `sum_chi_eq_f` was proved by the **general Krawtchouk identity**, not by
 computation and not by a 9-representative fallback: each `w` of card `k` splits
@@ -43,11 +42,10 @@ uniquely as `(w INTER u)` and `(w \ u)`, giving
 `sum_j (-1)^j C(|u|,j) C(8-|u|,k-j)` via `Finset.card_nbij'`. So the design goal
 holds — no MacWilliams duality or inversion is used anywhere.
 
-`lake build` succeeds (3008 jobs): every definition and every theorem STATEMENT
-elaborates, and the top-level derivation
-`exists_full_ball -> layer_contradiction -> False` typechecks. So the shape of
-the argument is machine-checked. Every leaf is still `sorry`, so the content is
-not.
+`lake build` succeeds (3008 jobs). Every definition, every statement AND every
+proof elaborates; the top-level derivation
+`exists_full_ball -> layer_contradiction -> False` typechecks with no `sorry`
+anywhere, so the content is machine-checked, not merely the shape.
 
 Toolchain note: Lean **4.33.1**. On 4.14 the prebuilt mathlib `cache` binary
 will not run on macOS 15+/Darwin 25 (`dyld: __DATA_CONST segment missing
@@ -59,8 +57,8 @@ it is now `Mathlib.Algebra.BigOperators.Group.Finset.Basic`.
 The M=60 refutation has no slack anywhere. Step 2's value `347` is one unit
 from collapse, and step 4 has `need = cap = 60` exactly, closed only by the
 fact that 5 does not divide 12. Two independent machine reviews called it
-sound, but between them they made four errors on this very argument (see the
-git log) and caught *disjoint* defects — so their agreement is two partial
+sound, but between them they made four errors on this very argument and caught
+*disjoint* defects — so their agreement is two partial
 passes, not two confirmations. A referee will skim the arithmetic exactly as
 they did. A proof assistant will not.
 
@@ -135,9 +133,14 @@ Note this does NOT reintroduce MacWilliams: we still never need duality or
 inversion, only this single counting identity. The "avoid MacWilliams" design
 survives; only the "one big `decide`" shortcut does not.
 
-## Remaining obligations
+## Development history: the obligations, in the order they were closed
 
-Ordered by expected difficulty, hardest first:
+**This section is a record of how the development was built, not a statement of
+outstanding work. All of these are proved; the project has zero `sorry`s.** It
+is kept because the difficulty ordering, and the two measurements in it, are
+what a reader attempting a similar formalisation would want.
+
+Ordered by the difficulty expected at the outset, hardest first:
 
 | # | lemma | note |
 |---|---|---|

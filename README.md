@@ -14,7 +14,7 @@ upper: Östergård 1995).
 | file | what it is |
 |---|---|
 | [`PAPER.md`](PAPER.md) | **the paper** — statements, full proofs, references |
-| [`./reproduce.sh`](reproduce.sh) | one command, ten self-asserting checks, ~1 min |
+| [`./reproduce.sh`](reproduce.sh) | one command, twelve self-asserting checks, ~1 min |
 | [`TOOLS.md`](TOOLS.md) | pinned external tool versions and build notes |
 | [`SHA256SUMS`](SHA256SUMS) | integrity manifest for the 119 in-repo certificate files |
 
@@ -50,7 +50,8 @@ for **every even `n >= 6`**, ceiling included — the real gap is below 1 at
 
 `K(8,1,2) >= 60` holds by **three independent routes**: this theorem; an
 exact-rational SCIP → VIPR certificate refuting `M=59` accepted by `viprchk`;
-and exhaustive numerical verification.
+and agreement of two independent floating-point solvers (evidence, not a
+certificate).
 
 ### 2. `K(8,1,2) >= 61` — MACHINE-VERIFIED
 
@@ -67,8 +68,7 @@ trusted base is Lean's kernel plus twelve short definitions; non-vacuity is
 checked separately (`lean/Mcov/Sanity.lean`), and every declaration's axiom
 trace is printed by `lake build Mcov.Audit`.
 
-It also has four independent machine reviews, all approving — but those are
-provenance, not evidence: the formalisation is what establishes it. **No human
+The formalisation is what establishes it; no other provenance is offered. **No human
 has read the proof or the Lean definitions.** A reader wanting to check this
 should read the twelve definitions at the top of `lean/Mcov/Basic.lean` and
 satisfy themselves they encode `K(8,1,2)`; everything after that is the kernel's
@@ -154,6 +154,10 @@ and citably:
 | `viprchk_n8_M59.log` | 774 | `b35cf23ddf1adc2c02dc1f65b8ec336e` |
 | `cert_n8_M59_route1.json` | 4,214 | `2e2e5e94ebddefef71d5c74a9972ff76` |
 
+The record also carries the package itself — `oeis-a004045.tar.gz` (the
+repository at the released commit) and `PAPER.md` — whose sizes change each
+release; read those off the record. See [`DEPOSIT.md`](DEPOSIT.md).
+
 Uncompressed `cert_n8_M59_complete.vipr`: md5
 `34c48df67d0bfa6d2296856beba63a5a`, sha256
 `2f2a335f883e4b88630cebbaa3d47ce2ea30986b722df54084dcc4926d2d6ddf`.
@@ -165,7 +169,8 @@ the authority is git, which hashes every tracked file anyway. `./reproduce.sh`
 verifies the manifest.
 
 `K(8,1,2) >= 60` does not depend on these: it also follows from the half-page
-theorem with no computation at all, and from exhaustive numerical verification.
+theorem with no computation at all, and is corroborated by two independent
+floating-point solvers.
 
 ## Formalisation
 
@@ -177,9 +182,10 @@ is now **complete with zero `sorry`s**:
 
 Non-vacuity is checked separately in `lean/Mcov/Sanity.lean` (the space has 256
 words; the predicate is both satisfiable and non-trivial), and every lemma's
-axiom trace is printed by `lake build Mcov.Audit`. One step is still informal:
-going from `#C != 60` to `K(8,1,2) >= 61` needs monotonicity, which `PAPER.md`
-states but Lean does not yet.
+axiom trace is printed by `lake build Mcov.Audit`. The step from `#C != 60` to
+`K(8,1,2) >= 61` is monotonicity, and it is formalised too (`cov_mono`,
+`isDoubleCover_mono`, `le_card_of_isDoubleCover`); nothing in the chain is left
+informal.
 
 ## Layout
 
@@ -191,26 +197,41 @@ states but Lean does not yet.
 | `PAPER_DRAFT.md` | claim ladder in confidence order |
 | `RESEARCH_LOG.md` | the working notes this began as |
 | `dominance.py`, `hhkl_theorem6.py`, `mu_generalization.py` | the bound and its context |
-| `m61_refutation.py` | the `M=60` refutation (candidate) |
+| `m61_refutation.py` | the `M=60` refutation, giving `K >= 61` (formalised in `lean/`) |
 | `verify.py` | standalone verifier, shares no code with any search |
 | `certs/`, `certs_exact/`, `certs_symmetry/` | machine-checkable proof objects |
-| `lean/` | Lean 4 formalisation (skeleton) |
+| `lean/` | Lean 4 formalisation of `K >= 61` — complete, zero `sorry`s |
 | `reviews/` | archived independent review transcripts (provenance only) |
 | `DEPOSIT.md` | Zenodo deposit manifest and checksums |
 
 ## Claim discipline
 
 Statements here are graded. "Established" means independently reproduced and
-machine-checked; "candidate" means reviewed but unconfirmed by a human;
+machine-checked; "established, partly certified" means reproduced but with some
+sub-cases resting on floating-point solver verdicts (this is the status of the
+asymmetry result: 4 of its 28 classes are certified, 24 are not); "candidate"
+means reviewed but unconfirmed by a human;
 negative results are recorded with the measurements that produced them, and
 retractions are kept in place rather than deleted. Machine reviews are recorded
 as provenance and are **not** offered as evidence of correctness.
 
 ## Licence
 
-Software (`*.py`, `Makefile`, `reproduce.sh`, `lean/`) under the MIT Licence
-(`LICENSE`). Documentation, proofs, tables and certificates under CC BY 4.0
-(`LICENSE-DOCS`).
+Software (`*.py`, `Makefile`, `reproduce.sh`, `lean/`, including `lean/*.md`)
+under the MIT Licence (`LICENSE`). All other documentation, proofs, tables and
+certificates under CC BY 4.0 (`LICENSE-DOCS`). Where a file could fall under
+both — `lean/README.md`, `certs*/MANIFEST.md` — MIT governs files under
+`lean/` and CC BY 4.0 governs the rest.
+
+The Zenodo deposit is recorded as MIT because Zenodo takes a single licence
+field; the dual split above is the authoritative one and is reproduced in the
+deposit description.
+
+Third-party tools that produced committed artifacts (SCIP, SoPlex, HiGHS,
+PySCIPOpt, RoundingSat, VeriPB, Lean/mathlib) are Apache-2.0 or MIT and are
+**not** redistributed here — only their output. VIPR (`scipopt/vipr`, used for
+`viprcomp`/`viprchk`) carries no licence file upstream; that affects anyone
+cloning it per `CERTIFICATION.md`, not the artifacts here.
 
 ## Cite
 

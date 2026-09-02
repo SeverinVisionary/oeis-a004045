@@ -1,22 +1,37 @@
-# Off-site archive of the K(8,1,2) >= 60 evidence
+# Off-site archive: the Zenodo deposit
 
-Zenodo concept **10.5281/zenodo.22217672**; current version **10.5281/zenodo.22261609**
-(v2.0, <https://doi.org/10.5281/zenodo.22261609>), published 2026-09-02. v1.0 was
-10.5281/zenodo.22217673, same day; it described K >= 61 as a candidate and the Lean
-formalisation as unfinished, both of which the v2.0 metadata corrects. The two multi-GB
-certificates were inherited by the new version, not re-uploaded. Formerly a draft; the
-DOI is now minted and the five files below are open access under CC BY 4.0. The
-decision.
+Zenodo concept DOI **10.5281/zenodo.22217672** — always resolves to the current
+version, and is the DOI to cite. Version history, all 2026-09-02:
 
-## Contents and checksums
+| version | DOI | what it said |
+|---|---|---|
+| 1.0 | `10.5281/zenodo.22217673` | certificates only; `K >= 60` |
+| 2.0 | `10.5281/zenodo.22261609` | added the package and Lean; `61 <= K <= 64` |
+| 2.1 | `10.5281/zenodo.22261737` | paper restructured with abstract and contributions |
+| 2.2 | current | correctness/consistency pass after an adversarial audit |
 
-| file | bytes | md5 | verified |
-|---|---:|---|---|
-| `cert_n8_M59_route1.json` | 4 214 | `2e2e5e94ebddefef71d5c74a9972ff76` | stored, matches local |
-| `viprchk_n8_M59.log` | 774 | `b35cf23ddf1adc2c02dc1f65b8ec336e` | stored, matches local |
-| `inst_n8_M59.opb` | 21 472 | `2db3705e97ced2616dc509051d6768c3` | stored, matches local |
-| `cert_n8_M59.vipr` | 3 594 514 707 | `0612e943473044f252388e09695b05da` | stored, matches local |
-| `cert_n8_M59_complete.vipr.gz` | 2 276 345 927 | `8d8c51b7f1732aa88eb5b81a778a37bc` | upload in progress |
+The v1.0 metadata described `K >= 61` as a candidate and the Lean formalisation
+as unfinished; both were corrected in v2.0.
+
+## Contents
+
+Seven files. Two are the package itself; five are the exact-rational refutation
+of `|C| = 59`, carried forward from v1.0 by Zenodo's versioning (**inherited,
+not re-uploaded** — worth knowing, since the two large ones live on external
+media).
+
+| file | bytes | md5 |
+|---|---:|---|
+| `oeis-a004045.tar.gz` | see record | the complete repository at the released commit |
+| `PAPER.md` | see record | the paper on its own |
+| `cert_n8_M59_route1.json` | 4 214 | `2e2e5e94ebddefef71d5c74a9972ff76` |
+| `viprchk_n8_M59.log` | 774 | `b35cf23ddf1adc2c02dc1f65b8ec336e` |
+| `inst_n8_M59.opb` | 21 472 | `2db3705e97ced2616dc509051d6768c3` |
+| `cert_n8_M59.vipr` | 3 594 514 707 | `0612e943473044f252388e09695b05da` |
+| `cert_n8_M59_complete.vipr.gz` | 2 276 345 927 | `8d8c51b7f1732aa88eb5b81a778a37bc` |
+
+Sizes for the first two are whatever the current version records; they change
+each release, so read them off the record rather than trusting a copy here.
 
 SHA-256 of the two uncompressed route-2 certificates, recorded when they were
 made and re-verified on disk:
@@ -24,7 +39,28 @@ made and re-verified on disk:
     621fff24e30169057ca0a3f18561872ebba0bc5693fd55fd178832e81a50dbab  cert_n8_M59.vipr
     2f2a335f883e4b88630cebbaa3d47ce2ea30986b722df54084dcc4926d2d6ddf  cert_n8_M59_complete.vipr
 
-## Why the last file is split into parts -- the diagnosis, settled
+`viprchk` does not read gzip; the uncompressed `.vipr` is the checkable one.
+
+## Licence on the deposit
+
+Zenodo records a single licence, and this deposit records **MIT**. The
+authoritative split is the repository's: code MIT (`LICENSE`), documentation and
+certificates CC BY 4.0 (`LICENSE-DOCS`). The deposit description states the
+split; if the two ever disagree, the repository governs.
+
+## A note on matching the deposit to a commit
+
+The tarball's top-level directory is named for the commit it was built from.
+Releases up to v2.1 were built before a history rewrite, so those directory
+names refer to commits that no longer exist on GitHub. From v2.2 onward the
+names match public commits.
+
+## Why the large upload once had to be split -- the diagnosis, settled
+
+**Historical.** The current record holds `cert_n8_M59_complete.vipr.gz` as a
+single 2 276 345 927-byte file; the parts below no longer exist as separate
+files on Zenodo. The diagnosis is kept because the failure mode is generic and
+cost real time.
 
 This took three wrong answers before the right one, all recorded because the
 failure mode is generic.
@@ -42,8 +78,10 @@ nine minutes, so this link moves well under 1 MB/s. A 2.28 GB single PUT
 therefore runs for hours and is cut by Zenodo's nginx with a 502. Size matters
 only through duration, which is why every size-threshold theory half-worked.
 
-So the artifact is uploaded as **400 MB parts**, each a short transfer, each
-retried independently so a failure costs one part rather than the whole file:
+The artifact was therefore uploaded as **400 MB parts**, each a short transfer,
+each retried independently so a failure cost one part rather than the whole
+file. (It was later consolidated into the single file the record now serves;
+the part checksums are kept only as a record of that upload.)
 
 | part | bytes | md5 |
 |---|---:|---|
@@ -54,7 +92,7 @@ retried independently so a failure costs one part rather than the whole file:
 | `...gz.part-ae` | 419 430 400 | `8a72b96be1a763d15f247076ecd6def0` |
 | `...gz.part-af` | 179 193 927 | `881050a2acc468e0da23b856ed336fc3` |
 
-**To reassemble**, concatenate in lexical order, then decompress:
+**If you ever hold the parts**, concatenate in lexical order, then decompress:
 
     cat cert_n8_M59_complete.vipr.gz.part-* > cert_n8_M59_complete.vipr.gz
     # md5 of the reassembled archive: 8d8c51b7f1732aa88eb5b81a778a37bc
@@ -77,11 +115,16 @@ has one surviving re-checkable machine proof, not two -- though it now also has
 an independent elementary proof (`EXCESS_THEOREM.md`), which is a stronger form
 of corroboration than a second certificate.
 
-Nothing here concerns M=60; that computation is still running.
+The M=60 rung -- which gives `K >= 61` -- is not certified by anything in this
+deposit's certificate files. It is established instead by the Lean 4
+development in the package tarball, which carries the whole argument with zero
+`sorry`s. An independent pseudo-Boolean certificate for that rung is a separate
+effort and is not part of this deposit.
 
 ## Security note
 
-The upload scripts read the token from a local token file (path not recorded here) and never echo it.
+The upload scripts read the Zenodo API token from a local file outside the
+repository and never echo it. No token is in the repository or its history.
 But `curl` receives it as a command-line argument, which makes it visible in
 `ps` output to any local process. **Revoke the token and delete
 a local token file (path not recorded here) once the deposit is settled.**

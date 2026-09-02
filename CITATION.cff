@@ -1,7 +1,10 @@
 cff-version: 1.2.0
-title: "Bounds on K(8,1,2), the first unknown term of OEIS A004045"
+title: "Machine-checked bounds on K(8,1,2), the first unknown term of OEIS A004045"
 message: "If you use this software or its results, please cite it as below."
 type: software
+version: "2.2"
+date-released: "2026-09-02"
+doi: "10.5281/zenodo.22217672"
 authors:
   - given-names: Hanyu
     family-names: Yang
@@ -14,8 +17,12 @@ abstract: >-
   lower bound on K(n,1,2) at n = 8, 10, 12, 14 and 16, and reproves the exact
   value K(6,1,2) = 20 without computer search. In particular K(8,1,2) >= 60,
   one above the published lower bound, established by three independent routes.
-  The package also contains a candidate refutation of |C| = 60 that would give
-  K(8,1,2) >= 61, machine-checkable certificates, and a Lean 4 formalisation.
+  The package also refutes |C| = 60, giving K(8,1,2) >= 61, and formalises that
+  refutation in Lean 4 with zero sorry's and an audited axiom trace, alongside
+  machine-checkable certificates. Hence 61 <= K(8,1,2) <= 64. A further result,
+  on a weaker footing, indicates that every twofold covering of F_2^8 with at
+  most 63 codewords has trivial automorphism group. No human has reviewed the
+  proof or the Lean definitions.
 keywords:
   - covering codes
   - multiple covering codes
@@ -25,13 +32,13 @@ keywords:
   - hypercube
   - Delsarte inequalities
   - Lean 4
+  - formal verification
+  - certified computation
 license: MIT
+license-url: "https://github.com/SeverinVisionary/oeis-a004045/blob/main/LICENSE"
 repository-code: "https://github.com/SeverinVisionary/oeis-a004045"
-references:
-  - type: data
-    title: "Machine-checkable certificates for K(8,1,2) >= 60"
-    doi: "10.5281/zenodo.22217672"
-    authors:
-      - given-names: Hanyu
-        family-names: Yang
-        orcid: "https://orcid.org/0009-0005-0419-4070"
+notes: >-
+  Code is MIT (LICENSE); documentation, proofs, tables and certificates are
+  CC BY 4.0 (LICENSE-DOCS). The single `license` field above records the code
+  licence only. The DOI is the Zenodo concept DOI and always resolves to the
+  current version.

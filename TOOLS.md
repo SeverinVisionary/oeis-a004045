@@ -10,7 +10,7 @@ search models.
 | tool | version | role |
 |---|---|---|
 | Python | 3.9+ | all scripts; 3.12 used for the recorded runs |
-| SCIP | **10.0** (scipoptsuite-10.0.0) | exact-rational branch and bound, emits VIPR |
+| SCIP | **10.0** (scipoptsuite-10.0.0) on macOS; **11.0.0** for the Linux-container runs that produced `certs_symmetry/` | exact-rational branch and bound, emits VIPR |
 | SoPlex | **7.1.6** | exact rational LP inside SCIP; built by scipoptsuite |
 | VIPR | **1.1** (`viprcomp`, `viprchk`) | completes and checks SCIP's certificate |
 | VeriPB | **3.0.2** (Rust) | checks RoundingSat's cutting-planes proof |
@@ -49,11 +49,13 @@ lake build                # ~4 minutes once cached
 
 On macOS 15+/Darwin 25, Lean 4.14's prebuilt mathlib `cache` binary will not
 run (`dyld: __DATA_CONST segment missing SG_READ_ONLY flag`); 4.33.1 works.
-The build currently reports **16 `sorry`s** — statements elaborate, proofs are
-unfinished. See `lean/README.md`.
+The build reports **zero `sorry`s**: `le_card_of_isDoubleCover` is proved, and
+its axiom trace is exactly `[propext, Classical.choice, Quot.sound]`. See
+`lean/README.md`.
 
 ## What is reproducible without any of this
 
-`./reproduce.sh` runs ten self-asserting checks using only the standard library
-plus `scipy` (for LP controls), in about a minute, and exits non-zero on any
+`./reproduce.sh` runs twelve self-asserting checks using only the standard
+library plus `scipy` (for LP controls in the `M=60` step), in about a minute,
+and exits non-zero on any
 failure. That covers every **established** claim in this package.

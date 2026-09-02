@@ -3,9 +3,9 @@
 
 STATUS: the argument was proposed by an automated brainstorm leg and is
 reconstructed and checked here from the mathematical statements alone. It has
-NOT been reviewed by a human and NOT been through the review panel. It is not
-in the claim ladder until it has. The dual multipliers quoted in the original
-proposal do NOT verify (their combination leaves positive coefficients on
+since been formalised in Lean 4 (`lean/`) with zero `sorry`s, which is what
+establishes it; it has still NOT been reviewed by a human. The dual multipliers
+quoted in the original proposal do NOT verify (their combination leaves positive coefficients on
 a_6, a_7, a_8); the LP value is instead certified here by an exact rational
 solve of the active system.
 
@@ -198,4 +198,5 @@ if __name__ == "__main__":
     print("\nstep 5 hand certificate at n=8, M=60: supply %d < demand %d" % (sp, d))
     print("discriminating test PASSED: kills exactly the impossible cases,")
     print("and never fires at odd n, where step 1's parity argument is invalid.")
-    print("=> M=60 is refuted, hence K(8,1,2) >= 61  (UNREVIEWED, see docstring)")
+    print("=> M=60 is refuted, hence K(8,1,2) >= 61")
+    print("   (formalised in lean/, zero sorries; no human review -- see docstring)")

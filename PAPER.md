@@ -27,19 +27,25 @@ integer programming.
 
 The case `n = 8` is the first unknown term of OEIS A004045, where the published
 record was `59 ≤ K(8,1,2) ≤ 64` — the lower bound due to Krotov and Potapov
-(2021), the upper bound to Östergård (1995). A second, computational argument
+(2021). The upper bound 64 is older and is not due to a search: it appears
+already in the 1993 table of [HHKL], where it is the doubling
+`K(8,1,2) ≤ 2·K(7,1,2) = 2·32 = 64`. Östergård's 1995 tabu-search paper improves
+27 upper bounds in that table, but `n = 8`, `μ = 2` is not among them. A second, computational argument
 refutes `|C| = 60`, and that argument is **formalised in Lean 4 with zero
 `sorry`s**, giving
 
 > **`61 ≤ K(8,1,2) ≤ 64`.**
 
 Finally, a prescribed-automorphism sweep over all 28 prime-order conjugacy
-classes of `Aut(Q_8) = F_2^8 ⋊ S_8` shows that **every twofold covering of
+classes of `Aut(Q_8) = F_2^8 ⋊ S_8` indicates that **every twofold covering of
 `F_2^8` with at most 63 codewords is asymmetric** — it has trivial automorphism
 group — which constrains where any improvement of the upper bound can live.
+This last result is on a weaker footing than the others: 4 of the 28 classes are
+machine-certified and the remaining 24 are floating-point solver verdicts.
 
 Everything is reproducible: `./reproduce.sh` runs twelve self-asserting checks
-using only the Python standard library and exits non-zero if any fails.
+using the Python standard library, apart from one step that needs `scipy` for
+small LP control cases, and exits non-zero if any fails.
 
 ---
 
@@ -49,8 +55,9 @@ Imagine the 256 possible eight-bit strings. Choose a small set of them — call
 these *sentinels* — so that every one of the 256 strings is within one bit-flip
 of at least **two** sentinels. Two, not one, so that the system still works if a
 sentinel fails. How few sentinels suffice? Nobody knows exactly. The answer has
-only ever been pinned to a range: at most 64, a record set in 1995 and not
-beaten since, and at least 59, raised to that value in 2021. It is a listed open
+only ever been pinned to a range: at most 64, a value already tabulated in
+1993 by a one-line doubling argument and never improved since, and at least 59,
+raised to that value in 2021. It is a listed open
 value in the on-line encyclopedia of integer sequences. This paper raises the
 lower end to 61, so the answer is now known to be 61, 62, 63 or 64. The
 improvement comes from a short counting argument that also improves infinitely
@@ -84,8 +91,8 @@ uncertified integer-programming runs, that is the contribution most likely to
 outlast the numbers.
 
 **What this paper does not do.** It does not touch the upper bound, which
-remains Östergård's 64 from 1995; it does not close A004045(8); and it has had
-no human review.
+remains 64, the 1993 doubling bound; it does not close A004045(8); and it has
+had no human review.
 
 ---
 
@@ -106,7 +113,7 @@ term is `K(8,1,2)`. Before this note the record was
     59 ≤ K(8,1,2) ≤ 64,
 
 the lower bound due to Krotov and Potapov [KP, Theorem 6] and the upper bound to
-Östergård (1995) by tabu search.
+[HHKL, Table 5], via `K(n+1,r,μ) ≤ 2K(n,r,μ)`.
 
 The standard tool for lower bounds here is the **covering excess** of Johnson
 and van Wee: count how much the balls around codewords overlap, and convert the
@@ -259,7 +266,8 @@ search, where [HHKL, Theorem 1] used a weight-distribution case analysis.
 1. an exact-rational SCIP → VIPR certificate refuting `|C| = 59`, accepted by
    the standalone checker `viprchk` (3.59 GB), archived at
    doi:10.5281/zenodo.22217672;
-2. exhaustive numerical verification with two independent solvers.
+2. agreement of two independent floating-point solvers (evidence, not a
+   certificate).
 
 Hence `60 ≤ K(8,1,2) ≤ 64`.
 
@@ -411,11 +419,29 @@ completely asymmetric. Every classical construction in this area is symmetric,
 which explains why the upper bound has not moved since 1995, and tells a future
 search to break symmetry aggressively rather than prescribe it.
 
+## 9.1 Use of AI tools
+
+This work was produced with heavy use of large language models: for literature
+search, for proposing the `M = 60` argument, for writing most of the code and
+the Lean development, and for adversarial review of the results. The author
+directed the work and is responsible for it.
+
+That is stated plainly because it bears on how the claims should be read, and
+the package is built around the consequence. Machine reasoning is not treated as
+evidence anywhere: the review transcripts in `reviews/` are archived as
+provenance only, and every load-bearing claim is either an argument short enough
+to check by hand, a self-asserting script, a machine-checkable certificate, or —
+for `K(8,1,2) >= 61` — a Lean development whose axiom trace is audited. The
+reason for formalising rather than seeking review is in `lean/README.md`: two
+machine reviews called the argument sound while between them making four errors
+on it and catching disjoint defects.
+
 ## 10. What is and is not established
 
 **Established, by hand** — Theorems 1 and 2, Corollary 3, Proposition 4, and
 `K(8,1,2) ≥ 60`. Each is reproduced by a self-asserting script
-(`./reproduce.sh`, twelve checks, standard library only), and `K(8,1,2) ≥ 60`
+(`./reproduce.sh`, twelve checks, standard library except for one `scipy`
+control step), and `K(8,1,2) ≥ 60`
 additionally by a machine-checkable exact-rational certificate accepted by
 `viprchk`.
 
@@ -429,7 +455,7 @@ machine-certified; the remaining 24 rest on floating-point solver verdicts.
 **Not established** — the *novelty* of Theorem 1 (§7): Krotov–Potapov already
 use Delsarte nonnegativity on a covering code's own distance distribution, and
 the Chen–Li preprint is unlocated. Nothing here touches the upper bound, which
-remains Östergård's 64. And **no human has reviewed the proof or the Lean
+remains 64. And **no human has reviewed the proof or the Lean
 definitions.**
 
 ## References

@@ -299,7 +299,7 @@ kernel buffer, and never drained it while polling; long enough output
 deadlocks the child in `write()` with the parent none the wiser until its own
 timeout fires. Confirmed directly on the first attempt (SCIP process at 0%
 CPU, blocked in `anon_pipe_write`, ~30-45 min in). Fixed by writing stdout to
-a file instead (commit `f0b788c`); re-verified against `p3_a2` before
+a file instead; re-verified against `p3_a2` before
 re-running. Any earlier long-running record produced through the unpatched
 code should be read with this in mind.
 

@@ -353,5 +353,5 @@ ALL SMALL FILES MATCH          (the other 19 files, hashed on both sides)
 That volume is a single local disk, so this is **one copy, not a backup**. The
 regeneration command in this manifest remains the authoritative recovery path
 (~80 min, ~11 GB of free disk). If these artifacts are ever to be cited, the
-right home is a Zenodo deposit with a DOI — the pattern this repository already
-uses for the Heilbronn dataset — not a local volume.
+right home is a Zenodo deposit with a DOI, not a local volume. They now have
+one: DOI 10.5281/zenodo.22217672.

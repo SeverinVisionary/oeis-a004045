@@ -65,9 +65,7 @@ codex
 I’ll treat this as a prior-art gate: first verify the cited sources and any later record, then audit the argument independently.
 2026-09-01T14:29:13.866345Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
 exec
-/bin/zsh -lc "grep -niE 'covering|van Wee|multiple coverings|K\\(n,1' <local-path-redacted> | head -40" in <build-dir>/wt-paper
  succeeded in 0ms:
-3475:- when recovering a completed ingest, prefer bounded recovery and reuse of the completed data rather than rerunning the entire instrument pull unnecessarily [Task 29]
 
 2026-09-01T14:29:15.118142Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 97 column 5
 web search: 

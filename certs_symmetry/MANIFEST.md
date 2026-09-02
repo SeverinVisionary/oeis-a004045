@@ -33,7 +33,8 @@ builds the OPB instance from that independent data.
 Machine (this session): Ubuntu 24.04, x86_64, 4 cores, 15 GB RAM, cloud
 container. A second, independent session rebuilt the same route-2 toolchain
 on a different host and reproduced `VERIFIED` for `p7_a1`, `p5_a1`, `p3_a2`,
-`p3_a1` -- both sessions' commits are in this branch's history.
+`p3_a1`. (The per-session commits predate a history squash and are no longer
+individually addressable; the artifacts themselves are committed here.)
 
 ## Certified: 4 of 28
 
@@ -89,7 +90,7 @@ roughly 30-45 minutes in, certificate size frozen. Wall clock kept advancing
 toward the external budget+grace kill with zero further search happening in
 between, so any long run through the unpatched code understates real search
 time and its node/time numbers cannot be trusted at face value. Fixed by
-writing SCIP's stdout to a plain file instead (commit `f0b788c`); re-verified
+writing SCIP's stdout to a plain file instead; re-verified
 against `p3_a2` (VERIFIED, binding bound, solve 136.8 s solo, consistent with
 the previously recorded ~183 s solo figure) before re-running the three
 classes from scratch.

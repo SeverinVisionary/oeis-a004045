@@ -1,3 +1,9 @@
+> **SUPERSEDED WORKING SNAPSHOT (2026-08-28).** This is an early outline kept
+> for provenance. It is **out of date** in at least one important respect: it
+> lists `K(8,1,2) >= 61` as NOT ESTABLISHED, which was true when written and is
+> no longer — that bound is now proved and formalised in Lean 4 with zero
+> `sorry`s. **The current paper is [`PAPER.md`](PAPER.md); read that instead.**
+
 # An elementary lower bound for binary 2-fold radius-1 coverings
 
 **Draft. The prior-art gate is narrowed but not closed (see PRIOR_ART_EXCESS.md):

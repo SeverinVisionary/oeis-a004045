@@ -1,3 +1,8 @@
+> **SUPERSEDED WORKING LOG (last substantive entry 2026-08-30).** Kept for
+> provenance. Its status lines describe the project *before* the main results;
+> in particular "It does not claim a new bound" was true then and is not now.
+> **For current claims read [`README.md`](README.md) and [`PAPER.md`](PAPER.md).**
+
 # Research target: determine `K(8,1,2)` = `A004045(8)`
 
 **Status:** admitted, prior-art gate passed, **planning + pilot only**. No
