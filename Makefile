@@ -1,7 +1,13 @@
+reproduce:
+	./reproduce.sh
+
+reproduce-full:
+	./reproduce.sh --full
+
 # K(8,1,2) target. `make gate` must pass before any n = 8 statement is made.
 PY ?= python3
 
-.PHONY: gate incumbent lp clean audit certify-gate recheck
+.PHONY: reproduce reproduce-full gate incumbent lp clean audit certify-gate recheck
 
 ## known-answer gate. sat_model budgets are CONFLICT counts, not seconds.: reproduce every published term of A004045 with both models
 gate:

@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: "Bounds on K(8,1,2), the first unknown term of OEIS A004045"
+message: "If you use this software or its results, please cite it as below."
+type: software
+authors:
+  - given-names: Hanyu
+    family-names: Yang
+    orcid: "https://orcid.org/0009-0005-0419-4070"
+abstract: >-
+  Artifacts for lower bounds on binary multiple covering codes. An elementary
+  parity/excess argument shows that for even n every binary code whose closed
+  radius-1 balls cover each point at least twice satisfies
+  |C| >= ceil(3 * 2^(n+1) / (3n+2)). This strictly improves the best published
+  lower bound on K(n,1,2) at n = 8, 10, 12, 14 and 16, and reproves the exact
+  value K(6,1,2) = 20 without computer search. In particular K(8,1,2) >= 60,
+  one above the published lower bound, established by three independent routes.
+  The package also contains a candidate refutation of |C| = 60 that would give
+  K(8,1,2) >= 61, machine-checkable certificates, and a Lean 4 formalisation.
+keywords:
+  - covering codes
+  - multiple covering codes
+  - Hamming space
+  - OEIS A004045
+  - double domination
+  - hypercube
+  - Delsarte inequalities
+  - Lean 4
+license: MIT
+repository-code: "https://github.com/SeverinVisionary/oeis-a004045"

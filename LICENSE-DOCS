@@ -1,0 +1,12 @@
+The documentation, proofs, tables, certificates and other non-software content
+in this repository (all .md files, the contents of certs/, certs_exact/,
+certs_symmetry/, logs/, logs_solo/ and reviews/) are licensed under the
+Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+  https://creativecommons.org/licenses/by/4.0/
+
+Attribution: Hanyu Yang, "Bounds on K(8,1,2), the first unknown term of
+OEIS A004045" (2026).
+
+The software (all .py files, the Makefile, reproduce.sh and lean/) is licensed
+separately under the MIT License; see LICENSE.

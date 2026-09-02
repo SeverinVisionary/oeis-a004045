@@ -5,3 +5,9 @@ python-sat==1.9.dev15   # CaDiCaL 1.9.5 + totalizer cardinality encodings
 highspy==1.15.1         # HiGHS MILP/LP
 pyscipopt==6.2.1        # SCIP 10.0, the independent second branch-and-bound
 numpy==2.0.2            # matrix assembly for milp_model.py / prescribed.py
+scipy==1.14.1           # linprog fallback in m61_refutation.py, symcert_*.py
+
+# NOTE: the eight core scripts are STANDARD LIBRARY ONLY and need none of the
+# above: excess_theorem.py, bipartite_split.py, half_excess.py, e2_bound.py,
+# odd_n_witness.py, verify.py, hhkl_theorem6.py, mu_generalization.py.
+# A reader who only wants to check the theorem needs no dependencies at all.

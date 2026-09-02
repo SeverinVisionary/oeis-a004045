@@ -9,6 +9,15 @@ word of `F_2^n` has at least `mu` codewords within Hamming distance `R`.
 **Published record: `59 <= K(8,1,2) <= 64`** (lower: Krotov–Potapov 2021;
 upper: Östergård 1995).
 
+## Start here
+
+| file | what it is |
+|---|---|
+| [`PAPER.md`](PAPER.md) | **the paper** — statements, full proofs, references |
+| [`./reproduce.sh`](reproduce.sh) | one command, ten self-asserting checks, ~1 min |
+| [`TOOLS.md`](TOOLS.md) | pinned external tool versions and build notes |
+| [`SHA256SUMS`](SHA256SUMS) | integrity manifest for the in-repo certificates |
+
 ## Results
 
 ### 1. An elementary lower bound for all even `n` — ESTABLISHED
@@ -63,8 +72,14 @@ group.
 
 ## Reproduce
 
+```
+./reproduce.sh          # core claims, ~1 minute, exits non-zero on any failure
+./reproduce.sh --full   # also the solver-backed models (see requirements)
+```
+
 Every script is self-asserting: it fails loudly rather than printing a wrong
-number. Standard library plus `scipy` for the LP fallbacks.
+number. **The eight core scripts are standard library only** — checking the
+theorem needs no dependencies at all. `scipy` is used only for LP controls.
 
 ```
 python3 excess_theorem.py       # the theorem, exhaustively at n=4,6,8
@@ -125,3 +140,14 @@ machine-checked; "candidate" means reviewed but unconfirmed by a human;
 negative results are recorded with the measurements that produced them, and
 retractions are kept in place rather than deleted. Machine reviews are recorded
 as provenance and are **not** offered as evidence of correctness.
+
+## Licence
+
+Software (`*.py`, `Makefile`, `reproduce.sh`, `lean/`) under the MIT Licence
+(`LICENSE`). Documentation, proofs, tables and certificates under CC BY 4.0
+(`LICENSE-DOCS`).
+
+## Cite
+
+See `CITATION.cff`. Author: Hanyu Yang,
+ORCID [0009-0005-0419-4070](https://orcid.org/0009-0005-0419-4070).

@@ -1,0 +1,51 @@
+{
+  "title": "Bounds on K(8,1,2), the first unknown term of OEIS A004045",
+  "upload_type": "software",
+  "description": "<p>Artifacts for lower bounds on binary multiple covering codes.</p><p><code>K(n,R,mu)</code> is the minimum size of a binary code in <code>F_2^n</code> such that every word has at least <code>mu</code> codewords within Hamming distance <code>R</code>. <code>K(8,1,2)</code> is the first unknown term of OEIS A004045; the published record is <code>59 &lt;= K(8,1,2) &lt;= 64</code>.</p><p>An elementary parity/excess argument shows that for <b>even n</b>, <code>|C| &gt;= ceil(3 * 2^(n+1) / (3n+2))</code>. This strictly improves the best published lower bound at five table positions (n = 8, 10, 12, 14, 16) and reproves the exact value <code>K(6,1,2) = 20</code> without computer search. In particular <code>K(8,1,2) &gt;= 60</code>, established by three independent routes: the theorem, an exact-rational SCIP to VIPR certificate refuting |C| = 59 accepted by viprchk, and exhaustive numerical verification.</p><p>Also included, explicitly as a <b>candidate</b> without human review: a refutation of |C| = 60 that would give <code>K(8,1,2) &gt;= 61</code>, and a Lean 4 formalisation of it whose statements typecheck but whose proofs are unfinished.</p><p>The upper bound 64 (Oestergaard 1995) is unchanged by this work.</p>",
+  "creators": [
+    {
+      "name": "Yang, Hanyu",
+      "orcid": "0009-0005-0419-4070"
+    }
+  ],
+  "license": "mit",
+  "access_right": "open",
+  "keywords": [
+    "covering codes",
+    "multiple covering codes",
+    "Hamming space",
+    "OEIS A004045",
+    "double domination",
+    "hypercube",
+    "Delsarte inequalities",
+    "Lean 4",
+    "certified computation"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://oeis.org/A004045",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/SeverinVisionary/oeis-a004045",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.1007/BF01388486",
+      "relation": "cites",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1007/s10623-007-9089-y",
+      "relation": "cites",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "arXiv:1902.00023",
+      "relation": "cites",
+      "scheme": "arxiv"
+    }
+  ]
+}
