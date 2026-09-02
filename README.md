@@ -135,15 +135,17 @@ theorem with no computation at all, and from exhaustive numerical verification.
 
 ## Formalisation
 
-`lean/` holds a Lean 4 + mathlib formalisation of the `M=60` refutation.
-**14 lemmas are fully proved and axiom-audited** — each depends on only
-`propext`, `Classical.choice`, `Quot.sound`, with no `sorryAx` — including the
-whole Delsarte input (`sum_chi_eq_f`, by the general Krawtchouk identity, and
-`sos_eq_radial`). **3 `sorry`s remain**, the three deep steps; the main theorem
-therefore still reports `sorryAx`, correctly. Run `lake build Mcov.Audit` to
-print the axiom trace yourself. See `lean/README.md`,
-including the measurement showing `decide` is not viable for the character-sum
-step (~136 s per evaluation).
+`lean/` holds a Lean 4 + mathlib formalisation of the `M=60` refutation, and it
+is now **complete with zero `sorry`s**:
+
+    no_60_word_double_cover : forall (C : Finset V), IsDoubleCover C -> #C != 60
+      depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Non-vacuity is checked separately in `lean/Mcov/Sanity.lean` (the space has 256
+words; the predicate is both satisfiable and non-trivial), and every lemma's
+axiom trace is printed by `lake build Mcov.Audit`. One step is still informal:
+going from `#C != 60` to `K(8,1,2) >= 61` needs monotonicity, which `PAPER.md`
+states but Lean does not yet.
 
 ## Layout
 

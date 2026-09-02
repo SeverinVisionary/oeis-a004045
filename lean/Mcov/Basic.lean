@@ -205,6 +205,26 @@ lemma dist_compl (x z : V) : dist z xᶜ = 8 - dist x z := by
     ext i; simp only [Finset.mem_symmDiff, Finset.mem_compl]; tauto
   rw [dist, dist, e, Finset.card_compl, Fintype.card_fin]
 
+lemma card_le_eight (v : V) : v.card ≤ 8 := by
+  have := Finset.card_le_univ v
+  simpa [Fintype.card_fin] using this
+
+lemma cov_le_nine (C : Finset V) (v : V) : cov C v ≤ 9 := by
+  have hsub : C.filter (fun c => dist c v ≤ 1) ⊆ univ.filter (fun c : V => dist v c ≤ 1) := by
+    intro c hc
+    rw [Finset.mem_filter] at hc ⊢
+    exact ⟨Finset.mem_univ _, by rw [dist_comm]; exact hc.2⟩
+  have := Finset.card_le_card hsub
+  rw [card_ball v] at this
+  exact this
+
+lemma dist_empty (c : V) : dist c ∅ = c.card := by
+  have : symmDiff c ∅ = c := by ext i; simp [Finset.mem_symmDiff]
+  rw [dist, this]
+
+lemma dist_symmDiff_right (c v t : V) : dist (symmDiff c t) (symmDiff v t) = dist c v := by
+  rw [dist, dist, symmDiff_symmDiff_symmDiff_comm, symmDiff_self, symmDiff_bot]
+
 /-! ### Step 0 — total excess is determined by the cardinality -/
 
 /-- Every word lies in exactly `9` balls, so `sum_v cov C v = 9 * |C|`. -/
@@ -477,11 +497,50 @@ theorem antipode_row (C : Finset V) (h : IsDoubleCover C) :
     have := Finset.card_le_univ C; rwa [card_V] at this
   omega
 
+lemma a_zero (C : Finset V) : a C 0 = C.card := by
+  unfold a
+  apply Finset.card_nbij' (fun p => p.1) (fun c => (c, c))
+  · intro p hp
+    simp only [Finset.mem_coe, Finset.mem_filter, Finset.mem_product] at hp ⊢
+    exact hp.1.1
+  · intro c hc
+    simp only [Finset.mem_coe, Finset.mem_filter, Finset.mem_product] at hc ⊢
+    exact ⟨⟨hc, hc⟩, dist_self c⟩
+  · intro p hp
+    simp only [Finset.mem_coe, Finset.mem_filter, Finset.mem_product] at hp
+    have := (dist_eq_zero_iff _ _).mp hp.2
+    ext <;> simp [this]
+  · intro c _; rfl
+
+/-- The distance distribution sums to `|C|^2`: partition `C ×ˢ C` by distance. -/
+lemma sum_a_eq_card_sq (C : Finset V) : ∑ d ∈ range 9, a C d = C.card * C.card := by
+  symm
+  rw [← Finset.card_product,
+    Finset.card_eq_sum_card_fiberwise (f := fun p : V × V => dist p.1 p.2) (s := C ×ˢ C)
+      (t := range 9) ?_]
+  · rfl
+  · intro p _
+    simp only [Finset.mem_coe, Finset.mem_range]
+    have := dist_le_eight p.1 p.2
+    omega
+
 /-- Step 2's conclusion at `|C| = 60`.  Combines `sos_nonneg`, `sos_eq_radial`,
     `sum_{d} a_d = |C|^2` and `antipode_row`, all linearly. -/
 theorem a12_lower (C : Finset V) (h : IsDoubleCover C) (hc : C.card = 60) :
     347 ≤ a C 1 + a C 2 := by
-  sorry
+  have h1 := sos_nonneg C
+  rw [sos_eq_radial] at h1
+  simp only [Finset.sum_range_succ, Finset.sum_range_zero, f, zero_add] at h1
+  have h2 : ((∑ d ∈ range 9, a C d : ℕ) : ℤ) = 3600 := by
+    rw [sum_a_eq_card_sq, hc]; norm_num
+  push_cast [Finset.sum_range_succ, Finset.sum_range_zero] at h2
+  have h3 := antipode_row C h
+  rw [hc] at h3
+  norm_num at h3
+  have h4' : a C 0 = 60 := by rw [a_zero, hc]
+  have h4 : (a C 0 : ℤ) = 60 := by exact_mod_cast h4'
+  have h5 : (347 : ℤ) ≤ a C 1 + a C 2 := by linarith
+  exact_mod_cast h5
 
 /-- `a_1` and `a_2` are even: `(x,z)` and `(z,x)` are distinct ordered pairs. -/
 theorem a_even (C : Finset V) (d : ℕ) (hd : d ≠ 0) : Even (a C d) := by
@@ -499,21 +558,6 @@ theorem a_even (C : Finset V) (d : ℕ) (hd : d ≠ 0) : Even (a C d) := by
     rw [← hp.2, h1, dist_self]
 
 /-! ### Steps 3-4 — second moment and integrality force a full ball -/
-
-lemma a_zero (C : Finset V) : a C 0 = C.card := by
-  unfold a
-  apply Finset.card_nbij' (fun p => p.1) (fun c => (c, c))
-  · intro p hp
-    simp only [Finset.mem_coe, Finset.mem_filter, Finset.mem_product] at hp ⊢
-    exact hp.1.1
-  · intro c hc
-    simp only [Finset.mem_coe, Finset.mem_filter, Finset.mem_product] at hc ⊢
-    exact ⟨⟨hc, hc⟩, dist_self c⟩
-  · intro p hp
-    simp only [Finset.mem_coe, Finset.mem_filter, Finset.mem_product] at hp
-    have := (dist_eq_zero_iff _ _).mp hp.2
-    ext <;> simp [this]
-  · intro c _; rfl
 
 def hval (n : ℕ) : ℕ :=
   (if n ≤ 1 then 1 else 0) + ((if n - 1 ≤ 1 then n else 0) + (if n + 1 ≤ 1 then 8 - n else 0))
@@ -558,10 +602,78 @@ theorem second_moment (C : Finset V) :
     push_cast; simp [sq]
   rw [h2, h]; push_cast; ring
 
+/-- Integer-valued excess `cov - 2` (no ℕ-truncation). -/
+def gz (C : Finset V) (v : V) : ℤ := (cov C v : ℤ) - 2
+
+lemma gz_sum (C : Finset V) : ∑ v : V, gz C v = 9 * C.card - 512 := by
+  unfold gz
+  rw [Finset.sum_sub_distrib, Finset.sum_const, Finset.card_univ, card_V, nsmul_eq_mul]
+  have h2 : ∑ v : V, (cov C v : ℤ) = 9 * C.card := by exact_mod_cast sum_cov C
+  rw [h2]; push_cast; ring
+
+lemma gz_sq_sum (C : Finset V) :
+    ∑ v : V, gz C v ^ 2 = 2 * (a C 1 + a C 2) - 27 * C.card + 1024 := by
+  have h1 : ∀ v, gz C v ^ 2 = (cov C v : ℤ) ^ 2 - 4 * (cov C v : ℤ) + 4 := fun v => by
+    unfold gz; ring
+  simp_rw [h1]
+  rw [Finset.sum_add_distrib, Finset.sum_sub_distrib, ← Finset.mul_sum, Finset.sum_const,
+    Finset.card_univ, card_V, nsmul_eq_mul, second_moment]
+  have h2 : ∑ v : V, (cov C v : ℤ) = 9 * C.card := by exact_mod_cast sum_cov C
+  rw [h2]; push_cast; ring
+
 /-- With `|C| = 60`: `Q >= 100`, and integrality then forces a word covered `9` times. -/
 theorem exists_full_ball (C : Finset V) (h : IsDoubleCover C) (hc : C.card = 60) :
     ∃ y : V, cov C y = 9 := by
-  sorry
+  by_contra hcon
+  have hcon' : ∀ y, cov C y ≠ 9 := fun y hy => hcon ⟨y, hy⟩
+  have hle : ∀ v, cov C v ≤ 8 := fun v => by
+    have h1 := cov_le_nine C v; have h2 := hcon' v; omega
+  have hE : E C = 28 := by have := excess_eq C h; omega
+  have hs : 16 ≤ (S C).card := by have := card_le_excess C h; omega
+  have ha : 348 ≤ a C 1 + a C 2 := by
+    have h1 := a12_lower C h hc
+    obtain ⟨k1, hk1⟩ := a_even C 1 one_ne_zero
+    obtain ⟨k2, hk2⟩ := a_even C 2 two_ne_zero
+    omega
+  have hgz_zero : ∀ v, v ∉ S C → gz C v = 0 := fun v hv => by
+    simp only [S, Finset.mem_filter, Finset.mem_univ, true_and, not_lt] at hv
+    have := h v; unfold gz; omega
+  have hgz_pos : ∀ v ∈ S C, 1 ≤ gz C v := fun v hv => by
+    simp only [S, Finset.mem_filter, Finset.mem_univ, true_and] at hv
+    unfold gz; omega
+  have hgz_le : ∀ v, gz C v ≤ 6 := fun v => by have := hle v; unfold gz; omega
+  have hS1 : ∑ v ∈ S C, gz C v = 28 := by
+    rw [Finset.sum_subset (Finset.subset_univ _) (fun v _ hv => hgz_zero v hv), gz_sum, hc]
+    norm_num
+  have hS2 : 100 ≤ ∑ v ∈ S C, gz C v ^ 2 := by
+    rw [Finset.sum_subset (Finset.subset_univ _) (fun v _ hv => by rw [hgz_zero v hv]; norm_num),
+      gz_sq_sum, hc]
+    have : (348 : ℤ) ≤ a C 1 + a C 2 := by exact_mod_cast ha
+    push_cast
+    linarith
+  have hnn : ∀ v ∈ S C, 0 ≤ (gz C v - 1) * (6 - gz C v) := fun v hv =>
+    mul_nonneg (by linarith [hgz_pos v hv]) (by linarith [hgz_le v])
+  have hT : 0 ≤ ∑ v ∈ S C, (gz C v - 1) * (6 - gz C v) := Finset.sum_nonneg hnn
+  have hT_eq : ∑ v ∈ S C, (gz C v - 1) * (6 - gz C v)
+      = 7 * ∑ v ∈ S C, gz C v - ∑ v ∈ S C, gz C v ^ 2 - 6 * (S C).card := by
+    rw [Finset.mul_sum, ← Finset.sum_sub_distrib,
+      show (6 : ℤ) * (S C).card = ∑ v ∈ S C, (6 : ℤ) by
+        rw [Finset.sum_const, nsmul_eq_mul, mul_comm],
+      ← Finset.sum_sub_distrib]
+    apply Finset.sum_congr rfl
+    intro v _; ring
+  have hs' : (16 : ℤ) ≤ (S C).card := by exact_mod_cast hs
+  have hT0 : ∑ v ∈ S C, (gz C v - 1) * (6 - gz C v) = 0 := by linarith
+  have hs16 : ((S C).card : ℤ) = 16 := by linarith
+  have hall := (Finset.sum_eq_zero_iff_of_nonneg hnn).mp hT0
+  have hdvd : ∀ v ∈ S C, (5 : ℤ) ∣ (gz C v - 1) := fun v hv => by
+    rcases mul_eq_zero.mp (hall v hv) with h1 | h1
+    · rw [h1]; exact dvd_zero 5
+    · have h6 : gz C v - 1 = 5 := by linarith
+      rw [h6]
+  have hdvd_sum : (5 : ℤ) ∣ ∑ v ∈ S C, (gz C v - 1) := Finset.dvd_sum hdvd
+  rw [Finset.sum_sub_distrib, hS1, Finset.sum_const, nsmul_eq_mul, mul_one, hs16] at hdvd_sum
+  omega
 
 /-! ### Step 5 — the layer count, with capacities -/
 
@@ -616,13 +728,136 @@ theorem layer_identity_zero (C : Finset V) :
     omega
   · rw [Finset.disjoint_filter]; intro c _ h0 h1; omega
 
+lemma card_layer (i : ℕ) : (univ.filter (fun v : V => v.card = i)).card = Nat.choose 8 i := by
+  have : univ.filter (fun v : V => v.card = i) = powersetCard i (univ : Finset (Fin 8)) := by
+    ext v; simp [Finset.mem_powersetCard]
+  rw [this, Finset.card_powersetCard, Finset.card_univ, Fintype.card_fin]
+
+/-- Capacity of layer `i`. -/
+lemma m_le (C : Finset V) (i : ℕ) : m C i ≤ Nat.choose 8 i := by
+  rw [← card_layer i, m]
+  exact Finset.card_le_card (Finset.filter_subset_filter _ (Finset.subset_univ C))
+
+lemma m_nine (C : Finset V) : m C 9 = 0 := by
+  have := m_le C 9
+  rw [Nat.choose_eq_zero_of_lt (by norm_num)] at this
+  omega
+
+/-- The layers partition `C`. -/
+lemma sum_m (C : Finset V) : ∑ i ∈ range 9, m C i = C.card := by
+  symm
+  rw [Finset.card_eq_sum_card_fiberwise (f := fun c : V => c.card) (s := C) (t := range 9) ?_]
+  · rfl
+  · intro c _
+    simp only [Finset.mem_coe, Finset.mem_range]
+    have := card_le_eight c
+    omega
+
+/-- A full ball at `∅` means every word of weight `≤ 1` is a codeword. -/
+lemma mem_of_full_ball (C : Finset V) (h0 : cov C ∅ = 9) (v : V) (hv : v.card ≤ 1) :
+    v ∈ C := by
+  have hsub : C.filter (fun c => dist c ∅ ≤ 1) ⊆ univ.filter (fun c : V => dist ∅ c ≤ 1) := by
+    intro c hc
+    rw [Finset.mem_filter] at hc ⊢
+    exact ⟨Finset.mem_univ _, by rw [dist_comm]; exact hc.2⟩
+  have heq : C.filter (fun c => dist c ∅ ≤ 1) = univ.filter (fun c : V => dist ∅ c ≤ 1) := by
+    apply Finset.eq_of_subset_of_card_le hsub
+    rw [card_ball]
+    show 9 ≤ cov C ∅
+    omega
+  have hv' : v ∈ univ.filter (fun c : V => dist ∅ c ≤ 1) := by
+    rw [Finset.mem_filter, dist_comm, dist_empty]
+    exact ⟨Finset.mem_univ _, hv⟩
+  rw [← heq, Finset.mem_filter] at hv'
+  exact hv'.1
+
+lemma m_zero_of_full (C : Finset V) (h0 : cov C ∅ = 9) : m C 0 = 1 := by
+  have : C.filter (fun c => c.card = 0) = {∅} := by
+    ext c
+    simp only [Finset.mem_filter, Finset.mem_singleton, Finset.card_eq_zero]
+    constructor
+    · exact fun h => h.2
+    · rintro rfl
+      exact ⟨mem_of_full_ball C h0 ∅ (by simp), rfl⟩
+  rw [m, this, Finset.card_singleton]
+
+lemma m_one_of_full (C : Finset V) (h0 : cov C ∅ = 9) : m C 1 = 8 := by
+  have : C.filter (fun c => c.card = 1) = univ.filter (fun v : V => v.card = 1) := by
+    ext c
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+    exact ⟨fun h => h.2, fun h => ⟨mem_of_full_ball C h0 c (by omega), h⟩⟩
+  rw [m, this, card_layer, Nat.choose_one_right]
+
+/-- Translation by `t` is a distance-preserving bijection of `V`. -/
+lemma cov_image_symmDiff (C : Finset V) (t v : V) :
+    cov (C.image (fun c => symmDiff c t)) (symmDiff v t) = cov C v := by
+  have hinj : Function.Injective (fun c : V => symmDiff c t) :=
+    fun a b hab => symmDiff_left_inj.mp hab
+  unfold cov
+  rw [Finset.filter_image, Finset.card_image_of_injective _ hinj]
+  congr 1
+  apply Finset.filter_congr
+  intro c _
+  show dist (symmDiff c t) (symmDiff v t) ≤ 1 ↔ dist c v ≤ 1
+  rw [dist_symmDiff_right]
+
+lemma isDoubleCover_image (C : Finset V) (h : IsDoubleCover C) (t : V) :
+    IsDoubleCover (C.image (fun c => symmDiff c t)) := by
+  intro v
+  have := cov_image_symmDiff C t (symmDiff v t)
+  rw [symmDiff_symmDiff_cancel_right] at this
+  rw [this]
+  exact h _
+
+/-- The Farkas step, for a code whose full ball sits at `∅`. -/
+lemma layer_contradiction_zero (C : Finset V) (h : IsDoubleCover C) (hc : C.card = 60)
+    (h0 : cov C ∅ = 9) : False := by
+  have hm0 := m_zero_of_full C h0
+  have hm1 := m_one_of_full C h0
+  have hm8 := m_le C 8
+  have hm9 := m_nine C
+  have hsum := sum_m C
+  rw [hc] at hsum
+  simp only [Finset.sum_range_succ, Finset.sum_range_zero, zero_add] at hsum
+  have hL : ∀ i, 2 * Nat.choose 8 i ≤ ∑ v ∈ univ.filter (fun v : V => v.card = i), cov C v := by
+    intro i
+    have := Finset.sum_le_sum (fun v (_ : v ∈ univ.filter (fun v : V => v.card = i)) => h v)
+    rw [Finset.sum_const, smul_eq_mul, card_layer] at this
+    omega
+  have h0' := hL 0
+  rw [layer_identity_zero] at h0'
+  have h1' := hL 1
+  rw [layer_identity C 1 (by norm_num) (by norm_num)] at h1'
+  have h2' := hL 2
+  rw [layer_identity C 2 (by norm_num) (by norm_num)] at h2'
+  have h3' := hL 3
+  rw [layer_identity C 3 (by norm_num) (by norm_num)] at h3'
+  have h4' := hL 4
+  rw [layer_identity C 4 (by norm_num) (by norm_num)] at h4'
+  have h5' := hL 5
+  rw [layer_identity C 5 (by norm_num) (by norm_num)] at h5'
+  have h6' := hL 6
+  rw [layer_identity C 6 (by norm_num) (by norm_num)] at h6'
+  have h7' := hL 7
+  rw [layer_identity C 7 (by norm_num) (by norm_num)] at h7'
+  have h8' := hL 8
+  rw [layer_identity C 8 (by norm_num) (by norm_num)] at h8'
+  norm_num [Nat.choose] at h0' h1' h2' h3' h4' h5' h6' h7' h8' hm8
+  omega
+
 /-- The Farkas certificate, with weights `w = (0,0,0,8,8,2,2,17,17)`:
     weighted demand is `2658`, but the nine words of the full ball contribute
     nothing and the remaining `51` contribute at most `50*48 + 153 = 2553`.
     The capacity `m 8 <= 1` is essential and is what makes `153` appear once. -/
 theorem layer_contradiction (C : Finset V) (h : IsDoubleCover C) (hc : C.card = 60)
     (y : V) (hy : cov C y = 9) : False := by
-  sorry
+  have hinj : Function.Injective (fun c : V => symmDiff c y) :=
+    fun a b hab => symmDiff_left_inj.mp hab
+  apply layer_contradiction_zero (C.image (fun c => symmDiff c y)) (isDoubleCover_image C h y)
+  · rw [Finset.card_image_of_injective _ hinj, hc]
+  · have := cov_image_symmDiff C y y
+    rw [symmDiff_self, Finset.bot_eq_empty] at this
+    exact this.trans hy
 
 /-! ### Main theorem -/
 
