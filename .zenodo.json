@@ -51,6 +51,6 @@
       "scheme": "arxiv"
     }
   ],
-  "notes": "v2.4 adds an at-a-glance summary table and a table of the five improved published entries, to both NOTE.md and this description, and gives the deposit a title that states what was achieved rather than what it is about. No mathematical claim changed from v2.2.",
-  "version": "2.4"
+  "notes": "v2.5 adds the Declarations section to the paper: use of generative AI (with the specific models named), human-review status, competing interests, funding, and data and code availability. No mathematical claim changed from v2.2.",
+  "version": "2.5"
 }
