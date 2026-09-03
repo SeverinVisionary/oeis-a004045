@@ -19,10 +19,14 @@
 > exactly the point our theorem improves. This does not resolve the question; it
 > states it accurately.
 >
-> Separately, covering codes have been formalised in Lean 4 before: A. Florath,
-> arXiv:2606.09600 (2026), for ordinary q-ary covering codes. It does not treat
-> multiple coverings, but it is prior art for the formalisation contribution and
-> is now cited in PAPER.md section 7.
+> Separately, covering codes have been formalised in Lean 4 before, twice, both
+> by A. Florath in 2026: arXiv:2606.09600, the general framework for ordinary
+> q-ary covering codes; and arXiv:2606.16688, a Lean-certified proof of the
+> exact value K_8(4,2) = 23 using fiber counting plus two Lean-checked LRAT
+> refutations. The second is the closer methodological neighbour -- same
+> assistant, same checked-SAT posture -- and was located 2026-09-03, after the
+> initial gate. Neither treats multiple coverings. Both are prior art for the
+> formalisation contribution and are cited in PAPER.md section 7.
 
 **Gate status: PASSED, and the target is genuinely open.** Established
 2026-08-28 *before* any search was run, following this project's standing rule

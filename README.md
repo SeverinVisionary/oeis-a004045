@@ -1,13 +1,22 @@
-# OEIS A004045: bounds on `K(8,1,2)`
+# OEIS A004045: bounds on `K(8,1,2)` — binary twofold covering codes, verified in Lean 4
 
-Artifacts for a lower-bound result on binary multiple covering codes.
+A machine-checked lower bound for **binary multiple covering codes** (twofold
+coverings, double coverings, μ-fold coverings of radius 1 in the Hamming cube),
+with a new elementary theorem for all even `n` and a **Lean 4 formalisation with
+zero `sorry`s**. Every claim is reproducible from this repository.
 
 `K(n,R,mu)` is the minimum size of a binary code `C` in `F_2^n` such that every
 word of `F_2^n` has at least `mu` codewords within Hamming distance `R`.
 `K(8,1,2)` is the first unknown term of [OEIS A004045](https://oeis.org/A004045).
 
-**Published record: `59 <= K(8,1,2) <= 64`** (lower: Krotov–Potapov 2021;
-upper: Östergård 1995).
+**Published record: `59 <= K(8,1,2) <= 64`.** The lower bound 59 is
+Krotov–Potapov 2021. The upper bound 64 is *older than usually credited*: it is
+already the doubling `K(8,1,2) <= 2*K(7,1,2) = 64` in the 1993 table of
+Hämäläinen, Honkala, Kaikkonen and Litsyn. Östergård's 1995 tabu-search paper
+improves 27 upper bounds in that table, but `n = 8`, `mu = 2` is **not** among
+them — see [`PRIOR_ART.md`](PRIOR_ART.md).
+
+**This repository establishes `61 <= K(8,1,2) <= 64`.**
 
 ## Start here
 

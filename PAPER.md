@@ -78,7 +78,7 @@ we could not locate.
 
 | # | Contribution | Before | After | Verified by | Novelty |
 |---|---|---|---|---|---|
-| 1 | `K(8,1,2) ≥ 61`, eliminating two of the six candidate values for the first unknown term of A004045 | `≥ 59` (2021) | `≥ 61` | **Lean 4, zero `sorry`s**, audited axiom trace | The *bound* is new — no published lower bound exceeds 59. The ingredients (Delsarte nonnegativity, Farkas certificates) are standard, and covering codes have been formalised in Lean before ([Flo], ordinary coverings only). |
+| 1 | `K(8,1,2) ≥ 61`, eliminating two of the six candidate values for the first unknown term of A004045 | `≥ 59` (2021) | `≥ 61` | **Lean 4, zero `sorry`s**, audited axiom trace | The *bound* is new — no published lower bound exceeds 59. The ingredients (Delsarte nonnegativity, Farkas certificates) are standard, and covering codes have been formalised in Lean before ([Flo1], [Flo2] — ordinary coverings only). |
 | 2 | Theorem 1: `K(n,1,2) ≥ ⌈3·2^(n+1)/(3n+2)⌉` for all even `n` | — | improves 5 tabulated positions and infinitely many more | half-page proof; `excess_theorem.py` | Not found in the primary sources we checked, **and** we give a *positive* argument (§7) that the standard method provably cannot produce it. Not certified new: see the Chen–Li disclosure. |
 | 3 | `K(6,1,2) = 20` with no computer search | value known, by integer programming | same value, by hand | `bipartite_split.py` | The value is not new; the *search-free proof* is. |
 | 4 | Every twofold covering of `F_2^8` with `≤ 63` words is asymmetric | not addressed | asymmetric | 28 prime-order classes infeasible; 4 machine-certified, 24 floating-point | Method is standard (prescribed automorphisms, Kramer–Mesner). The statement for these parameters appears to be new but is of a routine kind. |
@@ -314,14 +314,22 @@ The present argument uses a *different* parity — the ball sum at a **codeword*
 odd whenever `n` is even, for every `μ` — and therefore fires precisely where
 theirs vanishes.
 
-**Formalisation.** Covering codes have been formalised in Lean 4 before:
-[Flo] gives certificate predicates for upper bounds, lower bounds and exact
-values of `K_q(n,r)`, with an end-to-end checking workflow for bounds
-transcribed from the literature. That work covers **ordinary** covering codes
-only. So the claim we can defend for §8 is narrower than "the first formal
-treatment of covering codes": it is that we are not aware of a prior
-formalisation of *multiple* covering codes, nor of a formal proof establishing a
-bound that improves the published literature rather than reproducing it.
+**Formalisation.** Covering codes have been formalised in Lean 4 before, and
+recently. [Flo1] gives certificate predicates for upper bounds, lower bounds and
+exact values of `K_q(n,r)`, with an end-to-end checking workflow for bounds
+transcribed from the literature. [Flo2] goes further and settles an exact value,
+`K_8(4,2) = 23`, in Lean — a lower bound argument combining fiber counting with
+two Lean-checked LRAT refutations of stored CNF instances, packaged as a
+proof-carrying artifact. That is methodologically the nearest neighbour to §8:
+same proof assistant, same use of checked SAT refutations, same
+artifact-first posture.
+
+Both works treat **ordinary** covering codes (`μ = 1`) only. So the claim we can
+defend for §8 is narrower than "the first formal treatment of covering codes",
+and narrower than "the first Lean-certified covering-code value": it is that we
+are not aware of a prior formalisation of *multiple* covering codes, nor of a
+formal proof establishing a bound that **improves** the published literature
+rather than reproducing or settling a value within it.
 
 [Seu] is not a general-theorem paper: it improves 57 individual positions by
 integer programming and exhaustive search. Its `n = 8`, `μ = 2` entry is 58 and
@@ -575,8 +583,10 @@ four minutes.
   arXiv:1902.00023
 - [LC] D. Li, W. Chen. New lower bounds for binary covering codes.
   *IEEE Trans. Inform. Theory* **40**(4) (1994) 1122–1129.
-- [Flo] A. Florath. Formal foundations and proof-carrying certificates for
+- [Flo1] A. Florath. Formal foundations and proof-carrying certificates for
   q-ary covering codes in Lean 4. arXiv:2606.09600, 2026.
+- [Flo2] A. Florath. A Lean-certified proof of `K_8(4,2) = 23`.
+  arXiv:2606.16688, 2026.
 - [Seu] E. A. Seuranen. New lower bounds for multiple coverings.
   *Des. Codes Cryptogr.* **45** (2007) 91–94. doi:10.1007/s10623-007-9089-y
 - [vW] G. J. M. van Wee. Improved sphere bounds on the covering radius of codes.

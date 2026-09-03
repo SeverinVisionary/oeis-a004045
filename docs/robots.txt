@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://severinvisionary.github.io/oeis-a004045/sitemap.xml
