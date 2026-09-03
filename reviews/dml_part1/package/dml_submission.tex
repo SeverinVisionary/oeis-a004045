@@ -51,13 +51,13 @@
 \vskip36pt
 
 \noindent
-{\large \bf A parity refinement of the covering excess bound for twofold coverings of the hypercube}\\
+{\large \bf A Parity Lower Bound for Twofold Radius-One Coverings of the Binary Hypercube}\\
 
 \noindent
-Hanyu Yang$^{1,}\footnote{Corresponding author (hanyu.yang.92@gmail.com)}$\\
+Hanyu Yang\footnote{E-mail address: hanyu.yang.92@gmail.com}\\
 
 \noindent
-\footnotesize $^1${\it Independent researcher\/}\\
+\footnotesize {\it Fremont, California, United States\/}\\
 
 \noindent
  (\footnotesize Received: Day Month 202X. Received in revised form: Day Month 202X. Accepted: Day Month 202X. Published online: Day Month 202X.)\\
@@ -71,20 +71,21 @@ Hanyu Yang$^{1,}\footnote{Corresponding author (hanyu.yang.92@gmail.com)}$\\
 \begin{abstract}
 \noindent
 A binary code is a twofold covering of radius one if every word of the
-hypercube lies within Hamming distance one of at least two codewords, and
-$K(n,1,2)$ denotes the least size of such a code. For every even $n$ we prove a
-lower bound on $K(n,1,2)$ by a parity observation taken at a codeword rather
-than at an arbitrary word: in a code without repeated words the ball of a
-codeword carries a unique diagonal term, whose parity forces an excess whenever
-$n$ is even. After taking ceilings the bound exceeds the general lower bound of
-Krotov and Potapov for every even $n$ from six onwards. It raises the tabulated
-lower bounds at the five lengths $n=8,10,12,14,16$, and at $n=6$ it supplies an
-elementary lower-bound proof which, with the known twenty-word construction,
-recovers the exact value. The argument extends to every even multiplicity, and
-we determine exactly when the extension improves on the Krotov--Potapov bound
-and when it does not.
+hypercube lies within Hamming distance one of at least two codewords. For every
+even length we prove a lower bound on the minimum size of such a code by a
+parity observation taken at a codeword rather than at an arbitrary word: in a
+code without repeated words the ball of a codeword carries a unique diagonal
+term, whose parity forces an excess whenever the length is even. After taking
+ceilings, the bound exceeds the general lower bound of Krotov and Potapov
+for every even length from six onwards. It raises the tabulated lower bounds at the five
+lengths eight, ten, twelve, fourteen and sixteen, and at length six it supplies
+an elementary lower-bound proof which, with the known twenty-word construction,
+recovers the exact value. The argument extends to every feasible even
+multiplicity; for the underlying real-valued bounds we determine exactly when
+the resulting expression exceeds the Krotov--Potapov expression, noting that a
+strict gain need not survive the ceiling.
 \\[2mm]
-{\bf Keywords:} covering code; multiple covering; twofold covering; covering excess; hypercube; lower bound.\\[2mm]
+{\bf Keywords:} covering code; multiple covering; twofold covering; double domination; covering excess; hypercube; lower bound.\\[2mm]
 {\bf 2020 Mathematics Subject Classification:} 94B65, 05B40, 94B75.
 \end{abstract}
 
@@ -97,9 +98,11 @@ $B(x)=\{y: d(x,y)\le 1\}$ be the closed ball of radius one, so $|B(x)|=n+1$.
 A set $C\subseteq\mathbb{F}_2^n$ is a \emph{$\mu$-fold covering} of radius one
 if $|B(x)\cap C|\ge\mu$ for every $x\in\mathbb{F}_2^n$, and $K(n,1,\mu)$ denotes
 the least cardinality of such a set. Codewords are distinct: $C$ is a set and
-not a multiset. Allowing repetitions gives a different quantity, written
-$\overline{K}$ in \cite{HHKL-1993}, and the hypothesis that $C$ is a set is used
-essentially below. We write $K(n,1,2)$ for the twofold case.
+not a multiset. Allowing repetitions gives a different quantity, treated
+separately in \cite{HHKL-1993}, and the hypothesis that $C$ is a set is used
+essentially below. We write $K(n,1,2)$ for the twofold case. Equivalently, such
+a set is a $\mu$-tuple dominating set in the $n$-dimensional hypercube graph,
+and a double dominating set when $\mu=2$.
 
 The standard tool for lower bounds of this kind is the covering excess method,
 extended to multiple coverings by H\"am\"al\"ainen, Honkala, Kaikkonen and
@@ -130,8 +133,9 @@ The proof occupies half a page and uses nothing beyond double counting. Section
 \ref{sec-dominance} shows that after taking ceilings the bound exceeds the
 general lower bound of Krotov and Potapov \cite{KP-2021} at every even
 $n\ge 6$; Section \ref{sec-small} records the consequences at small $n$; and
-Section \ref{sec-mu} carries the argument to every even multiplicity and
-determines exactly when it improves on \cite{KP-2021}.
+Section \ref{sec-mu} carries the argument to every feasible even multiplicity
+and classifies when the underlying real-valued bound exceeds the
+Krotov--Potapov bound.
 
 \section{Notation}\label{sec-notation}
 
@@ -146,7 +150,7 @@ $\sum_y c(y)=(n+1)|C|$, whence
   E=(n+1)|C|-2^{\,n+1}.
 \end{equation}
 Let $S=\{y: g(y)\ge 1\}$ be the \emph{over-covered set} and put $s=|S|$. Since
-$g$ is a non-negative integer vanishing off $S$,
+$g$ is non-negative and integer-valued, and vanishes off $S$,
 \begin{equation}\label{eq-s-le-E}
   s\le E.
 \end{equation}
@@ -203,7 +207,8 @@ Substituting \eqref{eq-excess},
 
 \begin{remark}\label{rem-parity}
 The parity step is essential, and the conclusion genuinely fails for odd $n$.
-In $\mathbb{F}_2^3$ the code $C=\{000,001,110,111\}$ has $c(x)=2$ for every $x$,
+For example, in $\mathbb{F}_2^3$ the code $C=\{000,001,110,111\}$ has $c(x)=2$
+for every $x$,
 so it is a perfect twofold covering with $E=0$ and $|C|=4=K(3,1,2)$, whereas the
 formula of Theorem \ref{thm-main} would demand $\lceil 48/11\rceil=5$.
 \end{remark}
@@ -216,7 +221,7 @@ even. The incidence count of Step 2 adapts to multiplicities; it is the
 uniqueness of the diagonal term that fails.
 \end{remark}
 
-\section{Comparison with the Krotov--Potapov bound}\label{sec-dominance}
+\section{Comparison with the Krotov--Potapov Bound}\label{sec-dominance}
 
 Krotov and Potapov \cite[Theorem 6]{KP-2021} give, with $\mu\equiv\tau\pmod 2$
 and $\tau\in\{0,1\}$,
@@ -289,7 +294,7 @@ The entries for $n\ge 8$ are exactly the $\mu=2$ positions printed in
 \cite{KP-2021}, and each printed lower bound there equals the value of their
 formula, so no tabulated entry is stronger than the formula itself.
 
-\section{Consequences at small $n$}\label{sec-small}
+\section{Consequences at Small $n$}\label{sec-small}
 
 \textbf{The value $K(6,1,2)=20$.} Theorem \ref{thm-main} gives
 $\lceil 384/20\rceil=20$. Combined with the known twenty-word twofold covering
@@ -312,14 +317,17 @@ doubling $K(8,1,2)\le 2K(7,1,2)=64$ already present in the table of
 \cite{HHKL-1993}. Theorem \ref{thm-main} raises the lower endpoint, giving
 $60\le K(8,1,2)\le 64$.
 
-\section{Even multiplicities}\label{sec-mu}
+\section{Even Multiplicities}\label{sec-mu}
 
-Carrying a general $\mu$ through the proof, Step 1 requires the ball sum
-$(n+1)+2N_2(x)$ to exceed $\mu(n+1)$ by rounding, which happens exactly when
-$\mu(n+1)$ is even, that is, for even $n$, exactly when $\mu$ is even.
+Carry a general $\mu$ through the proof. For even $n$ the ball sum
+$(n+1)+2N_2(x)$ at a codeword is odd, so parity alone forces it to exceed the
+baseline $\mu(n+1)$ exactly when $\mu(n+1)$ is even --- that is, exactly when
+$\mu$ is even.
 
 \begin{proposition}\label{prop-mu}
-Let $n\ge 2$ be even and let $\mu$ be a positive even integer. Then
+Let $n\ge 2$ be even and let $\mu$ be an even integer with $2\le\mu\le n$.
+(Since $|B(x)|=n+1$ and $C$ is a set, no $\mu$-fold covering exists for
+$\mu>n+1$, so $\mu=n$ is the largest feasible even multiplicity.) Then
 \[
   K(n,1,\mu)\;\ge\;\frac{\mu(\mu+1)2^n}{(\mu+1)(n+1)-1},
   \qquad\text{and hence}\qquad
@@ -364,7 +372,7 @@ is $16/51>0$, yet both ceilings equal $38$. We therefore state the
 classification for the real-valued bounds only, and do not claim a
 corresponding classification after rounding.
 
-\section{Relation to previous work}\label{sec-prior}
+\section{Relation to Previous Work}\label{sec-prior}
 
 The covering excess method for \emph{ordinary} coverings goes back to van Wee
 \cite{vanWee-1988}, whose radius-one bound is asymptotically $2^n/n$; that work
@@ -379,19 +387,23 @@ $n+1$ is odd, so this happens exactly for even $\mu$, and their bound then
 reduces to the sphere covering bound $K(n,1,\mu)\ge\mu 2^n/(n+1)$. The present
 argument instead uses the parity of the ball sum at a codeword, which is odd
 whenever $n$ is even for every $\mu$, and therefore applies precisely where
-$\varepsilon$ vanishes.\footnote{The authors of \cite{HHKL-1993} cite a
-forthcoming manuscript of W.\ Chen and D.\ Li entitled \emph{Lower bounds for
-multiple covering codes}. I have not located a published version, so the
-novelty comparison here is made relative to the accessible published
-literature.}
+$\varepsilon$ vanishes.
+
+Reference \cite{HHKL-1993} also cites a forthcoming manuscript of W.\ Chen and
+D.\ Li entitled \emph{Lower bounds for multiple covering codes}. The author has
+not located a published version; the novelty comparison above is therefore
+limited to the accessible published literature.
 
 \section*{Acknowledgment}
 
-The author used generative artificial-intelligence tools substantially in
-developing and preparing this work, including for literature exploration, for
-proposing candidate arguments, and for drafting text. The author independently
-verified every mathematical statement and assumes full responsibility for the
-content. No funding was received.
+The author used generative language models --- Anthropic Claude (Opus 5 and
+Fable 5.1), OpenAI GPT-5.6, and DeepSeek v4 --- substantially in developing and
+preparing this work, for literature exploration, for generating candidate
+arguments, and for drafting text. The author independently checked the
+mathematical arguments, the factual claims and the bibliographic references,
+made all final scholarly decisions, and takes full responsibility for the
+manuscript. No financial support was received for this work, and the author
+declares no conflict of interest.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \footnotesize
@@ -402,9 +414,9 @@ content. No funding was received.
 
 \bibitem{KP-2021} D. S. Krotov, V. N. Potapov, On multifold packings of radius-1 balls in Hamming graphs, {\it IEEE Trans. Inform. Theory} {\bf 67} (2021) 3585--3598.
 
-\bibitem{OEIS-A004045} OEIS Foundation Inc., Entry A004045, {\it The On-Line Encyclopedia of Integer Sequences}, \underline{https://oeis.org/A004045} (accessed 3 September 2026).
-
 \bibitem{Seuranen-2007} E. A. Seuranen, New lower bounds for multiple coverings, {\it Des. Codes Cryptogr.} {\bf 45} (2007) 91--94.
+
+\bibitem{OEIS-A004045} The On-Line Encyclopedia of Integer Sequences, https://oeis.org/A004045.
 
 \bibitem{vanWee-1988} G. J. M. van Wee, Improved sphere bounds on the covering radius of codes, {\it IEEE Trans. Inform. Theory} {\bf 34} (1988) 237--245.
 
