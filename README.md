@@ -64,15 +64,19 @@ le_card_of_isDoubleCover : forall (C : Finset V), IsDoubleCover C -> 61 <= C.car
 ```
 
 So the interval is **`[61, 64]`**, two above the published lower bound. The
-trusted base is Lean's kernel plus twelve short definitions; non-vacuity is
+trusted base is Lean's kernel plus four short definitions; non-vacuity is
 checked separately (`lean/Mcov/Sanity.lean`), and every declaration's axiom
 trace is printed by `lake build Mcov.Audit`.
 
-The formalisation is what establishes it; no other provenance is offered. **No human
-has read the proof or the Lean definitions.** A reader wanting to check this
-should read the twelve definitions at the top of `lean/Mcov/Basic.lean` and
+The formalisation is what establishes it; no other provenance is offered. **No
+human has read the proofs**, which rest on Lean's kernel. A reader wanting to
+check this should read the four definitions the theorem statement mentions —
+`V`, `dist`, `cov`, `IsDoubleCover`, at the top of `lean/Mcov/Basic.lean` — and
 satisfy themselves they encode `K(8,1,2)`; everything after that is the kernel's
-problem, not a matter of judgement.
+problem, not a matter of judgement. The other definitions in that file are proof
+machinery and do not occur in the statement, so they are outside the trust
+boundary. **The author read the four on 2026-09-03**, cross-checked by
+transliterating them and reproducing the published `K(4,1,2) = 8` exhaustively.
 
 ### Upper bound — unchanged at 64
 

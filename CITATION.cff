@@ -2,7 +2,7 @@ cff-version: 1.2.0
 title: "Twofold coverings of the Hamming cube: a Lean-verified K(8,1,2) >= 61, and an even-n theorem improving five published bounds"
 message: "If you use this software or its results, please cite it as below."
 type: software
-version: "2.4"
+version: "2.6"
 date-released: "2026-09-02"
 doi: "10.5281/zenodo.22217672"
 authors:
@@ -22,7 +22,8 @@ abstract: >-
   machine-checkable certificates. Hence 61 <= K(8,1,2) <= 64. A further result,
   on a weaker footing, indicates that every twofold covering of F_2^8 with at
   most 63 codewords has trivial automorphism group. No human has reviewed the
-  proof or the Lean definitions.
+  proofs, which rest on Lean's kernel; the author read the four definitions the
+  formal statement depends on.
 keywords:
   - covering codes
   - multiple covering codes

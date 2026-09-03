@@ -4,7 +4,7 @@
 
 **Hanyu Yang** — ORCID [0009-0005-0419-4070](https://orcid.org/0009-0005-0419-4070)
 
-*Draft, 2026-09-02. Not submitted, and not peer-reviewed by a human. §10 states
+*Draft, 2026-09-03. Not submitted, and not peer-reviewed by a human. §10 states
 precisely what is and is not established; please read it before citing.*
 
 *Generative AI was used extensively in producing this work. See
@@ -88,14 +88,15 @@ we could not locate.
 is its point, and it is also a reason to suspect someone may have noticed it
 before. What is unusual here is the *standard of verification*: the headline
 inequality `61 ≤ K(8,1,2)` is not asserted on the strength of a solver log or of
-the author's care, but reduced to Lean's kernel plus twelve definitions a reader
-can check by eye. For a quantity whose literature consists largely of
+the author's care, but reduced to Lean's kernel plus four definitions a reader
+can check by eye — and which the author has checked (§8). For a quantity whose literature consists largely of
 uncertified integer-programming runs, that is the contribution most likely to
 outlast the numbers.
 
 **What this paper does not do.** It does not touch the upper bound, which
-remains 64, the 1993 doubling bound; it does not close A004045(8); and it has
-had no human review.
+remains 64, the 1993 doubling bound; and it does not close A004045(8). It has
+had no peer review; the author has read the four Lean definitions the result
+rests on (§8), but no human has read the proofs.
 
 ---
 
@@ -406,12 +407,33 @@ independent reviews flagged it as missing before it was formalised.
 
 ### 8.3 What a sceptical reader should check
 
-The trusted base is Lean's kernel plus the twelve definitions at the top of
-`Mcov/Basic.lean`. A reader who wants to verify this result should read those
-twelve definitions and satisfy themselves that they encode `K(8,1,2)`;
-everything after that is the kernel's problem, not a matter of judgement. **No
-human has done this yet**, including the author, in the sense that the
-definitions were machine-generated and machine-checked but not refereed.
+The trusted base is Lean's kernel plus the **four** definitions that the
+theorem statement mentions, transitively:
+
+```lean
+abbrev V : Type := Finset (Fin 8)
+def dist (x y : V) : ℕ := (symmDiff x y).card
+def cov (C : Finset V) (v : V) : ℕ := (C.filter (fun c => dist c v ≤ 1)).card
+def IsDoubleCover (C : Finset V) : Prop := ∀ v : V, 2 ≤ cov C v
+```
+
+`Mcov/Basic.lean` defines eleven further objects (`g`, `E`, `S`, `a`, `chi`,
+`W`, `f`, `ballPt`, `hval`, `gz`, `m`), but none of them occurs in the statement
+of `le_card_of_isDoubleCover`. They are proof machinery: if one of them were
+wrong, the development would either fail to typecheck or still prove the stated
+theorem, because the kernel checks the proof term against the stated type. So
+they are outside the trust boundary, and a reader need not check them. The four
+above are the whole of what human judgement has to settle; everything after that
+is the kernel's problem.
+
+**The author has now read these four definitions** (2026-09-03), against an
+audit worksheet that pairs each with its plain reading, worked examples, and the
+rival readings that would change the object (`= 2` and `≤ 2` for `2 ≤`, `∃` for
+`∀`). As a cross-check the four were transliterated into ordinary code and run
+exhaustively at `n = 4`, where they reproduce the published `K(4,1,2) = 8` in
+both directions: no 7-word twofold covering exists, and an 8-word one does.
+Definitions that did not encode the intended object would not land on a
+published value.
 
 ## 9. Theorem 6: every `≤ 63` code is asymmetric
 
@@ -468,8 +490,9 @@ machine-certified; the remaining 24 rest on floating-point solver verdicts.
 **Not established** — the *novelty* of Theorem 1 (§7): Krotov–Potapov already
 use Delsarte nonnegativity on a covering code's own distance distribution, and
 the Chen–Li preprint is unlocated. Nothing here touches the upper bound, which
-remains 64. And **no human has reviewed the proof or the Lean
-definitions.**
+remains 64. And while the author has audited the four Lean definitions the
+result depends on, **no human has reviewed the proofs**, which rest on Lean's
+kernel alone.
 
 ## Declarations
 
@@ -502,10 +525,22 @@ them making four errors on it, and catching *disjoint* defects.
 
 ### Human review
 
-**No human has reviewed the proofs or the Lean definitions**, including for the
-results this paper presents as established. Correctness of `K(8,1,2) ≥ 61` rests
-on Lean's kernel together with twelve definitions that a reader must check
-encode the intended object; that check has not been performed by a person.
+**No human has reviewed the proofs**, including for the results this paper
+presents as established, and the paper has had no peer review.
+
+The **definitions** are a separate matter, and the distinction is the load-
+bearing one. A development with zero `sorry`s and a clean axiom trace proves the
+formal statement *from the formal definitions*; it is not evidence that those
+definitions encode the intended object, and that is the one link with no machine
+on it. For `K(8,1,2) ≥ 61` the trust boundary is four definitions — `V`, `dist`,
+`cov`, `IsDoubleCover` — the transitive closure of what the theorem statement
+mentions (§8). **The author read all four on 2026-09-03** and confirmed each
+encodes its intended meaning, aided by the `n = 4` reproduction of the published
+`K(4,1,2) = 8`. The remaining eleven definitions in `Mcov/Basic.lean` are proof
+machinery outside that boundary.
+
+So: the definitions have been checked by a person; the proofs have not, and rest
+on Lean's kernel.
 
 ### Competing interests
 

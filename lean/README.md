@@ -6,8 +6,12 @@
       depends on axioms: [propext, Classical.choice, Quot.sound]
 
 No `sorryAx`, no `native_decide`. The trusted base is Lean's kernel plus the
-twelve definitions at the top of `Mcov/Basic.lean`, which a reader can check by
-eye in a minute. Reproduce:
+four definitions the statement mentions transitively -- `V`, `dist`, `cov`,
+`IsDoubleCover`, at the top of `Mcov/Basic.lean` -- which a reader can check by
+eye in a minute. The eleven further definitions in that file (`g`, `E`, `S`,
+`a`, `chi`, `W`, `f`, `ballPt`, `hval`, `gz`, `m`) do not occur in the statement:
+they are proof machinery, checked by the kernel, and outside the trust boundary.
+The author read the four on 2026-09-03. Reproduce:
 
     lake exe cache get && lake build      # ~4 min warm
     lake build Mcov.Audit                 # axiom trace of all 39 declarations

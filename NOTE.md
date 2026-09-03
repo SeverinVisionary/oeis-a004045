@@ -113,7 +113,8 @@ verdicts. Both certification routes blow up on them — one passed 850 MB of pro
 on an instance a floating-point solver settles in seconds. The package says so
 wherever the result is stated.
 
-**No human has reviewed the proof or the Lean definitions.** The work was done
+**No human has reviewed the proofs**, which rest on Lean's kernel; the author
+read the four definitions the result depends on (2026-09-03). The work was done
 with heavy use of large language models — Anthropic Claude (Opus 5) and Fable
 5.1, OpenAI GPT-5.6 (ChatGPT and Codex), and DeepSeek v4 — for literature
 search, for proposing the `M = 60` argument, for most of the code and the Lean

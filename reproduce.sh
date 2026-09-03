@@ -82,6 +82,6 @@ echo
 echo "  K(8,1,2) >= 61 follows from the M=60 refutation above, which is"
 echo "  formalised in Lean 4 with zero sorries (see lean/). Checking that"
 echo "  is a separate ~4-minute build: cd lean && lake exe cache get &&"
-echo "  lake build Mcov.Final. No human has reviewed the proof or the"
-echo "  formal definitions -- see README.md."
+echo "  lake build Mcov.Final. No human has reviewed the proofs; the author"
+echo "  read the four load-bearing definitions -- see README.md."
 exit 0

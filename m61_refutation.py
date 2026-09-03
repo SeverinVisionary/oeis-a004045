@@ -199,4 +199,5 @@ if __name__ == "__main__":
     print("discriminating test PASSED: kills exactly the impossible cases,")
     print("and never fires at odd n, where step 1's parity argument is invalid.")
     print("=> M=60 is refuted, hence K(8,1,2) >= 61")
-    print("   (formalised in lean/, zero sorries; no human review -- see docstring)")
+    print("   (formalised in lean/, zero sorries; proofs unreviewed by a human,")
+    print("    four load-bearing definitions read by the author -- see docstring)")
