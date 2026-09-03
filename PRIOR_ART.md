@@ -1,5 +1,29 @@
 # PRIOR_ART — `K(8,1,2)`, minimum binary double covering code of length 8
 
+> **Update, 2026-09-02 — the Chen–Li risk is now located precisely, and it is
+> narrower but sharper than previously stated.** [HHKL] cites *two* forthcoming
+> Chen–Li papers. Reference [29], "New lower bounds for binary covering codes",
+> was published as Li & Chen, IEEE Trans. Inform. Theory 40(4) (1994) 1122–1129;
+> we have now read it and it treats **ordinary** coverings K(n,R) only, via a
+> "multiexcess" generalisation of van Wee. Its own reference [6] — the
+> "forthcoming paper" in which "this idea is applied to multiple covering codes"
+> — is HHKL itself, so the two groups cite each other.
+>
+> The unlocated manuscript is HHKL reference [2], W. Chen and D. Li, "Lower
+> bounds for multiple covering codes", a different paper that appears never to
+> have been published. HHKL places it immediately after its Theorem 6 and
+> Corollary 2 (the odd-mu, even-n case) with the sentence: "Chen and Li have
+> independently presented similar definitions and results, and also many further
+> results, see [2]." So a named, unpublished manuscript is described by the
+> primary source as containing similar results plus many further ones, at
+> exactly the point our theorem improves. This does not resolve the question; it
+> states it accurately.
+>
+> Separately, covering codes have been formalised in Lean 4 before: A. Florath,
+> arXiv:2606.09600 (2026), for ordinary q-ary covering codes. It does not treat
+> multiple coverings, but it is prior art for the formalisation contribution and
+> is now cited in PAPER.md section 7.
+
 **Gate status: PASSED, and the target is genuinely open.** Established
 2026-08-28 *before* any search was run, following this project's standing rule
 that the prior-art gate is settled before any compute is spent. Cross-checked by an
