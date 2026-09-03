@@ -258,7 +258,7 @@ stronger than the formula (`dominance.py` asserts this).
 
 ## 5. Consequences at small n
 
-**`K(6,1,2) = 20`.** Theorem 1 gives `⌈768/20⌉ = 20`, and a 20-word twofold
+**`K(6,1,2) = 20`.** Theorem 1 gives `⌈384/20⌉ = 20`, and a 20-word twofold
 covering of `Q_6` exists. The published value is also 20 but was obtained by
 integer programming and exhaustive search [Seu]; Theorem 1 proves it in one
 line. Likewise the weight-parity refinement of §8 gives `K(4,1,2) = 8` without
