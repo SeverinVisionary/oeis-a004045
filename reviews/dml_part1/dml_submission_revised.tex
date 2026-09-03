@@ -1,0 +1,412 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=1.1cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd,cite,graphicx}
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em.}{}
+
+\usepackage[labelfont=bf]{caption}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{counterexample}{Counter Example}[section]
+\newtheorem{observation}{Observation}[section]
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\allowdisplaybreaks[4]
+
+\let\oldbibliography\thebibliography
+\renewcommand{\thebibliography}[1]{%
+  \oldbibliography{#1}%
+  \setlength{\itemsep}{-2pt}%
+}
+
+\baselineskip=1.20in
+
+\begin{document}
+
+\baselineskip=0.20in
+
+\makebox[\textwidth]{%
+\hglue-15pt
+\begin{minipage}{0.6cm}
+\vskip9pt
+\end{minipage} \vspace{-\parskip}
+\begin{minipage}[t]{6cm}
+\footnotesize{ {\bf Discrete Mathematics Letters} \\ \underline{www.dmlett.com}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{6.5cm}
+\normalsize {\it Discrete Math. Lett.}  {\bf X} (202X) XX--XX
+\end{minipage}}
+\vskip36pt
+
+\noindent
+{\large \bf A parity refinement of the covering excess bound for twofold coverings of the hypercube}\\
+
+\noindent
+Hanyu Yang$^{1,}\footnote{Corresponding author (hanyu.yang.92@gmail.com)}$\\
+
+\noindent
+\footnotesize $^1${\it Independent researcher\/}\\
+
+\noindent
+ (\footnotesize Received: Day Month 202X. Received in revised form: Day Month 202X. Accepted: Day Month 202X. Published online: Day Month 202X.)\\
+
+\setcounter{page}{1} \thispagestyle{empty}
+
+\baselineskip=0.20in
+
+\normalsize
+
+\begin{abstract}
+\noindent
+A binary code is a twofold covering of radius one if every word of the
+hypercube lies within Hamming distance one of at least two codewords, and
+$K(n,1,2)$ denotes the least size of such a code. For every even $n$ we prove a
+lower bound on $K(n,1,2)$ by a parity observation taken at a codeword rather
+than at an arbitrary word: in a code without repeated words the ball of a
+codeword carries a unique diagonal term, whose parity forces an excess whenever
+$n$ is even. After taking ceilings the bound exceeds the general lower bound of
+Krotov and Potapov for every even $n$ from six onwards. It raises the tabulated
+lower bounds at the five lengths $n=8,10,12,14,16$, and at $n=6$ it supplies an
+elementary lower-bound proof which, with the known twenty-word construction,
+recovers the exact value. The argument extends to every even multiplicity, and
+we determine exactly when the extension improves on the Krotov--Potapov bound
+and when it does not.
+\\[2mm]
+{\bf Keywords:} covering code; multiple covering; twofold covering; covering excess; hypercube; lower bound.\\[2mm]
+{\bf 2020 Mathematics Subject Classification:} 94B65, 05B40, 94B75.
+\end{abstract}
+
+\baselineskip=0.20in
+
+\section{Introduction}
+
+Let $\mathbb{F}_2^n$ be the binary Hamming space and let
+$B(x)=\{y: d(x,y)\le 1\}$ be the closed ball of radius one, so $|B(x)|=n+1$.
+A set $C\subseteq\mathbb{F}_2^n$ is a \emph{$\mu$-fold covering} of radius one
+if $|B(x)\cap C|\ge\mu$ for every $x\in\mathbb{F}_2^n$, and $K(n,1,\mu)$ denotes
+the least cardinality of such a set. Codewords are distinct: $C$ is a set and
+not a multiset. Allowing repetitions gives a different quantity, written
+$\overline{K}$ in \cite{HHKL-1993}, and the hypothesis that $C$ is a set is used
+essentially below. We write $K(n,1,2)$ for the twofold case.
+
+The standard tool for lower bounds of this kind is the covering excess method,
+extended to multiple coverings by H\"am\"al\"ainen, Honkala, Kaikkonen and
+Litsyn \cite{HHKL-1993}. Their Theorem 6 improves on the sphere covering bound
+by an additive correction term $\varepsilon$ which, at radius one, vanishes
+exactly when $\mu(n+1)$ is even. For even $n$ that is exactly when $\mu$ is
+even, so at $\mu=2$ and $n$ even their bound reduces to the sphere covering
+bound; see Section \ref{sec-prior}.
+
+Our observation is that a \emph{different} parity is available, and that it
+fires precisely where theirs vanishes. Summing the coverage function over the
+ball of a \emph{codeword} rather than of an arbitrary word produces a sum with
+a unique diagonal term $n+1$, hence a sum that is odd whenever $n$ is even,
+forcing an excess in every codeword ball. The resulting bound is Theorem
+\ref{thm-main}.
+
+\begin{theorem}\label{thm-main}
+Let $n\ge 2$ be even and let $C\subseteq\mathbb{F}_2^n$ satisfy
+$|B(x)\cap C|\ge 2$ for every $x\in\mathbb{F}_2^n$. Then
+\[
+  |C| \;\ge\; \frac{3\cdot 2^{\,n+1}}{3n+2},
+  \qquad\text{and hence}\qquad
+  K(n,1,2) \;\ge\; \left\lceil \frac{3\cdot 2^{\,n+1}}{3n+2} \right\rceil .
+\]
+\end{theorem}
+
+The proof occupies half a page and uses nothing beyond double counting. Section
+\ref{sec-dominance} shows that after taking ceilings the bound exceeds the
+general lower bound of Krotov and Potapov \cite{KP-2021} at every even
+$n\ge 6$; Section \ref{sec-small} records the consequences at small $n$; and
+Section \ref{sec-mu} carries the argument to every even multiplicity and
+determines exactly when it improves on \cite{KP-2021}.
+
+\section{Notation}\label{sec-notation}
+
+For $C\subseteq\mathbb{F}_2^n$ put
+\[
+  c(y)=|B(y)\cap C|,\qquad g(y)=c(y)-2,\qquad E=\sum_{y\in\mathbb{F}_2^n} g(y).
+\]
+If $C$ is a twofold covering then $g\ge 0$ pointwise. Counting the incidences
+$(y,z)$ with $z\in C$ and $y\in B(z)$ in two ways gives
+$\sum_y c(y)=(n+1)|C|$, whence
+\begin{equation}\label{eq-excess}
+  E=(n+1)|C|-2^{\,n+1}.
+\end{equation}
+Let $S=\{y: g(y)\ge 1\}$ be the \emph{over-covered set} and put $s=|S|$. Since
+$g$ is a non-negative integer vanishing off $S$,
+\begin{equation}\label{eq-s-le-E}
+  s\le E.
+\end{equation}
+Finally we use the ball intersection numbers of the cube: for $x\ne z$,
+\begin{equation}\label{eq-ball-int}
+  |B(x)\cap B(z)| =
+  \begin{cases}
+    2, & d(x,z)\in\{1,2\},\\
+    0, & d(x,z)\ge 3,
+  \end{cases}
+\end{equation}
+together with $|B(x)\cap B(x)|=n+1$. For $d(x,z)=1$ the two common points are
+$x$ and $z$ themselves; for $d(x,z)=2$ they are the two words lying between
+them.
+
+\section{Proof of Theorem \ref{thm-main}}\label{sec-proof}
+
+\begin{proof}
+\textbf{Step 1 (parity).} Fix $x\in C$ and sum the coverage function over its
+ball. Exchanging the order of summation and applying \eqref{eq-ball-int},
+\[
+  \sum_{y\in B(x)} c(y)
+  \;=\; \sum_{z\in C} |B(x)\cap B(z)|
+  \;=\; (n+1) + 2N_2(x),
+\]
+where $N_2(x)=\#\{z\in C: 1\le d(x,z)\le 2\}$. The term $n+1$ is the
+contribution of $z=x$, which lies in $C$ by assumption and, because $C$ is a
+set, occurs exactly once; every other codeword contributes $0$ or $2$. Because
+$n$ is even, $n+1$ is odd, so the whole sum is \emph{odd}. On the other hand it
+is a sum of $n+1$ terms each at least $2$, so it is at least $2(n+1)$; being
+odd, it is at least $2(n+1)+1$. Therefore
+\[
+  \sum_{y\in B(x)} g(y)\;\ge\;1 ,
+\]
+so every codeword $x$ admits some $y\in B(x)$ with $g(y)\ge 1$, that is, with
+$y\in S$.
+
+\textbf{Step 2 (incidence count).} Count the pairs $(x,y)$ with $x\in C$,
+$y\in S$ and $y\in B(x)$. By Step 1 each $x\in C$ occurs at least once, and each
+$y\in S$ occurs exactly $|B(y)\cap C|=c(y)$ times. Hence
+\[
+  |C| \;\le\; \sum_{y\in S} c(y) \;=\; \sum_{y\in S}\bigl(g(y)+2\bigr)
+      \;=\; E + 2s .
+\]
+
+\textbf{Step 3.} By \eqref{eq-s-le-E} we have $s\le E$, so $|C|\le 3E$.
+Substituting \eqref{eq-excess},
+\[
+  |C| \;\le\; 3(n+1)|C| - 3\cdot 2^{\,n+1},
+  \qquad\text{that is}\qquad
+  3\cdot 2^{\,n+1} \;\le\; (3n+2)\,|C| . \qedhere
+\]
+\end{proof}
+
+\begin{remark}\label{rem-parity}
+The parity step is essential, and the conclusion genuinely fails for odd $n$.
+In $\mathbb{F}_2^3$ the code $C=\{000,001,110,111\}$ has $c(x)=2$ for every $x$,
+so it is a perfect twofold covering with $E=0$ and $|C|=4=K(3,1,2)$, whereas the
+formula of Theorem \ref{thm-main} would demand $\lceil 48/11\rceil=5$.
+\end{remark}
+
+\begin{remark}\label{rem-set}
+The hypothesis that $C$ is a set is essential for this parity argument. If a
+codeword $x$ could occur with multiplicity $m_x$, the diagonal contribution in
+Step 1 would be $m_x(n+1)$, whose parity is not determined when $m_x$ may be
+even. The incidence count of Step 2 adapts to multiplicities; it is the
+uniqueness of the diagonal term that fails.
+\end{remark}
+
+\section{Comparison with the Krotov--Potapov bound}\label{sec-dominance}
+
+Krotov and Potapov \cite[Theorem 6]{KP-2021} give, with $\mu\equiv\tau\pmod 2$
+and $\tau\in\{0,1\}$,
+\[
+  K(n,1,\mu)\ge\frac{2^n(\mu n+3\mu+\tau)}{n(n+4)}\ \ (n\equiv 0\bmod 4),
+  \qquad
+  K(n,1,\mu)\ge\frac{2^n(\mu n+\mu+\tau)}{n(n+2)}\ \ (n\equiv 2\bmod 4).
+\]
+Write $L(n)=6\cdot 2^n/(3n+2)$ for the bound of Theorem \ref{thm-main}, and
+$KP(n)$ for the relevant right-hand side above at $\mu=2$, $\tau=0$.
+
+\begin{theorem}\label{thm-dominance}
+For every even $n\ge 6$ we have $\lceil L(n)\rceil > \lceil KP(n)\rceil$.
+\end{theorem}
+
+\begin{proof}
+Cross-multiplying gives the exact identities
+\[
+  L-KP=\frac{2^n(2n-12)}{n(n+4)(3n+2)}\ \ (n\equiv 0 \bmod 4),
+  \qquad
+  L-KP=\frac{2^n(2n-4)}{n(n+2)(3n+2)}\ \ (n\equiv 2\bmod 4),
+\]
+so the sign is decided by $2n-12$ and $2n-4$ respectively, and $L>KP$ for every
+even $n\ge 6$. (At $n=4$ the number $KP$ is the larger of the two, but both
+ceilings equal $7$, so no integer bound is lost.)
+
+The inequality between real numbers does not immediately give the inequality
+between ceilings, and the gap is genuinely small exactly where it matters: it
+equals $8/15$ at $n=6$ and $16/39$ at $n=8$, both below $1$. Those two cases are
+therefore checked directly, giving $20>19$ and $60>59$. At $n=10$ the gap is
+$64/15>1$. For even $n\ge 12$ it suffices to bound the smaller of the two gaps.
+Since
+\[
+  \frac{2n-4}{n(n+2)(3n+2)}\;\ge\;\frac{2n-12}{n(n+4)(3n+2)},
+\]
+the residue class $n\equiv 0\pmod 4$ is the binding one. Using $2n-12\ge n/2$
+(valid for $n\ge 8$) and $n(n+4)(3n+2)\le 8n^3$, which is equivalent to
+$5n^2-14n-8\ge 0$ and so holds for $n\ge 4$,
+\[
+  L-KP \;\ge\; \frac{2^n\,(n/2)}{8n^3} \;=\; \frac{2^n}{16n^2} \;>\; 1 .
+\]
+Indeed $2^{11}=2048>1936=16\cdot 11^2$, and $2^n/n^2$ is strictly increasing for
+$n\ge 3$ because $\bigl(2^{n+1}/(n+1)^2\bigr)\big/\bigl(2^n/n^2\bigr)
+=2n^2/(n+1)^2>1$ there. A gap exceeding $1$ forces
+$\lceil L\rceil\ge L>KP+1>\lceil KP\rceil$.
+\end{proof}
+
+Both bounds are asymptotically $2^{\,n+1}/n$, so their ratio tends to $1$ and
+the improvement may look negligible. It is not. The \emph{additive} gap is
+asymptotically $(2/3)\cdot 2^n/n^2$, which is unbounded, so the improvement does
+not run out; over the even $n$ in $[6,200]$ it survives the ceiling at all $98$
+values. Table \ref{tab-1} records the tabulated positions.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{r|r|r|r}
+$n$ & best published lower bound & Theorem \ref{thm-main} & gain \\ \hline
+$6$  & $20$ (exact value, \cite{Seuranen-2007}) & $\mathbf{20}$ & $0$, matched without search \\
+$8$  & $59$ \cite{KP-2021} & $\mathbf{60}$ & $+1$ \\
+$10$ & $188$ \cite{Seuranen-2007,KP-2021} & $\mathbf{192}$ & $+4$ \\
+$12$ & $640$ \cite{KP-2021} & $\mathbf{647}$ & $+7$ \\
+$14$ & $2195$ \cite{KP-2021} & $\mathbf{2235}$ & $+40$ \\
+$16$ & $7783$ \cite{KP-2021} & $\mathbf{7865}$ & $+82$
+\end{tabular}
+\caption{Lower bounds on $K(n,1,2)$ at the tabulated even lengths.}
+\label{tab-1}
+\end{table}
+
+The entries for $n\ge 8$ are exactly the $\mu=2$ positions printed in
+\cite{KP-2021}, and each printed lower bound there equals the value of their
+formula, so no tabulated entry is stronger than the formula itself.
+
+\section{Consequences at small $n$}\label{sec-small}
+
+\textbf{The value $K(6,1,2)=20$.} Theorem \ref{thm-main} gives
+$\lceil 384/20\rceil=20$. Combined with the known twenty-word twofold covering
+of $\mathbb{F}_2^6$, recorded explicitly in \cite{OEIS-A004045} as
+\[
+  \{0,1,2,4,8,23,27,29,30,31,39,43,45,46,47,48,49,50,52,56\}
+\]
+(written as integers in $[0,63]$), this recovers $K(6,1,2)=20$. The value was
+previously established computationally \cite{Seuranen-2007}; Theorem
+\ref{thm-main} replaces the lower-bound half of that determination by a
+one-line argument, while the upper half still rests on the construction above.
+
+\textbf{The bound $K(8,1,2)\ge 60$.} Theorem \ref{thm-main} gives
+$\lceil 1536/26\rceil = 60$, one above the published $59$. The sequence
+\texttt{A004045} in the On-Line Encyclopedia of Integer Sequences
+\cite{OEIS-A004045} currently lists exact values only through $n=7$, namely
+$2,3,4,8,12,20,32$, so $n=8$ is its first unresolved position. Krotov and
+Potapov record $59\le K(8,1,2)\le 64$ \cite{KP-2021}, the upper bound being the
+doubling $K(8,1,2)\le 2K(7,1,2)=64$ already present in the table of
+\cite{HHKL-1993}. Theorem \ref{thm-main} raises the lower endpoint, giving
+$60\le K(8,1,2)\le 64$.
+
+\section{Even multiplicities}\label{sec-mu}
+
+Carrying a general $\mu$ through the proof, Step 1 requires the ball sum
+$(n+1)+2N_2(x)$ to exceed $\mu(n+1)$ by rounding, which happens exactly when
+$\mu(n+1)$ is even, that is, for even $n$, exactly when $\mu$ is even.
+
+\begin{proposition}\label{prop-mu}
+Let $n\ge 2$ be even and let $\mu$ be a positive even integer. Then
+\[
+  K(n,1,\mu)\;\ge\;\frac{\mu(\mu+1)2^n}{(\mu+1)(n+1)-1},
+  \qquad\text{and hence}\qquad
+  K(n,1,\mu)\;\ge\;\left\lceil\frac{\mu(\mu+1)2^n}{(\mu+1)(n+1)-1}\right\rceil .
+\]
+\end{proposition}
+
+\begin{proof}
+Put $g_\mu(y)=c(y)-\mu$ and $E_\mu=\sum_y g_\mu(y)=(n+1)|C|-\mu 2^n$, and let
+$S_\mu=\{y:g_\mu(y)\ge 1\}$ with $s_\mu=|S_\mu|\le E_\mu$. For $n$ and $\mu$
+both even, $\mu(n+1)$ is even while the ball sum $(n+1)+2N_2(x)$ at a codeword
+is odd, so that sum exceeds $\mu(n+1)$ and each codeword ball meets $S_\mu$.
+Counting incidences as in Step 2,
+\[
+  |C|\;\le\;\sum_{y\in S_\mu} c(y)\;=\;E_\mu+\mu s_\mu\;\le\;(\mu+1)E_\mu
+      \;=\;(\mu+1)\bigl((n+1)|C|-\mu 2^n\bigr),
+\]
+which rearranges to the stated bound. \qedhere
+\end{proof}
+
+At $\mu=2$ this is Theorem \ref{thm-main}. For larger even $\mu$ the comparison
+with \cite{KP-2021} depends on both parameters. Writing $P(n,\mu)$ for the
+right-hand side of Proposition \ref{prop-mu} and $D=(\mu+1)(n+1)-1$, the exact
+differences are
+\[
+  P-KP=\frac{\mu 2^n(n-3\mu)}{D\,n(n+4)}\ \ (n\equiv 0\bmod 4),
+  \qquad
+  P-KP=\frac{\mu 2^n(n-\mu)}{D\,n(n+2)}\ \ (n\equiv 2\bmod 4),
+\]
+so that, as a comparison of the underlying real-valued bounds,
+\[
+  P>KP \iff \mu<n/3 \quad (n\equiv 0\bmod 4),
+  \qquad
+  P>KP \iff \mu<n \quad (n\equiv 2\bmod 4).
+\]
+The gain is therefore not confined to $\mu=2$. At $\mu=4$, for instance,
+Proposition \ref{prop-mu} gives $380$ at $n=10$ and $15604$ at $n=16$, against
+$376$ and $15565$ from \cite{KP-2021}; it loses at $n=8$, where it gives $117$
+against $118$. As in Section \ref{sec-dominance}, a strict inequality between
+the real bounds need not survive the ceiling: at $n=6$, $\mu=4$ the difference
+is $16/51>0$, yet both ceilings equal $38$. We therefore state the
+classification for the real-valued bounds only, and do not claim a
+corresponding classification after rounding.
+
+\section{Relation to previous work}\label{sec-prior}
+
+The covering excess method for \emph{ordinary} coverings goes back to van Wee
+\cite{vanWee-1988}, whose radius-one bound is asymptotically $2^n/n$; that work
+concerns $K(n,R)$ and does not yield the present bound. The extension of excess
+counting to multiple coverings is \cite{HHKL-1993}. In their Theorem 6 the
+correction term at radius one is
+\[
+  \varepsilon=2\left\lceil\frac{\mu(n+1)}{2}\right\rceil-\mu(n+1),
+\]
+so $\varepsilon=0$ exactly when $\mu(n+1)$ is even. For even $n$ the integer
+$n+1$ is odd, so this happens exactly for even $\mu$, and their bound then
+reduces to the sphere covering bound $K(n,1,\mu)\ge\mu 2^n/(n+1)$. The present
+argument instead uses the parity of the ball sum at a codeword, which is odd
+whenever $n$ is even for every $\mu$, and therefore applies precisely where
+$\varepsilon$ vanishes.\footnote{The authors of \cite{HHKL-1993} cite a
+forthcoming manuscript of W.\ Chen and D.\ Li entitled \emph{Lower bounds for
+multiple covering codes}. I have not located a published version, so the
+novelty comparison here is made relative to the accessible published
+literature.}
+
+\section*{Acknowledgment}
+
+The author used generative artificial-intelligence tools substantially in
+developing and preparing this work, including for literature exploration, for
+proposing candidate arguments, and for drafting text. The author independently
+verified every mathematical statement and assumes full responsibility for the
+content. No funding was received.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\footnotesize
+
+\begin{thebibliography}{00}
+
+\bibitem{HHKL-1993} H. O. H\"am\"al\"ainen, I. S. Honkala, M. K. Kaikkonen, S. Litsyn, Bounds for binary multiple covering codes, {\it Des. Codes Cryptogr.} {\bf 3} (1993) 251--275.
+
+\bibitem{KP-2021} D. S. Krotov, V. N. Potapov, On multifold packings of radius-1 balls in Hamming graphs, {\it IEEE Trans. Inform. Theory} {\bf 67} (2021) 3585--3598.
+
+\bibitem{OEIS-A004045} OEIS Foundation Inc., Entry A004045, {\it The On-Line Encyclopedia of Integer Sequences}, \underline{https://oeis.org/A004045} (accessed 3 September 2026).
+
+\bibitem{Seuranen-2007} E. A. Seuranen, New lower bounds for multiple coverings, {\it Des. Codes Cryptogr.} {\bf 45} (2007) 91--94.
+
+\bibitem{vanWee-1988} G. J. M. van Wee, Improved sphere bounds on the covering radius of codes, {\it IEEE Trans. Inform. Theory} {\bf 34} (1988) 237--245.
+
+\end{thebibliography}
+\end{document}
