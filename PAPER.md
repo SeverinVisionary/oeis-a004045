@@ -580,9 +580,10 @@ four minutes.
   doi:10.1007/BF01388486
 - [KP] D. S. Krotov, V. N. Potapov. On multifold packings of radius-1 balls in
   Hamming graphs. *IEEE Trans. Inform. Theory* **67**(6) (2021) 3585–3598.
-  arXiv:1902.00023
+  doi:10.1109/TIT.2020.3046260, arXiv:1902.00023
 - [LC] D. Li, W. Chen. New lower bounds for binary covering codes.
   *IEEE Trans. Inform. Theory* **40**(4) (1994) 1122–1129.
+  doi:10.1109/18.335963
 - [Flo1] A. Florath. Formal foundations and proof-carrying certificates for
   q-ary covering codes in Lean 4. arXiv:2606.09600, 2026.
 - [Flo2] A. Florath. A Lean-certified proof of `K_8(4,2) = 23`.
@@ -590,7 +591,7 @@ four minutes.
 - [Seu] E. A. Seuranen. New lower bounds for multiple coverings.
   *Des. Codes Cryptogr.* **45** (2007) 91–94. doi:10.1007/s10623-007-9089-y
 - [vW] G. J. M. van Wee. Improved sphere bounds on the covering radius of codes.
-  *IEEE Trans. Inform. Theory* **34** (1988) 237–245.
+  *IEEE Trans. Inform. Theory* **34** (1988) 237–245. doi:10.1109/18.2632
 - OEIS Foundation. Sequence A004045. https://oeis.org/A004045
 - H. Yang. Machine-checked bounds on K(8,1,2), the first unknown term of
   OEIS A004045. Zenodo, 2026. doi:10.5281/zenodo.22217672 (concept DOI; always
