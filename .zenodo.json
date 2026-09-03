@@ -49,8 +49,23 @@
       "identifier": "arXiv:1902.00023",
       "relation": "cites",
       "scheme": "arxiv"
+    },
+    {
+      "identifier": "https://severinvisionary.github.io/oeis-a004045/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "arXiv:2606.16688",
+      "relation": "references",
+      "scheme": "arxiv"
+    },
+    {
+      "identifier": "arXiv:2606.09600",
+      "relation": "references",
+      "scheme": "arxiv"
     }
   ],
-  "notes": "v2.6 records the definition audit: the author read the four Lean definitions the formal statement depends on (2026-09-03), cross-checked by reproducing the published K(4,1,2) = 8 exhaustively at n = 4. It also corrects the trust-boundary count throughout the package from twelve definitions to four -- the other eleven in Mcov/Basic.lean do not occur in the theorem statement and are proof machinery the kernel checks. No mathematical claim changed from v2.2.",
-  "version": "2.6"
+  "notes": "v2.7 adds prior art located after v2.6: A. Florath, arXiv:2606.16688 (2026), a Lean-certified proof of the exact covering-code value K_8(4,2) = 23 via fiber counting plus Lean-checked LRAT refutations -- the nearest methodological neighbour to the Lean section here, and now cited as [Flo2] with the novelty claim narrowed accordingly. It also corrects the README, which credited the upper bound 64 to Ostergard 1995 rather than the 1993 HHKL doubling, contradicting the paper's own correction; and adds a documentation landing page with citation metadata. No mathematical claim changed.",
+  "version": "2.7"
 }
